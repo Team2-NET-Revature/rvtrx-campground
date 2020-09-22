@@ -1,5 +1,5 @@
 [[redirects]]
-from = "https://campground.netlify.com/*"
+from = "https://campground.netlify.app/*"
 force = true
 status = 301
 to = "https://campground.rvtr.net/:splat"
