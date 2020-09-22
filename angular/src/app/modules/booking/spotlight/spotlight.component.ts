@@ -8,6 +8,7 @@ import { Lodging } from 'src/app/data/lodging.model';
 export class SpotlightComponent implements OnChanges {
   @Input() lodgings!: Lodging[] | null;
   selectedLodging: Lodging | null = null;
+  spotlight = false;
 
   ngOnChanges(): void {
     this.setSpotlight(this.lodgings);

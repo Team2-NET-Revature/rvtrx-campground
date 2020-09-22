@@ -8,6 +8,7 @@ import { Review } from 'data/review.model';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
+import { BookingService } from 'services/booking/booking.service';
 import { GenericEditingService } from 'services/editable/generic-editing.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 
@@ -28,43 +29,16 @@ export class AccountComponent {
 
   constructor(
     private readonly accountService: AccountService,
+    private readonly bookingService: BookingService,
     @Inject(ACCOUNT_EDITING_SERVICE)
     editingService: GenericEditingService<Partial<Account>>
   ) {
     this.account$ = this.accountService.get(this.id);
-    this.bookings$ = of([
-      {
-        id: '100',
-        accountId: '100',
-        lodgingId: '100',
-        guests: [],
-        rentals: [],
-        checkIn: '2020-11-01',
-        checkOut: '2020-11-30',
-      },
-      {
-        id: '200',
-        accountId: '100',
-        lodgingId: '100',
-        guests: [],
-        rentals: [],
-        checkIn: '2020-12-01',
-        checkOut: '2020-12-31',
-      },
-    ]);
+
+    this.bookings$ = this.bookingService.get(this.id);
+
     this.reviews$ = of([
-      {
-        id: '100',
-        comment: '',
-        dateCreated: '2020-08-01',
-        rating: 8.0,
-      },
-      {
-        id: '100',
-        comment: '',
-        dateCreated: '2020-09-01',
-        rating: 8.5,
-      },
+      // Not yet implemented
     ]);
     this.address$ = this.account$.pipe(map((account) => account.address));
     this.payments$ = this.account$.pipe(map((account) => account.payments));
