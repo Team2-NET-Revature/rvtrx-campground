@@ -4,7 +4,6 @@ import { Lodging } from 'src/app/data/lodging.model';
 @Component({
   selector: 'uic-featured-lodging',
   templateUrl: './featured-lodging.component.html',
-  styleUrls: ['./featured-lodging.component.scss'],
 })
 export class FeaturedLodgingComponent implements OnChanges {
   @Input() featuredLodgings!: Lodging[] | null;

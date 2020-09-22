@@ -76,7 +76,7 @@ describe('RentalComponent', () => {
     const tableRows = fixture.nativeElement.querySelectorAll('tr');
     const headerRow = tableRows[0];
     expect(headerRow.cells[0].innerHTML).toContain('Site');
-    expect(headerRow.cells[2].innerHTML).toContain('Sites Available');
+    expect(headerRow.cells[2].innerHTML).toContain('Occupancy');
   });
 
   it('should add and remove rental', () => {
