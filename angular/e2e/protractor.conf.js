@@ -13,7 +13,7 @@ exports.config = {
     browserName: 'chrome',
     chromeOptions: {
       args: ['--disable-gpu', '--headless'],
-      binary: `${process.env.CHROMIUM_BIN}${process.platform === 'win32' ? '.exe' : ''}`,
+      binary: process.env.CHROMIUM_BIN,
     },
   },
   directConnect: true,

@@ -52,8 +52,8 @@ The pull requests will largely affect the codebase as follow:
 
 1. create a commit for each logical unit of change, keeping the scope as small as possible
 1. write a message which describes the change, starting with an imperative verb such as:
-   - > add id property to object model
-   - > fix linting errors in app module
+    - > add id property to object model
+    - > fix linting errors in app module
 
 ```zsh
 git add <changed files>
