@@ -6,7 +6,7 @@ export const environment: Environment = {
   config: 'app.config.local.json',
   identity: {
     clientId: '0oa5empza950mqdtw357',
-    issuer: 'https://identity.rvtr.net/oauth2/default',
+    issuer: 'https://dev-296872.okta.com/oauth2/default',
     pkce: true,
     redirectUri: `${location.origin}/oauth2/authorize`,
     scopes: ['email', 'openid', 'profile'],

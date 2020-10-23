@@ -20,7 +20,8 @@
       "uri": {
         "lodging": "lodging",
         "rental": "rental",
-        "review": "review"
+        "review": "review",
+        "image": "images"
       }
     }
   },
