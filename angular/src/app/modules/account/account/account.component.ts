@@ -35,7 +35,8 @@ export class AccountComponent {
   ) {
     this.account$ = this.accountService.get(this.id);
 
-    this.bookings$ = this.bookingService.get(this.id);
+    // TODO: get only the bookings of this account
+    this.bookings$ = this.bookingService.get();
 
     this.reviews$ = of([
       // Not yet implemented
