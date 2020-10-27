@@ -12,8 +12,10 @@ describe('AccountComponent', () => {
     get(): Observable<Account> {
       const account: Account = {
         id: '',
+        email : '',
         address: {
           id: '',
+          
           city: '',
           country: '',
           postalCode: '',

@@ -39,10 +39,10 @@ export class AccountComponent {
    
     const OktaToken = localStorage.getItem("okta-token-storage");
     const OkTokenObj = JSON.parse(OktaToken as string);
-    this.email = (OkTokenObj.idToken.claims.email);
+    this.email = OkTokenObj.idToken.claims.email;
     console.log(this.email);
-    //this.account$ = this.accountService.get(this.id);
-    this.account$ = this.accountService.getEmail(this.email);
+    this.account$ = this.accountService.get(this.id);
+   // this.account$ = this.accountService.getEmail(this.email);
 
     // TODO: get only the bookings of this account
     this.bookings$ = this.bookingService.get();
@@ -53,7 +53,7 @@ export class AccountComponent {
     this.address$ = this.account$.pipe(map((account) => account.address));
     this.payments$ = this.account$.pipe(map((account) => account.payments));
     this.profiles$ = this.account$.pipe(map((account) => account.profiles));  
-    
+
     // Pass initial model to editingService which acts as model for overwriting data coming in
     this.account$.subscribe((e) => editingService.update(e));
     // Register function for Payload release from editing service
