@@ -16,6 +16,8 @@ export interface Account {
   id: string;
   /** address for the owner of the account */
   address: Address;
+
+  email: string;
   /** stored payment methods */
   payments: Payment[];
   /** people the account owner can book a site with */
