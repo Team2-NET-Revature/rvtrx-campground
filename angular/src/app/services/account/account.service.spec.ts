@@ -16,7 +16,7 @@ describe('AccountService', () => {
   const accountMock: Account = {
     id: '0',
     email: 'test',
-    name : '',
+    name: 'test',
     address: {
       id: 'string',
       city: 'string',

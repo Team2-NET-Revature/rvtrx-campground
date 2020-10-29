@@ -4,7 +4,14 @@
       <div class="field">
         <label for="location" class="label">location</label>
         <div class="control">
-          <input class="input" id="location" name="location" placeholder="Add the destination" type="text" ngModel>
+          <input
+            class="input"
+            id="location"
+            name="location"
+            placeholder="Add the destination"
+            type="text"
+            ngModel
+          />
         </div>
       </div>
     </div>
@@ -13,10 +20,24 @@
       <label for="check-in" class="label">check-in / check-out</label>
       <div class="field has-addons">
         <div class="control is-expanded">
-          <input class="input" id="checkin" name="checkin" placeholder="Add the traveling date" type="date" ngModel>
+          <input
+            class="input"
+            id="checkin"
+            name="checkin"
+            placeholder="Add the traveling date"
+            type="date"
+            ngModel
+          />
         </div>
         <div class="control is-expanded">
-          <input class="input" id="checkout" name="checkout" placeholder="Add the returning date" type="date" ngModel>
+          <input
+            class="input"
+            id="checkout"
+            name="checkout"
+            placeholder="Add the returning date"
+            type="date"
+            ngModel
+          />
         </div>
       </div>
     </div>
@@ -25,17 +46,35 @@
       <label for="adults" class="label">guests</label>
       <div class="field has-addons">
         <div class="control">
-          <input class="input" id="adults" name="adults" placeholder="Adults" type="number" ngModel>
+          <input
+            class="input"
+            id="adults"
+            name="adults"
+            placeholder="Adults"
+            type="number"
+            ngModel
+          />
         </div>
         <div class="control">
-          <input class="input" id="children" name="children" placeholder="Children" type="number" ngModel>
+          <input
+            class="input"
+            id="children"
+            name="children"
+            placeholder="Children"
+            type="number"
+            ngModel
+          />
         </div>
         <div class="control">
           <button class="button is-primary" type="submit" value="Send">Search</button>
         </div>
         <div class="control">
-          <button id="clearButton" class="button is-danger fa fa-window-close" type="button"
-            (click)="isSearched.emit(false)"></button>
+          <button
+            id="clearButton"
+            class="button is-danger fa fa-window-close"
+            type="button"
+            (click)="isSearched.emit(false)"
+          ></button>
         </div>
       </div>
     </div>

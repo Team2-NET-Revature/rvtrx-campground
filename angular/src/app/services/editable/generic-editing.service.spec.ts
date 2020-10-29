@@ -6,7 +6,7 @@ describe('AccountEditingService', () => {
   const account: Account = {
     id: '',
     email: '',
-    name : '',
+    name: '',
     address: {
       id: '',
       city: '',

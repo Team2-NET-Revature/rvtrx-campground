@@ -12,11 +12,11 @@ describe('AccountComponent', () => {
     get(): Observable<Account> {
       const account: Account = {
         id: '',
-        email : '',
-        name : '',
+        email: '',
+        name: '',
         address: {
           id: '',
-          
+
           city: '',
           country: '',
           postalCode: '',
@@ -58,6 +58,13 @@ describe('AccountComponent', () => {
   );
 
   beforeEach(() => {
+    const store: { [key: string]: string } = { test: 'test' };
+    const mockLocalStorage = {
+      getItem: (key: string): string | null => {
+        return key in store ? store[key] : null;
+      },
+    };
+    spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
     fixture = TestBed.createComponent(AccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

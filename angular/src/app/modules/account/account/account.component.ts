@@ -28,10 +28,9 @@ export class AccountComponent {
   reviews$: Observable<Review[]>;
   private readonly id = '-1';
   accountId = this.id;
-  email : string;
-  name: string;
-  
-
+  email: string;
+  // OktaToken : string | null;
+  // OkTokenObj: any;
 
   constructor(
     private readonly accountService: AccountService,
@@ -39,33 +38,16 @@ export class AccountComponent {
     @Inject(ACCOUNT_EDITING_SERVICE)
     editingService: GenericEditingService<Partial<Account>>
   ) {
-  
-    //gets token from localstorage
-    const OktaToken = localStorage.getItem("okta-token-storage");
+    // gets token from localstorage
+
+    const OktaToken = localStorage.getItem('okta-token-storage');
     const OkTokenObj = JSON.parse(OktaToken as string);
     this.email = OkTokenObj.idToken.claims.email;
-    this.name = OkTokenObj.idToken.claims.name;
-    //returns user associated with the email parsed from the token, currently hard coding email for testing purposes.
-    this.account$ = this.accountService.getEmail("Test@test.com");
-    //code for actual production purposes, when posting function is completed.
-    //this.account$ = this.accountService.getEmail(this.email);
- 
-    /*TODO: 
-     let account = <Account>{ 
-       id : "-2",
-       email : this.email,
-       name : this.name,
 
-     };
-     this.accountService.post(account); */
-   
- 
-    
-
-
-
-
-    
+    // returns user associated with the email parsed from the token, currently hard coding email for testing purposes.
+    this.account$ = this.accountService.getEmail('Test@test.com');
+    // code for actual production purposes, when posting function is completed.
+    // this.account$ = this.accountService.getEmail(this.email);
 
     // TODO: get only the bookings of this account
     this.bookings$ = this.bookingService.get();
@@ -75,8 +57,7 @@ export class AccountComponent {
     ]);
     this.address$ = this.account$.pipe(map((account) => account.address));
     this.payments$ = this.account$.pipe(map((account) => account.payments));
-    this.profiles$ = this.account$.pipe(map((account) => account.profiles)); 
-     
+    this.profiles$ = this.account$.pipe(map((account) => account.profiles));
 
     // Pass initial model to editingService which acts as model for overwriting data coming in
     this.account$.subscribe((e) => editingService.update(e));
@@ -84,7 +65,6 @@ export class AccountComponent {
     editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
   }
 
-  
   /**
    * Function registered to the editing service
    */
