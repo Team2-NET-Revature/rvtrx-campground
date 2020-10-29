@@ -10,7 +10,7 @@ describe('ProfileComponent', () => {
   let fixture: ComponentFixture<ProfileComponent>;
   const profiles = [
     {
-      id: '',
+      id: 1,
       email: '',
       givenName: '',
       familyName: '',

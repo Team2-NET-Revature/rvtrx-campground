@@ -15,7 +15,7 @@ import { Filter } from 'src/app/data/filter.model';
 describe('LodgingService', () => {
   const lodgingMock: Lodging[] = [
     {
-      id: 'string',
+      id: 1,
       location: {
         id: 'string',
         address: {

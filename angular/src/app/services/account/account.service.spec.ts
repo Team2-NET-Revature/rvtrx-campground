@@ -35,7 +35,7 @@ describe('AccountService', () => {
     profiles: [
       {
         type: 'adult',
-        id: 'string',
+        id: 1,
         email: 'string',
         familyName: 'string',
         givenName: 'string',

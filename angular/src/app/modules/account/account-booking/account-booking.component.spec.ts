@@ -4,13 +4,13 @@ import { Booking } from 'src/app/data/booking.model';
 describe('AccountBookingComponent', () => {
   const booking: Booking = {
     id: 'string',
-    accountId: 'string',
-    lodgingId: 'string',
+    accountId: 1,
+    lodgingId: 1,
     checkIn: '',
     checkOut: '',
     guests: [
       {
-        id: 'string',
+        id: 1,
         type: 'string',
         email: 'string',
         familyName: '',

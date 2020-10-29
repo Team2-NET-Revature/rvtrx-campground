@@ -5,12 +5,15 @@ import { Observable, of } from 'rxjs';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { ActivatedRoute } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { bufferWhen } from 'rxjs/operators';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BookingService } from '../../../services/booking/booking.service';
 
 describe('LodgingDetailsComponent', () => {
   let component: LodgingDetailsComponent;
   let fixture: ComponentFixture<LodgingDetailsComponent>;
   const lodging: Lodging = {
-    id: '1',
+    id: 1,
     location: {
       id: '1',
       address: {
@@ -47,7 +50,9 @@ describe('LodgingDetailsComponent', () => {
 
       TestBed.configureTestingModule({
         declarations: [LodgingDetailsComponent],
+        imports: [HttpClientTestingModule],
         providers: [
+          BookingService,
           { provide: LodgingService, useValue: lodgingServiceStub },
           {
             provide: ActivatedRoute,
