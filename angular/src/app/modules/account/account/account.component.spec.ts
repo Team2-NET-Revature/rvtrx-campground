@@ -6,6 +6,8 @@ import { AccountComponent } from './account.component';
 import { Account } from '../../../data/account.model';
 import { AccountService } from '../../../services/account/account.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
+import { ToastrService } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('AccountComponent', () => {
   const accountServiceStub = {
@@ -41,13 +43,14 @@ describe('AccountComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [AccountComponent],
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule, ToastrModule.forRoot()],
         providers: [
           {
             provide: ACCOUNT_EDITING_SERVICE,
             useValue: mockEditingService,
           },
           { provide: AccountService, useValue: accountServiceStub },
+          ToastrService,
         ],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
