@@ -40,12 +40,13 @@ export class AccountComponent {
   ) {
     // gets token from localstorage
 
-    const OktaToken = localStorage.getItem('okta-token-storage');
-    const OkTokenObj = JSON.parse(OktaToken as string);
-    this.email = OkTokenObj.idToken.claims.email;
+    // const OktaToken = localStorage.getItem('okta-token-storage');
+    // const OkTokenObj = JSON.parse(OktaToken as string);
+    // this.email = OkTokenObj.idToken.claims.email;
 
     // returns user associated with the email parsed from the token, currently hard coding email for testing purposes.
-    this.account$ = this.accountService.getEmail('Test@test.com');
+    this.email = this.accountService.getToken();
+    this.account$ = this.accountService.getEmail(this.email);
     // code for actual production purposes, when posting function is completed.
     // this.account$ = this.accountService.getEmail(this.email);
 

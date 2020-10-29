@@ -9,7 +9,28 @@ import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 
 describe('AccountComponent', () => {
   const accountServiceStub = {
+
     get(): Observable<Account> {
+      const account: Account = {
+        id: '',
+        email: '',
+        name: '',
+        address: {
+          id: '',
+
+          city: '',
+          country: '',
+          postalCode: '',
+          stateProvince: '',
+          street: '',
+        },
+        payments: [],
+        profiles: [],
+      };
+      return of(account);
+    },
+
+    getEmail(): Observable<Account> {
       const account: Account = {
         id: '',
         email: '',
@@ -31,6 +52,10 @@ describe('AccountComponent', () => {
     put(acct: Account): Observable<undefined> {
       return of();
     },
+
+    getToken(){
+      return of ();
+    }
   };
   const mockEditingService = {
     payloadEmitter: new Observable<Partial<Account>>(),
@@ -58,13 +83,13 @@ describe('AccountComponent', () => {
   );
 
   beforeEach(() => {
-    const store: { [key: string]: string } = { test: 'test' };
-    const mockLocalStorage = {
-      getItem: (key: string): string | null => {
-        return key in store ? store[key] : null;
-      },
-    };
-    spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
+    // const store: { [key: string]: string } = { test: 'test' };
+    // const mockLocalStorage = {
+    //   getItem: (key: string): string | null => {
+    //     return key in store ? store[key] : null;
+    //   },
+    // };
+    // spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
     fixture = TestBed.createComponent(AccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
