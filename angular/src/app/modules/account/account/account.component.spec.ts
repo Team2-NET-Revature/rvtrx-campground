@@ -70,7 +70,7 @@ describe('AccountComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have toastr service method', () => {
+  it('should be able to call toastr service method', () => {
     const toasterServiceInstance = fixture.componentInstance.toastrServiceProp;
     fixture.detectChanges();
     component.callToastrError('Error Message', 'Error title');

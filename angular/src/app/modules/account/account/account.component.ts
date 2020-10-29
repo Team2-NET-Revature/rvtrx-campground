@@ -60,7 +60,7 @@ export class AccountComponent {
     editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
   }
 
-  callToastrError(msg: string, kind: string) {
+  callToastrError(msg: string, kind: string): void {
     this.toastrService.error(msg, kind, {
       disableTimeOut: true,
       positionClass: 'toast-top-center',
