@@ -14,7 +14,7 @@ describe('BookingComponent', () => {
     get(): Observable<Lodging[]> {
       return of([
         {
-          id: '',
+          id: 1,
           location: {
             id: '',
             address: {
@@ -45,10 +45,11 @@ describe('BookingComponent', () => {
           ],
           reviews: [
             {
-              id: '1',
+              accountId: 1,
               comment: 'comment',
               dateCreated: '2020-08-01',
               rating: 1,
+              lodgingId: 1,
             },
           ],
           bathrooms: 1,

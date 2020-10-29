@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 describe('SearchResultsComponent', () => {
   const lodgings: Lodging[] = [
     {
-      id: '',
+      id: 1,
       location: {
         id: '',
         address: {
@@ -39,10 +39,11 @@ describe('SearchResultsComponent', () => {
       ],
       reviews: [
         {
-          id: '1',
+          accountId: 1,
           comment: 'comment',
           dateCreated: '2020-08-01',
           rating: 1,
+          lodgingId: 1,
         },
       ],
       bathrooms: 1,
