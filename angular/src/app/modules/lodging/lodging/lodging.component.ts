@@ -31,11 +31,11 @@ export class LodgingComponent implements OnInit {
     this.lodgingService.get().subscribe(
       (data) => {
         this.lodgings = data;
-        
+
         if (this.lodgings != null) {
           this.lodgings?.forEach((lodging) => {
             this.lodgingService
-              .getImages(lodging.id)
+              .getImages(lodging.id.toString())
               .subscribe((urls) => (lodging.imageUrls = urls));
           });
         }
