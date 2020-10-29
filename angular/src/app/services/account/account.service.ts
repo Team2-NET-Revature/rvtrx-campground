@@ -94,12 +94,9 @@ export class AccountService {
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url) => this.http.post<PostPayment>(url, payment)));
   }
-  getToken (){
+  getToken(): string {
     const OktaToken = localStorage.getItem('okta-token-storage');
     const OkTokenObj = JSON.parse(OktaToken as string);
     return OkTokenObj.idToken.claims.email;
-
   }
-
-
 }

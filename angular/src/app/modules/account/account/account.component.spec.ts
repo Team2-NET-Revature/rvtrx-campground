@@ -9,7 +9,6 @@ import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 
 describe('AccountComponent', () => {
   const accountServiceStub = {
-
     get(): Observable<Account> {
       const account: Account = {
         id: '',
@@ -53,9 +52,9 @@ describe('AccountComponent', () => {
       return of();
     },
 
-    getToken(){
-      return of ();
-    }
+    getToken(): string {
+      return 'test';
+    },
   };
   const mockEditingService = {
     payloadEmitter: new Observable<Partial<Account>>(),
@@ -83,13 +82,6 @@ describe('AccountComponent', () => {
   );
 
   beforeEach(() => {
-    // const store: { [key: string]: string } = { test: 'test' };
-    // const mockLocalStorage = {
-    //   getItem: (key: string): string | null => {
-    //     return key in store ? store[key] : null;
-    //   },
-    // };
-    // spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
     fixture = TestBed.createComponent(AccountComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

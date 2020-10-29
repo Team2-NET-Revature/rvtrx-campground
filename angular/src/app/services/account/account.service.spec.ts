@@ -13,10 +13,6 @@ import { Config } from '../../data/config.model';
 import { PostPayment } from 'src/app/data/payment.model';
 
 describe('AccountService', () => {
-
-
-
-
   const accountMock: Account = {
     id: '0',
     email: 'test',
@@ -109,9 +105,7 @@ describe('AccountService', () => {
 
   it('should return items from localstorage', () => {
     expect(localStorage.getItem('test')).toBeTruthy();
-  })
-
-
+  });
 
   it('should make httpDelete request', fakeAsync(() => {
     let req: TestRequest;
