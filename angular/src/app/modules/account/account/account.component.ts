@@ -11,6 +11,7 @@ import { AccountService } from 'services/account/account.service';
 import { BookingService } from 'services/booking/booking.service';
 import { GenericEditingService } from 'services/editable/generic-editing.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
+import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
 
 @Component({
   selector: 'uic-account',
@@ -23,6 +24,7 @@ export class AccountComponent {
   payments$: Observable<Payment[]>;
   profiles$: Observable<Profile[]>;
   reviews$: Observable<Review[]>;
+  toastrServiceProp = this.toastrService;
 
   private readonly id = '-1';
   accountId = this.id;
@@ -31,7 +33,8 @@ export class AccountComponent {
     private readonly accountService: AccountService,
     private readonly bookingService: BookingService,
     @Inject(ACCOUNT_EDITING_SERVICE)
-    editingService: GenericEditingService<Partial<Account>>
+    editingService: GenericEditingService<Partial<Account>>,
+    private readonly toastrService: ToastrService
   ) {
     this.account$ = this.accountService.get(this.id);
 
@@ -46,9 +49,22 @@ export class AccountComponent {
     this.profiles$ = this.account$.pipe(map((account) => account.profiles));
 
     // Pass initial model to editingService which acts as model for overwriting data coming in
-    this.account$.subscribe((e) => editingService.update(e));
+    this.account$.subscribe(
+      (e) => editingService.update(e),
+      (err) => {
+        console.log(err);
+        this.callToastrError(err, 'Service Error');
+      }
+    );
     // Register function for Payload release from editing service
     editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
+  }
+
+  callToastrError(msg: string, kind: string): void {
+    this.toastrService.error(msg, kind, {
+      disableTimeOut: true,
+      positionClass: 'toast-top-center',
+    });
   }
 
   /**
