@@ -3,12 +3,11 @@ import { AccountReviewComponent } from './account-review.component';
 
 describe('AccountReviewComponent', () => {
   const review = {
-    id: '',
-    accountId: '',
-    hotelId: '',
+    accountId: 1,
     comment: '',
     dateCreated: '2020-08-01',
     rating: 0,
+    lodgingId: 1,
   };
   let component: AccountReviewComponent;
   let fixture: ComponentFixture<AccountReviewComponent>;

@@ -14,7 +14,7 @@ describe('LodgingComponent', () => {
 
   const lodgings: Lodging[] = [
     {
-      id: '1',
+      id: 1,
       location: {
         id: '1',
         address: {
@@ -35,7 +35,7 @@ describe('LodgingComponent', () => {
       imageUrls: ['http://placecorgi.com/300'],
     },
     {
-      id: '2',
+      id: 2,
       location: {
         id: '2',
         address: {

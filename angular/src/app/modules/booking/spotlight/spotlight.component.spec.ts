@@ -8,7 +8,7 @@ describe('SpotlightComponent', () => {
 
   const testLodgings: Lodging[] = [
     {
-      id: '',
+      id: 1,
       location: {
         id: '',
         address: {
@@ -41,7 +41,7 @@ describe('SpotlightComponent', () => {
       imageUrls: [],
     },
     {
-      id: '',
+      id: 1,
       location: {
         id: '',
         address: {
