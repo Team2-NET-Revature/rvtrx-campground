@@ -160,7 +160,7 @@ describe('AccountService', () => {
   it('should make httpPost request for payments', fakeAsync(() => {
     let req: TestRequest;
     const mockPayment: PostPayment = {
-      accountId: 'string',
+      email: 'string',
       id: 'string',
       cardExpirationDate: '2020-08-01',
       cardName: 'string',
