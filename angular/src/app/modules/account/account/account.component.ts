@@ -27,12 +27,9 @@ export class AccountComponent {
   payments$: Observable<Payment[]>;
   profiles$: Observable<Profile[]>;
   reviews$: Observable<Review[]>;
-
   toastrServiceProp = this.toastrService;
-
-
-  //private readonly id = '-1';
-  //accountId = this.id;
+  private readonly id = '-1';
+  accountId = this.id;
   email: string;
 
   constructor(
@@ -46,7 +43,6 @@ export class AccountComponent {
     // returns user associated with the email parsed from the token
     this.email = this.accountService.getToken();
     this.account$ = this.accountService.getEmail(this.email);
-
 
     // TODO: get only the bookings of this account
     this.bookings$ = this.bookingService.get();
