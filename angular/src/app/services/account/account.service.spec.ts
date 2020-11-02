@@ -110,24 +110,24 @@ describe('AccountService', () => {
   it('should make httpDelete request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.delete('0').subscribe();
+    service.delete('test').subscribe();
 
     tick();
 
-    req = httpTestingController.expectOne('test/0');
+    req = httpTestingController.expectOne('test/test');
     req.flush(null);
   }));
 
   it('should make httpGet request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.get('0').subscribe((res) => {
+    service.getEmail('test').subscribe((res) => {
       expect(res).toEqual(accountMock);
     });
 
     tick();
 
-    req = httpTestingController.expectOne('test/0');
+    req = httpTestingController.expectOne('test/test');
     req.flush(accountMock);
   }));
 

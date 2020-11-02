@@ -50,17 +50,11 @@ export class AccountService {
   }
 
   /**
-   * Represents the _Account Service_ `get` method
+   * Represents the _Account Service_ `getEmail` method
    *
-   * @param id string
+   * @param email string
    */
-  get(id: string): Observable<Account> {
-    return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
-      concatMap((url) => this.http.get<Account>(url))
-    );
-  }
-
+  
   getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url) => url.concat(`/${email}`)),
