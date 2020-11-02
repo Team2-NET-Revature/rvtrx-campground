@@ -54,7 +54,7 @@ export class AccountService {
    *
    * @param email string
    */
-  
+
   getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url) => url.concat(`/${email}`)),
