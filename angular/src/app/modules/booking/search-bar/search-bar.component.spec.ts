@@ -15,7 +15,7 @@ describe('SearchBarComponent', () => {
 
   const lodgings: Lodging[] = [
     {
-      id: '1',
+      id: 1,
       location: {
         id: '1',
         address: {
@@ -63,8 +63,8 @@ describe('SearchBarComponent', () => {
   const bookings: Booking[] = [
     {
       id: '',
-      accountId: '',
-      lodgingId: '',
+      accountId: 1,
+      lodgingId: 1,
       checkIn: '',
       checkOut: '',
       guests: [],

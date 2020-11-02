@@ -15,8 +15,8 @@ describe('BookingService', () => {
   const bookingMock: Booking[] = [
     {
       id: '0',
-      accountId: '0',
-      lodgingId: '0',
+      accountId: 0,
+      lodgingId: 0,
       guests: [],
       rentals: [],
       checkIn: '2020-08-01',

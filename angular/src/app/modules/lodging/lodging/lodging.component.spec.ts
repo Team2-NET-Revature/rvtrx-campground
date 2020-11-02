@@ -5,6 +5,8 @@ import { Lodging } from 'src/app/data/lodging.model';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('LodgingComponent', () => {
   let component: LodgingComponent;
@@ -12,7 +14,7 @@ describe('LodgingComponent', () => {
 
   const lodgings: Lodging[] = [
     {
-      id: '1',
+      id: 1,
       location: {
         id: '1',
         address: {
@@ -33,7 +35,7 @@ describe('LodgingComponent', () => {
       imageUrls: ['http://placecorgi.com/300'],
     },
     {
-      id: '2',
+      id: 2,
       location: {
         id: '2',
         address: {
@@ -71,8 +73,8 @@ describe('LodgingComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [LodgingComponent],
-        imports: [HttpClientTestingModule],
-        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }],
+        imports: [HttpClientTestingModule, ToastrModule.forRoot()],
+        providers: [{ provide: LodgingService, useValue: lodgingServiceStub }, ToastrService],
         schemas: [NO_ERRORS_SCHEMA],
       }).compileComponents();
 

@@ -8,7 +8,7 @@ describe('FeaturedLodgingComponent', () => {
 
   const testLodgings: Lodging[] = [
     {
-      id: '',
+      id: 1,
       location: {
         id: '',
         address: {
