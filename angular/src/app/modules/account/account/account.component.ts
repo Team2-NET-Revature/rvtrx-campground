@@ -53,7 +53,10 @@ export class AccountComponent {
       (e) => editingService.update(e),
       (err) => {
         console.log(err);
-        this.callToastrError(err, 'Service Error');
+        this.toastrService.error(`${err.message}`, 'Service Error', {
+          disableTimeOut: true,
+          positionClass: 'toast-top-center',
+        });
       }
     );
     // Register function for Payload release from editing service
