@@ -53,14 +53,10 @@ export class AccountComponent {
       (e) => editingService.update(e),
       (err) => {
         console.log(err);
-<<<<<<< HEAD
-        this.callToastrError(err, 'Service Error');
-=======
         this.toastrService.error(`${err.message}`, 'Service Error', {
           disableTimeOut: true,
           positionClass: 'toast-top-center',
         });
->>>>>>> resolves merge conflict
       }
     );
     // Register function for Payload release from editing service
