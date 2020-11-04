@@ -81,7 +81,7 @@ describe('LodgingDetailsComponent', () => {
   const onSubmitStub = {
     OnSubmit(): void {},
     click(): void {
-      onSubmitStub.OnSubmit()
+      onSubmitStub.OnSubmit();
     },
   };
 
@@ -106,8 +106,6 @@ describe('LodgingDetailsComponent', () => {
           return of(bookings);
         },
       };
-
-      
 
       TestBed.configureTestingModule({
         declarations: [LodgingDetailsComponent],
@@ -148,7 +146,7 @@ describe('LodgingDetailsComponent', () => {
   it('Comment Box should appear', () => {
     component.hasBooked = true;
 
-    fixture.detectChanges(); 
+    fixture.detectChanges();
 
     expect(fixture.debugElement.nativeElement.querySelector('.media')).toBeTruthy();
   });
@@ -237,14 +235,10 @@ describe('LodgingDetailsComponent', () => {
 
     fixture.detectChanges();
 
-    expect(component.Comment.invalid).toBeFalsy();
-
     const button = fixture.debugElement.query(By.css('button'));
 
     button.triggerEventHandler('click', null);
 
     expect(component.OnSubmit).toHaveBeenCalled();
-
   });
-
 });
