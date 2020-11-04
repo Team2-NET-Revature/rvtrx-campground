@@ -65,7 +65,7 @@ export class BookingService {
   /**
    * Represents the _Booking Service_ `get` method
    *
-   * @param email
+   * @param email string
    */
   getByAccountEmail(email?: string): Observable<Booking[]> {
     return this.bookingsUrl$.pipe(
