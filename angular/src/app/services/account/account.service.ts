@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Output } from '@angular/core';
-import { concat, Observable, of, pipe } from 'rxjs';
-import { concatMap, map, switchMap, tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { concatMap, map } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { PostPayment } from '../../data/payment.model';
-import { stringify } from 'querystring';
-
 
 @Injectable({
   providedIn: 'root',
@@ -90,5 +88,4 @@ export class AccountService {
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
   }
-
 }
