@@ -43,7 +43,6 @@ export class AccountComponent {
     this.init();
   }
 
-
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email as string;

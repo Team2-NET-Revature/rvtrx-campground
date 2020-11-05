@@ -61,7 +61,6 @@ export class AccountService {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/${email}`)),
       concatMap((url1) => this.http.get<Account>(url1))
-
     );
   }
 
