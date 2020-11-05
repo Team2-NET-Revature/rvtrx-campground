@@ -29,13 +29,20 @@ export class SearchBarComponent {
     private readonly bookingService: BookingService,
     private readonly lodgingService: LodgingService
   ) {
+    const dateNow = this.getDateNow();
+    this.searchForm = this.makeSearchForm(dateNow);
+  }
+
+  getDateNow(): string{
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();
-    const dateNow = yyyy + '-' + mm + '-' + dd;
+    return yyyy + '-' + mm + '-' + dd;
+  }
 
-    this.searchForm = new FormGroup({
+  makeSearchForm(dateNow: string): FormGroup{
+    return new FormGroup({
       location: new FormControl(''),
       staydates: new FormGroup(
         {
@@ -49,6 +56,7 @@ export class SearchBarComponent {
     });
   }
 
+
   datesValidator(dateNow: string): ValidatorFn {
     // Factory function to return a control function based on parameters
     return (thisControl: AbstractControl): ValidationErrors | null => {
@@ -58,21 +66,17 @@ export class SearchBarComponent {
       const checkInVal = thisControl.value.checkin;
       const checkOutVal = thisControl.value.checkout;
       if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) {
-        // console.log("In/out incomplete");
-        return { incompleteDates: true };
+        return { incompleteDates: true }; // In/out incomplete (must be both or neither)
       }
       if (checkInVal === '' || checkOutVal === '') {
         return null; // This line allows double empty dates to count as valid
-        // console.log("In/out dates required");
         // return { emptyInput: true };
       }
       if (checkInVal < dateNow || checkOutVal < dateNow) {
-        // console.log("Search dates cannot be bafore today's date");
-        return { beforeNow: true };
+        return { beforeNow: true }; //Search dates cannot be bafore today's date
       }
       if (checkOutVal < checkInVal) {
-        // console.log("Check-out cannot be before check-in");
-        return { outBeforeIn: true };
+        return { outBeforeIn: true }; // Check-out cannot be before check-in
       }
       return null;
     };
