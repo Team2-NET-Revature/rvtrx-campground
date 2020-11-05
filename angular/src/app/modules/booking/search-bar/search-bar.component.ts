@@ -65,7 +65,7 @@ export class SearchBarComponent {
       }
       const checkInVal = thisControl.value.checkin;
       const checkOutVal = thisControl.value.checkout;
-      if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) {
+      if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) { 
         return { incompleteDates: true }; // In/out incomplete (must be both or neither)
       }
       if (checkInVal === '' || checkOutVal === '') {

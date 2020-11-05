@@ -208,7 +208,7 @@ describe('SearchBarComponent', () => {
     let testDates = new FormGroup(
       {
         checkin: new FormControl('2020-11-09'),
-        checkout: new FormControl('2020-11-07'),
+        checkout: new FormControl('2020-11-07'), 
       }
     );
     let testDatesValidator = component.datesValidator(testCurrentDate);

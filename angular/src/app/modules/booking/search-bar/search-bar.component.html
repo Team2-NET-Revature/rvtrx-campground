@@ -46,7 +46,7 @@
     </div>
   </div>
   <div>
-    <span *ngIf="searchForm.get('staydates')!.touched">
+    <span *ngIf="searchForm.get('staydates')!.touched"> 
       <!-- <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.emptyInput">Check-in/check-out dates are required</div> -->
       <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.incompleteDates">Check-in/check-out must either both be empty or both selected</div>
       <div class="text-danger" *ngIf="searchForm.get('staydates')!.errors?.beforeNow">Search date cannot be before today's date</div>
