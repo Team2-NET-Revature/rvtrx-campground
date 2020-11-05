@@ -188,7 +188,7 @@ describe('SearchBarComponent', () => {
       checkin: new FormControl('2020-11-04'),
       checkout: new FormControl('2020-11-07'),
     });
-    const testDatesValidator = component.datesValidator(testCurrentDate); 
+    const testDatesValidator = component.datesValidator(testCurrentDate);
     expect(testDatesValidator(testDates)).toEqual({ beforeNow: true });
   });
 
