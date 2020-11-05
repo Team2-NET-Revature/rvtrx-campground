@@ -26,7 +26,7 @@ export class AccountComponent {
   profiles$: Observable<Profile[]> | undefined;
   reviews$: Observable<Review[]> | undefined;
   toastrServiceProp = this.toastrService;
-  email: string | undefined;
+  email: string;
 
   constructor(
     public oktaAuth: OktaAuthService,

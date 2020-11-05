@@ -15,6 +15,7 @@
               <h2 class="title has-text-light is-4">payments</h2>
               <uic-payment
                 *ngIf="payments$ | async as payments"
+                [email]="email"
                 [payments]="payments"
               >
               </uic-payment>
