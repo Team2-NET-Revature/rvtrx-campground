@@ -6,7 +6,7 @@ import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { PostPayment } from '../../data/payment.model';
 import { stringify } from 'querystring';
-import { url } from 'inspector';
+
 
 @Injectable({
   providedIn: 'root',
@@ -90,9 +90,5 @@ export class AccountService {
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
   }
-  getToken(): string {
-    const OktaToken = localStorage.getItem('okta-token-storage');
-    const OkTokenObj = JSON.parse(OktaToken as string);
-    return OkTokenObj.idToken.claims.email;
-  }
+
 }
