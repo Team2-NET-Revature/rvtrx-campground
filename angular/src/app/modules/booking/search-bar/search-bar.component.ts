@@ -33,7 +33,7 @@ export class SearchBarComponent {
     this.searchForm = this.makeSearchForm(dateNow);
   }
 
-  getDateNow(): string{
+  getDateNow(): string {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -41,7 +41,7 @@ export class SearchBarComponent {
     return yyyy + '-' + mm + '-' + dd;
   }
 
-  makeSearchForm(dateNow: string): FormGroup{
+  makeSearchForm(dateNow: string): FormGroup {
     return new FormGroup({
       location: new FormControl(''),
       staydates: new FormGroup(
@@ -56,7 +56,6 @@ export class SearchBarComponent {
     });
   }
 
-
   datesValidator(dateNow: string): ValidatorFn {
     // Factory function to return a control function based on parameters
     return (thisControl: AbstractControl): ValidationErrors | null => {
@@ -65,7 +64,7 @@ export class SearchBarComponent {
       }
       const checkInVal = thisControl.value.checkin;
       const checkOutVal = thisControl.value.checkout;
-      if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) { 
+      if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) {
         return { incompleteDates: true }; // In/out incomplete (must be both or neither)
       }
       if (checkInVal === '' || checkOutVal === '') {
@@ -73,7 +72,7 @@ export class SearchBarComponent {
         // return { emptyInput: true };
       }
       if (checkInVal < dateNow || checkOutVal < dateNow) {
-        return { beforeNow: true }; //Search dates cannot be bafore today's date
+        return { beforeNow: true }; // Search dates cannot be bafore today's date
       }
       if (checkOutVal < checkInVal) {
         return { outBeforeIn: true }; // Check-out cannot be before check-in

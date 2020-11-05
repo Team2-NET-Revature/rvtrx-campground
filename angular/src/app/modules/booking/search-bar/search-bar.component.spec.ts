@@ -9,10 +9,7 @@ import { of } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
 import { Booking } from 'src/app/data/booking.model';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  FormControl,
-  FormGroup,
-} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -156,62 +153,52 @@ describe('SearchBarComponent', () => {
   });
 
   it('testDatesValidator works when both empty', () => {
-    const testCurrentDate = "2020-11-05";
-    let testDates = new FormGroup(
-      {
-        checkin: new FormControl(''),
-        checkout: new FormControl(''),
-      }
-    );
-    let testDatesValidator = component.datesValidator(testCurrentDate);
+    const testCurrentDate = '2020-11-05';
+    const testDates = new FormGroup({
+      checkin: new FormControl(''),
+      checkout: new FormControl(''),
+    });
+    const testDatesValidator = component.datesValidator(testCurrentDate);
     expect(testDatesValidator(testDates)).toEqual(null);
   });
 
   it('testDatesValidator works when both valid', () => {
-    const testCurrentDate = "2020-11-05";
-    let testDates = new FormGroup(
-      {
-        checkin: new FormControl('2020-11-06'),
-        checkout: new FormControl('2020-11-07'),
-      }
-    );
-    let testDatesValidator = component.datesValidator(testCurrentDate);
+    const testCurrentDate = '2020-11-05';
+    const testDates = new FormGroup({
+      checkin: new FormControl('2020-11-06'),
+      checkout: new FormControl('2020-11-07'),
+    });
+    const testDatesValidator = component.datesValidator(testCurrentDate);
     expect(testDatesValidator(testDates)).toEqual(null);
   });
 
   it('testDatesValidator rejects one date empty one nonempty', () => {
-    const testCurrentDate = "2020-11-05";
-    let testDates = new FormGroup(
-      {
-        checkin: new FormControl(''),
-        checkout: new FormControl('2020-11-07'),
-      }
-    );
-    let testDatesValidator = component.datesValidator(testCurrentDate);
-    expect(testDatesValidator(testDates)).toEqual( { incompleteDates: true } );
+    const testCurrentDate = '2020-11-05';
+    const testDates = new FormGroup({
+      checkin: new FormControl(''),
+      checkout: new FormControl('2020-11-07'),
+    });
+    const testDatesValidator = component.datesValidator(testCurrentDate);
+    expect(testDatesValidator(testDates)).toEqual({ incompleteDates: true });
   });
 
   it('testDatesValidator rejects date before current', () => {
-    const testCurrentDate = "2020-11-05";
-    let testDates = new FormGroup(
-      {
-        checkin: new FormControl('2020-11-04'),
-        checkout: new FormControl('2020-11-07'),
-      }
-    );
-    let testDatesValidator = component.datesValidator(testCurrentDate);
-    expect(testDatesValidator(testDates)).toEqual( { beforeNow: true } );
+    const testCurrentDate = '2020-11-05';
+    const testDates = new FormGroup({
+      checkin: new FormControl('2020-11-04'),
+      checkout: new FormControl('2020-11-07'),
+    });
+    const testDatesValidator = component.datesValidator(testCurrentDate);
+    expect(testDatesValidator(testDates)).toEqual({ beforeNow: true });
   });
 
   it('testDatesValidator rejects out before in', () => {
-    const testCurrentDate = "2020-11-05";
-    let testDates = new FormGroup(
-      {
-        checkin: new FormControl('2020-11-09'),
-        checkout: new FormControl('2020-11-07'), 
-      }
-    );
-    let testDatesValidator = component.datesValidator(testCurrentDate);
-    expect(testDatesValidator(testDates)).toEqual( { outBeforeIn: true } );
+    const testCurrentDate = '2020-11-05';
+    const testDates = new FormGroup({
+      checkin: new FormControl('2020-11-09'),
+      checkout: new FormControl('2020-11-07'),
+    });
+    const testDatesValidator = component.datesValidator(testCurrentDate);
+    expect(testDatesValidator(testDates)).toEqual({ outBeforeIn: true });
   });
 });
