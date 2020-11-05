@@ -8,6 +8,7 @@ import { BookingService } from 'src/app/services/booking/booking.service';
 import { of } from 'rxjs';
 import { Lodging } from 'src/app/data/lodging.model';
 import { Booking } from 'src/app/data/booking.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
@@ -91,7 +92,7 @@ describe('SearchBarComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule, FormsModule],
+        imports: [HttpClientTestingModule, FormsModule, ReactiveFormsModule],
         declarations: [SearchBarComponent],
         providers: [
           { provide: LodgingService, useValue: lodgingService },
@@ -118,7 +119,7 @@ describe('SearchBarComponent', () => {
     const searchResultsSpy = spyOn(component.searchResults, 'emit');
     const isSearchedSpy = spyOn(component.isSearched, 'emit');
 
-    component.onSubmit(testForm).then(() => {
+    component.onSubmit().then(() => {
       expect(lodgingService.get).toHaveBeenCalled();
       expect(bookingService.getByDateRange).toHaveBeenCalled();
 
