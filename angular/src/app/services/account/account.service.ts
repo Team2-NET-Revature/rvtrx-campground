@@ -61,6 +61,7 @@ export class AccountService {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/${email}`)),
       concatMap((url1) => this.http.get<Account>(url1))
+
     );
   }
 
@@ -89,5 +90,10 @@ export class AccountService {
    */
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
+  }
+  getToken(): string {
+    const OktaToken = localStorage.getItem('okta-token-storage');
+    const OkTokenObj = JSON.parse(OktaToken as string);
+    return OkTokenObj.idToken.claims.email;
   }
 }

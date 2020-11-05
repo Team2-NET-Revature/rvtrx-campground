@@ -34,7 +34,6 @@ describe('AccountComponent', () => {
         name: '',
         address: {
           id: '',
-
           city: '',
           country: '',
           postalCode: '',
@@ -49,6 +48,10 @@ describe('AccountComponent', () => {
 
     put(acct: Account): Observable<Account> {
       return of(acct);
+    },
+
+    getToken(): string {
+      return 'test';
     },
   };
   const mockEditingService = {

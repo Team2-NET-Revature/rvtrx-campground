@@ -241,8 +241,8 @@
                 </select>
               </div>
                 <div class="level-item">
+                  <button class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</button>
                   <a class="button is-info" *ngIf="Comment.invalid" disabled >Submit</a>
-                  <a class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</a>
                 </div>
               </div>
             </nav>

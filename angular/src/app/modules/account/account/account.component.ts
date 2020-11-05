@@ -1,3 +1,5 @@
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject } from '@angular/core';
 import { Account } from 'data/account.model';
 import { Address } from 'data/address.model';
@@ -5,8 +7,9 @@ import { Booking } from 'data/booking.model';
 import { Payment } from 'data/payment.model';
 import { Profile } from 'data/profile.model';
 import { Review } from 'data/review.model';
-import { Observable, of, from } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { stringify } from 'querystring';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
 import { BookingService } from 'services/booking/booking.service';
 import { GenericEditingService } from 'services/editable/generic-editing.service';
@@ -39,6 +42,7 @@ export class AccountComponent {
     this.email = '';
     this.init();
   }
+
 
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
