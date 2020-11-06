@@ -40,8 +40,8 @@ describe('SearchResultsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should make rentals list', () => {
-    component.setRentalsList();
+  it('ngOnChanges should make rentals list', () => {
+    component.ngOnChanges();
     expect(component.rentals).toBeTruthy();
     expect(component.rentals.length).toBeTruthy();
   });
