@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { of } from 'rxjs';
+import { lodgings } from '../../../data/Mocks/lodging.mock';
 
 describe('SearchResultsComponent', () => {
   const lodgings: Lodging[] = [
