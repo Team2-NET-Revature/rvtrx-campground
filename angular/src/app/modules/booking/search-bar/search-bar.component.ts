@@ -65,11 +65,11 @@ export class SearchBarComponent {
       const checkInVal = thisControl.value.checkin;
       const checkOutVal = thisControl.value.checkout;
       if ((checkInVal === '' && checkOutVal !== '') || (checkInVal !== '' && checkOutVal === '')) {
-        return { incompleteDates: true }; // In/out incomplete (must be both or neither)
+        return { incompleteDates: true }; // In/out incomplete (cannot just have one date)
       }
       if (checkInVal === '' || checkOutVal === '') {
-        return null; // This line allows double empty dates to count as valid
-        // return { emptyInput: true };
+        // In/out cannot both be empty
+        return { emptyDates: true };
       }
       if (checkInVal < dateNow || checkOutVal < dateNow) {
         return { beforeNow: true }; // Search dates cannot be bafore today's date
