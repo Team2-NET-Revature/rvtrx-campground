@@ -152,14 +152,14 @@ describe('SearchBarComponent', () => {
     expect(searchForm).toBeTruthy();
   });
 
-  it('testDatesValidator works when both empty', () => {
+  it('testDatesValidator rejects when both empty', () => {
     const testCurrentDate = '2020-11-05';
     const testDates = new FormGroup({
       checkin: new FormControl(''),
       checkout: new FormControl(''),
     });
     const testDatesValidator = component.datesValidator(testCurrentDate);
-    expect(testDatesValidator(testDates)).toEqual(null);
+    expect(testDatesValidator(testDates)).toEqual({ emptyDates: true });
   });
 
   it('testDatesValidator works when both valid', () => {
