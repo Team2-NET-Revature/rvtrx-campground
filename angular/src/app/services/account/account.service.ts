@@ -44,20 +44,21 @@ export class AccountService {
    */
   delete(id: string): Observable<void> {
     return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
-      concatMap((url) => this.http.delete<void>(url))
+      map((url1) => url1.concat(`/${id}`)),
+      concatMap((url1) => this.http.delete<void>(url1))
     );
   }
 
   /**
-   * Represents the _Account Service_ `get` method
+   * Represents the _Account Service_ `getEmail` method
    *
-   * @param id string
+   * @param email string
    */
-  get(id: string): Observable<Account> {
+
+  getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
-      map((url) => url.concat(`/${id}`)),
-      concatMap((url) => this.http.get<Account>(url))
+      map((url1) => url1.concat(`/${email}`)),
+      concatMap((url1) => this.http.get<Account>(url1))
     );
   }
 
@@ -67,7 +68,7 @@ export class AccountService {
    * @param account Account
    */
   post(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url) => this.http.post<Account>(url, account)));
+    return this.accountsUrl$.pipe(concatMap((url1) => this.http.post<Account>(url1, account)));
   }
 
   /**
@@ -76,7 +77,7 @@ export class AccountService {
    * @param account Account
    */
   put(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url) => this.http.put<Account>(url, account)));
+    return this.accountsUrl$.pipe(concatMap((url1) => this.http.put<Account>(url1, account)));
   }
 
   /**
@@ -85,6 +86,6 @@ export class AccountService {
    * Represents the _Account Service_ 'post' method for payments
    */
   postPayment(payment: PostPayment): Observable<PostPayment> {
-    return this.paymentsUrl$.pipe(concatMap((url) => this.http.post<PostPayment>(url, payment)));
+    return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
   }
 }

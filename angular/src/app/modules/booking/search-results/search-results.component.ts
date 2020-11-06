@@ -59,7 +59,7 @@ export class SearchResultsComponent implements OnChanges {
       id: '1',
       lodgingId: lodging.id,
       guests: [],
-      accountId: 1,
+      accountEmail: '',
       rentals: [],
       checkIn: new Date().toDateString(),
       checkOut: new Date().toDateString(),

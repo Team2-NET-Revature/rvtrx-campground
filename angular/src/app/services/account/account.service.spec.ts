@@ -11,39 +11,9 @@ import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { Config } from '../../data/config.model';
 import { PostPayment } from 'src/app/data/payment.model';
+import { accountMock } from '../../data/Mocks/account.mock';
 
 describe('AccountService', () => {
-  const accountMock: Account = {
-    id: '0',
-    address: {
-      id: 'string',
-      city: 'string',
-      country: 'string',
-      postalCode: 'string',
-      stateProvince: 'string',
-      street: 'string',
-    },
-    payments: [
-      {
-        id: 'string',
-        cardExpirationDate: '2020-08-01',
-        cardName: 'string',
-        cardNumber: 'string',
-        securityCode: '111',
-      },
-    ],
-    profiles: [
-      {
-        type: 'adult',
-        id: 1,
-        email: 'string',
-        familyName: 'string',
-        givenName: 'string',
-        phone: 'string',
-      },
-    ],
-  };
-
   const configServiceStub = {
     get(): Observable<Config> {
       const config: Config = {
@@ -80,6 +50,13 @@ describe('AccountService', () => {
   let service: AccountService;
 
   beforeEach(() => {
+    const store: { [key: string]: string } = { test: 'test' };
+    const mockLocalStorage = {
+      getItem: (key: string): string | null => {
+        return key in store ? store[key] : null;
+      },
+    };
+    spyOn(Storage.prototype, 'getItem').and.callFake(mockLocalStorage.getItem);
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
       providers: [{ provide: ConfigService, useValue: configServiceStub }],
@@ -94,27 +71,31 @@ describe('AccountService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should return items from localstorage', () => {
+    expect(localStorage.getItem('test')).toBeTruthy();
+  });
+
   it('should make httpDelete request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.delete('0').subscribe();
+    service.delete('test').subscribe();
 
     tick();
 
-    req = httpTestingController.expectOne('test/0');
+    req = httpTestingController.expectOne('test/test');
     req.flush(null);
   }));
 
   it('should make httpGet request', fakeAsync(() => {
     let req: TestRequest;
 
-    service.get('0').subscribe((res) => {
+    service.getEmail('test').subscribe((res) => {
       expect(res).toEqual(accountMock);
     });
 
     tick();
 
-    req = httpTestingController.expectOne('test/0');
+    req = httpTestingController.expectOne('test/test');
     req.flush(accountMock);
   }));
 
@@ -147,7 +128,7 @@ describe('AccountService', () => {
   it('should make httpPost request for payments', fakeAsync(() => {
     let req: TestRequest;
     const mockPayment: PostPayment = {
-      accountId: 'string',
+      email: 'string',
       id: 'string',
       cardExpirationDate: '2020-08-01',
       cardName: 'string',
