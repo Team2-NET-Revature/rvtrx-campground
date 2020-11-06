@@ -3,6 +3,7 @@ import { SpotlightComponent } from './spotlight.component';
 import { Lodging } from 'src/app/data/lodging.model';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
+import { testLodgings } from '../../../data/Mocks/lodging.mock';
 
 describe('SpotlightComponent', () => {
   let component: SpotlightComponent;
@@ -10,63 +11,6 @@ describe('SpotlightComponent', () => {
   const mockRouter = {
     navigate: jasmine.createSpy('navigate'),
   };
-
-  const testLodgings: Lodging[] = [
-    {
-      id: 1,
-      location: {
-        id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
-      },
-      name: '',
-      bathrooms: 1,
-      rentals: [
-        {
-          id: '1',
-          lotNumber: '1',
-          unit: {
-            size: '5x5',
-            capacity: 2,
-            name: 'tent',
-          },
-          status: 'available',
-          price: 100,
-        },
-      ],
-      reviews: [],
-      imageUrls: [],
-    },
-    {
-      id: 1,
-      location: {
-        id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
-      },
-      name: '',
-      bathrooms: 1,
-      rentals: [],
-      reviews: [],
-      imageUrls: [],
-    },
-  ];
 
   beforeEach(
     waitForAsync(() => {
