@@ -1,21 +1,21 @@
 import { Account } from '../account.model';
 
 export const account: Account = {
+  id: '',
+  email: '',
+  name: '',
+  address: {
     id: '',
-    email: '',
-    name: '',
-    address: {
-      id: '',
 
-      city: '',
-      country: '',
-      postalCode: '',
-      stateProvince: '',
-      street: '',
-    },
-    payments: [],
-    profiles: [],
-  };
+    city: '',
+    country: '',
+    postalCode: '',
+    stateProvince: '',
+    street: '',
+  },
+  payments: [],
+  profiles: [],
+};
 
 export const accountMock: Account = {
   id: '0',

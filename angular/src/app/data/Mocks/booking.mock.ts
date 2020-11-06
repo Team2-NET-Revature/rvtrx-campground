@@ -1,35 +1,35 @@
-import { Booking } from "../booking.model";
+import { Booking } from '../booking.model';
 
 export const booking: Booking = {
-    id: 'string',
-    accountEmail: '',
-    lodgingId: 1,
-    checkIn: '',
-    checkOut: '',
-    guests: [
-      {
-        id: 1,
-        type: 'string',
-        email: 'string',
-        familyName: '',
-        givenName: '',
-        phone: 'string',
+  id: 'string',
+  accountEmail: '',
+  lodgingId: 1,
+  checkIn: '',
+  checkOut: '',
+  guests: [
+    {
+      id: 1,
+      type: 'string',
+      email: 'string',
+      familyName: '',
+      givenName: '',
+      phone: 'string',
+    },
+  ],
+  rentals: [
+    {
+      id: '1',
+      lotNumber: '1',
+      unit: {
+        size: '5x5',
+        capacity: 2,
+        name: 'tent',
       },
-    ],
-    rentals: [
-      {
-        id: '1',
-        lotNumber: '1',
-        unit: {
-          size: '5x5',
-          capacity: 2,
-          name: 'tent',
-        },
-        status: 'available',
-        price: 100,
-      },
-    ],
-  };
+      status: 'available',
+      price: 100,
+    },
+  ],
+};
 
 export const bookings: Booking[] = [
   {

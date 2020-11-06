@@ -1,61 +1,61 @@
 import { Lodging } from '../lodging.model';
 
 export const testLodgings: Lodging[] = [
-    {
-      id: 1,
-      location: {
+  {
+    id: 1,
+    location: {
+      id: '',
+      address: {
         id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
+        city: '',
+        postalCode: '',
+        country: '',
+        stateProvince: '',
+        street: '',
       },
-      name: '',
-      bathrooms: 1,
-      rentals: [
-        {
-          id: '1',
-          lotNumber: '1',
-          unit: {
-            size: '5x5',
-            capacity: 2,
-            name: 'tent',
-          },
-          status: 'available',
-          price: 100,
-        },
-      ],
-      reviews: [],
-      imageUrls: [],
+      latitude: '',
+      longitude: '',
     },
-    {
-      id: 1,
-      location: {
+    name: '',
+    bathrooms: 1,
+    rentals: [
+      {
+        id: '1',
+        lotNumber: '1',
+        unit: {
+          size: '5x5',
+          capacity: 2,
+          name: 'tent',
+        },
+        status: 'available',
+        price: 100,
+      },
+    ],
+    reviews: [],
+    imageUrls: [],
+  },
+  {
+    id: 1,
+    location: {
+      id: '',
+      address: {
         id: '',
-        address: {
-          id: '',
-          city: '',
-          postalCode: '',
-          country: '',
-          stateProvince: '',
-          street: '',
-        },
-        latitude: '',
-        longitude: '',
+        city: '',
+        postalCode: '',
+        country: '',
+        stateProvince: '',
+        street: '',
       },
-      name: '',
-      bathrooms: 1,
-      rentals: [],
-      reviews: [],
-      imageUrls: [],
+      latitude: '',
+      longitude: '',
     },
-  ];
+    name: '',
+    bathrooms: 1,
+    rentals: [],
+    reviews: [],
+    imageUrls: [],
+  },
+];
 
 export const lodging: Lodging = {
   id: 1,
