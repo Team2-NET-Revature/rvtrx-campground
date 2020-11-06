@@ -22,7 +22,7 @@ export class SearchResultsComponent implements OnChanges {
   }
 
   setRentalsList(): void {
-    // Sets list of rentals from list of lodgings, for total rental count
+    // Sets list of rentals from list of lodgings, for total rental count summary
     if (this.lodgings !== null) {
       this.lodgings.forEach((thisLodging) => {
         if (thisLodging.rentals !== null) {
