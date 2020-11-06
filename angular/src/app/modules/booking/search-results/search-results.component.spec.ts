@@ -8,7 +8,6 @@ import { of } from 'rxjs';
 import { lodgings } from '../../../data/Mocks/lodging.mock';
 
 describe('SearchResultsComponent', () => {
-
   const bookingService = jasmine.createSpyObj('BookingService', ['post']);
   bookingService.post.and.returnValue(of(true));
 
