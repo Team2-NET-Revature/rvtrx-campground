@@ -1,10 +1,9 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RentalComponent } from './rental.component';
 import { Rental } from 'src/app/data/rental.model';
-import { rentals } from "../../../data/Mocks/rental.mock";
+import { rentals } from '../../../data/Mocks/rental.mock';
 
 describe('RentalComponent', () => {
-  
   let component: RentalComponent;
   let fixture: ComponentFixture<RentalComponent>;
 
