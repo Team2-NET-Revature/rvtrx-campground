@@ -36,6 +36,17 @@ describe('SearchResultsComponent', () => {
           status: 'available',
           price: 100,
         },
+        {
+          id: '2',
+          lotNumber: '2',
+          unit: {
+            size: '5x5',
+            capacity: 4,
+            name: 'tent',
+          },
+          status: 'available',
+          price: 50,
+        },
       ],
       reviews: [
         {
@@ -81,6 +92,12 @@ describe('SearchResultsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should make rentals list', () => {
+    component.setRentalsList();
+    expect(component.rentals).toBeTruthy();
+    expect(component.rentals.length).toEqual(2);
   });
 
   it('should have rating of', () => {

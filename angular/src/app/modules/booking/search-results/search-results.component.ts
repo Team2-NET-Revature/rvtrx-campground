@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Lodging } from '../../../data/lodging.model';
 import { Booking } from '../../../data/booking.model';
+import { Rental } from '../../../data/rental.model';
 import { BookingService } from 'services/booking/booking.service';
 
 @Component({
@@ -8,12 +9,30 @@ import { BookingService } from 'services/booking/booking.service';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnChanges {
   @Input() lodgings!: Lodging[] | null;
   @Input() query!: string;
   reservation: Booking | undefined;
+  rentals: Rental[] = [];
 
   constructor(private readonly bookingService: BookingService) {}
+
+  ngOnChanges(): void {
+    this.setRentalsList();
+  }
+
+  setRentalsList(): void {
+    // Sets list of rentals from list of lodgings, for total rental count
+    if (this.lodgings !== null) {
+      this.lodgings.forEach((thisLodging) => {
+        if (thisLodging.rentals !== null) {
+          thisLodging.rentals.forEach((thisRental) => {
+            this.rentals.push(thisRental);
+          });
+        }
+      });
+    }
+  }
 
   averageRating(lodging: Lodging): boolean[] {
     const maxRating = 10;
