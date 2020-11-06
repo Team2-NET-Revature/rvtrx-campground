@@ -4,6 +4,7 @@ import { Rental } from 'src/app/data/rental.model';
 import { rentals } from "../../../data/Mocks/rental.mock";
 
 describe('RentalComponent', () => {
+  
   let component: RentalComponent;
   let fixture: ComponentFixture<RentalComponent>;
 
