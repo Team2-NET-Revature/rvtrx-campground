@@ -8,6 +8,7 @@ import { AccountService } from '../../../services/account/account.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService, ToastrModule } from 'ngx-toastr';
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
+import { account } from '../../../data/Mocks/account.mock';
 
 describe('AccountComponent', () => {
   let toastrServiceSpy: jasmine.Spy;
@@ -28,21 +29,6 @@ describe('AccountComponent', () => {
 
   const accountServiceStub = {
     getEmail(): Observable<Account> {
-      const account: Account = {
-        id: '',
-        email: '',
-        name: '',
-        address: {
-          id: '',
-          city: '',
-          country: '',
-          postalCode: '',
-          stateProvince: '',
-          street: '',
-        },
-        payments: [],
-        profiles: [],
-      };
       return of(account);
     },
 

@@ -10,69 +10,12 @@ import { Lodging } from 'src/app/data/lodging.model';
 import { Booking } from 'src/app/data/booking.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl, FormGroup } from '@angular/forms';
+import { lodgings } from '../../../data/Mocks/lodging.mock';
+import { bookings } from '../../../data/Mocks/booking.mock';
 
 describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
-
-  const lodgings: Lodging[] = [
-    {
-      id: 1,
-      location: {
-        id: '1',
-        address: {
-          id: '1',
-          city: 'testCity',
-          country: 'testCountry',
-          postalCode: 'testCode',
-          stateProvince: 'testState',
-          street: 'testStreet',
-        },
-        latitude: 'testLat',
-        longitude: 'testLong',
-      },
-      name: 'Test',
-      bathrooms: 1,
-      imageUrls: [],
-      rentals: [
-        {
-          id: '1',
-          lotNumber: '1',
-          unit: {
-            size: '5x5',
-            capacity: 2,
-            name: 'tent',
-          },
-          status: 'available',
-          price: 100,
-        },
-        {
-          id: '2',
-          lotNumber: '2',
-          unit: {
-            size: '5x5',
-            capacity: 5,
-            name: 'rv',
-          },
-          status: 'available',
-          price: 100,
-        },
-      ],
-      reviews: [],
-    },
-  ];
-
-  const bookings: Booking[] = [
-    {
-      id: '',
-      accountEmail: '',
-      lodgingId: 1,
-      checkIn: '',
-      checkOut: '',
-      guests: [],
-      rentals: [],
-    },
-  ];
 
   const testForm = {
     value: {
