@@ -100,6 +100,10 @@ export class SearchBarComponent {
 
     forkJoin([lodgings$, bookings$]).subscribe(([lodgings, bookings]) => {
       const availableLodgings: Lodging[] = lodgings;
+
+      // Loop through booked dates, check their lodging ids,
+      // then loop through the booked rentals to compare
+      // with the lodging rentals, and splice off booked rentals
       for (let i = 0; i < bookings.length; i++) {
         for (let j = 0; j < lodgings.length; j++) {
           if (bookings[i].lodgingId == lodgings[j].id) {
