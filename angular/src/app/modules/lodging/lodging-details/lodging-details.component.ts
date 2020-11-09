@@ -6,6 +6,8 @@ import { Review } from 'data/review.model';
 import { Profile } from 'data/profile.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BookingService } from 'services/booking/booking.service';
+import { OktaAuthService } from '@okta/okta-angular';
+import { AccountService } from 'services/account/account.service';
 
 @Component({
   selector: 'uic-lodging-details',
@@ -28,7 +30,9 @@ export class LodgingDetailsComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly lodgingService: LodgingService,
-    private readonly bookingService: BookingService
+    private readonly bookingService: BookingService,
+    private readonly accountService: AccountService,
+    private readonly oktaService: OktaAuthService
   ) {
     this.Comment = new FormGroup({
       score: new FormControl('', [Validators.required]),
@@ -43,7 +47,25 @@ export class LodgingDetailsComponent implements OnInit {
       givenName: 'Guy',
       familyName: 'Ferri',
       phone: '111-111-1111',
-    };
+    };    
+
+    // This gets the users account email from okta
+    // This assumes that the account email is the same as the profile email
+    // This will need to be changed later
+    this.oktaService.getUser().then((p) => {
+      if(p.email){
+        this.profile.email = p.email
+      }
+    });
+    
+    // This assumes that the first profile is the profile the user is currently logged in as
+    // This will need to be changed later
+    this.accountService.getEmail(this.profile.email).subscribe((p) => {
+      this.profile.id = p.profiles[0].id;
+      this.profile.familyName = p.profiles[0].familyName;
+      this.profile.givenName = p.profiles[0].givenName;
+    });
+
   }
 
   /**
@@ -106,7 +128,7 @@ export class LodgingDetailsComponent implements OnInit {
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
-        name: tempName.idToken.claims.name,
+        name: this.profile.givenName + " " + this.profile.familyName,
         lodgingId: this.lodging?.id,
       };
     } else {
@@ -123,7 +145,6 @@ export class LodgingDetailsComponent implements OnInit {
     // Adds the review to lodging reviews array
     this.lodging?.reviews.push(review);
 
-    // Implementing adding the review to backend at a later date
     this.lodgingService.postReview(review).subscribe(
       (r) => console.log(r),
       (err) => console.log(err)
