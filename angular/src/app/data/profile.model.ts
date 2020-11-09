@@ -21,6 +21,6 @@ export interface Profile {
   familyName: string;
   /** phone number */
   phone: string;
-  /** profile image uri */
+  /** profile image uri/url */
   imageUri: string;
 }
