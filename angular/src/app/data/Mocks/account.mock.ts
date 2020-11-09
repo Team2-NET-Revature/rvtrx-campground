@@ -46,6 +46,7 @@ export const accountMock: Account = {
       familyName: 'string',
       givenName: 'string',
       phone: 'string',
+      imageUri: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurly&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardMedium&facialHairColor=Auburn&clotheType=CollarSweater&clotheColor=White&eyeType=Close&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=DarkBrown'
     },
   ],
 };
