@@ -48,8 +48,6 @@ export class LodgingDetailsComponent implements OnInit {
       familyName: 'Ferri',
       phone: '111-111-1111',
     };
-
-    this.setUserProfile();
   }
 
   /**
@@ -57,29 +55,52 @@ export class LodgingDetailsComponent implements OnInit {
    */
   ngOnInit(): void {
     this.getLodgingById();
-    this.getBookingByAccountEmail(this.profile.email);
+    this.getUserData();
   }
 
   /**
    * Gets the user's profile and sets it equal to the current profile
+   * Also Sees if the account ID is the same as the lodging ID to allow the user to comment
    */
-  setUserProfile(): void {
+  getUserData(): void {
     // This gets the users account email from okta
     // This assumes that the account email is the same as the profile email
     // This will need to be changed later
-    this.oktaService.getUser().then((p) => {
-      if (p.email) {
-        this.profile.email = p.email;
-      }
-    });
-
-    // This assumes that the first profile is the profile the user is currently logged in as
-    // This will need to be changed later
-    this.accountService.getEmail(this.profile.email).subscribe((p) => {
-      this.profile.id = p.profiles[0].id;
-      this.profile.familyName = p.profiles[0].familyName;
-      this.profile.givenName = p.profiles[0].givenName;
-    });
+    this.oktaService
+      .getUser()
+      .then((p) => {
+        if (p.email) {
+          this.profile.email = p.email;
+        }
+      })
+      .then(() => {
+        // This assumes that the first profile is the profile the user is currently logged in as
+        // This will need to be changed later
+        this.accountService.getEmail(this.profile.email).subscribe((p) => {
+          this.profile.id = p.profiles[0].id;
+          this.profile.familyName = p.profiles[0].familyName;
+          this.profile.givenName = p.profiles[0].givenName;
+          this.profile.phone = p.profiles[0].phone;
+          this.profile.type = p.profiles[0].type;
+        });
+      })
+      .then(() => {
+        // See if the account ID is the same as the lodging ID to allow the user to comment
+        console.log(this.profile.email);
+        this.bookingService.getByAccountEmail(this.profile.email).subscribe(
+          (i) => {
+            for (const index of i) {
+              if (
+                index.accountEmail === this.profile.email &&
+                this.lodging?.id === index.lodgingId
+              ) {
+                this.hasBooked = true;
+              }
+            }
+          },
+          (err) => console.log(err)
+        );
+      });
   }
 
   /**
@@ -102,30 +123,12 @@ export class LodgingDetailsComponent implements OnInit {
     });
   }
 
-  /**
-   * See if the account ID is the same as the lodging ID to allow the user to comment
-   */
-  getBookingByAccountEmail(email: string): void {
-    this.bookingService.getByAccountEmail(email).subscribe(
-      (i) => {
-        for (const index of i) {
-          if (index.accountEmail === this.profile.email && this.lodging?.id === index.lodgingId) {
-            this.hasBooked = true;
-          }
-        }
-      },
-      (err) => console.log(err)
-    );
-  }
-
   /*
    * Posts the user's comment on the lodging details page
    */
   OnSubmit(): void {
     // Make a new review obj
     let review: Review;
-
-    const tempName = JSON.parse(localStorage.getItem('okta-token-storage') as string);
 
     // Filling the review obj with user submitted data
     if (this.lodging?.id) {
@@ -134,7 +137,7 @@ export class LodgingDetailsComponent implements OnInit {
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
-        name: this.profile.givenName + ' ' + this.profile.familyName,
+        name: `${this.profile.givenName} ${this.profile.familyName}`,
         lodgingId: this.lodging?.id,
       };
     } else {

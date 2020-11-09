@@ -126,13 +126,13 @@ describe('LodgingDetailsComponent', () => {
    * tests constructor values being initalized and if getBookingByAccountId works
    */
   it('GetBookingByAccountId should be called', () => {
-    spyOn(component, 'getBookingByAccountEmail');
+    spyOn(component, 'getUserData');
 
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getBookingByAccountEmail(component.profile.email);
-    expect(component.getBookingByAccountEmail).toHaveBeenCalled();
+    component.getUserData();
+    expect(component.getUserData).toHaveBeenCalled();
   });
 
   /**
