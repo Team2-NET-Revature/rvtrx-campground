@@ -63,7 +63,7 @@ export class LodgingDetailsComponent implements OnInit {
   /**
    * Gets the user's profile and sets it equal to the current profile
    */
-  setUserProfile(): void{
+  setUserProfile(): void {
     // This gets the users account email from okta
     // This assumes that the account email is the same as the profile email
     // This will need to be changed later

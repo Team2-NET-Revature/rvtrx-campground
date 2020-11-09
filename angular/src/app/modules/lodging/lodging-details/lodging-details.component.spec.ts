@@ -75,10 +75,7 @@ describe('LodgingDetailsComponent', () => {
 
       TestBed.configureTestingModule({
         declarations: [LodgingDetailsComponent],
-        imports: [
-          HttpClientTestingModule,
-          OktaAuthModule
-        ],
+        imports: [HttpClientTestingModule, OktaAuthModule],
         providers: [
           { provide: BookingService, useValue: bookingServiceStub },
           { provide: LodgingService, useValue: lodgingServiceStub },
