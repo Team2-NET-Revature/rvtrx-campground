@@ -89,10 +89,7 @@ export class LodgingDetailsComponent implements OnInit {
     this.bookingService.getByAccountEmail(email).subscribe(
       (i) => {
         for (const index of i) {
-          if (
-            index.accountEmail === this.profile.email &&
-            this.lodging?.id === index.lodgingId
-          ) {
+          if (index.accountEmail === this.profile.email && this.lodging?.id === index.lodgingId) {
             this.hasBooked = true;
           }
         }

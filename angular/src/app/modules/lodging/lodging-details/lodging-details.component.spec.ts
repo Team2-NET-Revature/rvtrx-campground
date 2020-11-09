@@ -167,7 +167,7 @@ describe('LodgingDetailsComponent', () => {
    * tests if getUserData works
    */
   it('should intialize user profile correctly', () => {
-    spyOn(component,"getUserData");
+    spyOn(component, 'getUserData');
 
     component.getUserData();
 
