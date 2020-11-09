@@ -126,13 +126,13 @@ describe('LodgingDetailsComponent', () => {
    * tests constructor values being initalized and if getBookingByAccountId works
    */
   it('GetBookingByAccountId should be called', () => {
-    spyOn(component, 'getUserData');
+    spyOn(component, 'getBookingByAccountEmail');
 
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getUserData();
-    expect(component.getUserData).toHaveBeenCalled();
+    component.getBookingByAccountEmail(component.profile.email);
+    expect(component.getBookingByAccountEmail).toHaveBeenCalled();
   });
 
   /**
@@ -149,6 +149,29 @@ describe('LodgingDetailsComponent', () => {
    */
   it('should intialize hasBooked correctly', () => {
     expect(component.hasBooked).toBeFalse();
+    expect(component.profile).toEqual(mockProfile);
+  });
+
+  /**
+   * tests if getProfileByEmail works
+   */
+  it('getProfileByEmail should be called', () => {
+    spyOn(component, 'getProfileByEmail');
+
+    component.getProfileByEmail(component.profile.email);
+    expect(component.getProfileByEmail).toHaveBeenCalled();
+    expect(component.profile).toEqual(mockProfile);
+  });
+
+  /**
+   * tests if getUserData works
+   */
+  it('should intialize user profile correctly', () => {
+    spyOn(component,"getUserData");
+
+    component.getUserData();
+
+    expect(component.getUserData).toHaveBeenCalled();
     expect(component.profile).toEqual(mockProfile);
   });
 
