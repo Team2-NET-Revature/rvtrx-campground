@@ -13,10 +13,10 @@
       <label for="check-in" class="label">check-in / check-out</label>
       <div class="field has-addons" formGroupName="staydates">
         <div class="control is-expanded">
-          <input class="input" formControlName="checkin" placeholder="Add the traveling date" type="date" ngModel>
+          <input class="input" formControlName="checkin" placeholder="Add the traveling date" type="date" min="0" max="9" ngModel>
         </div>
         <div class="control is-expanded">
-          <input class="input" formControlName="checkout" placeholder="Add the returning date" type="date" ngModel>
+          <input class="input" formControlName="checkout" placeholder="Add the returning date" type="date" min="0" max="9" ngModel>
         </div>
       </div>
     </div>
