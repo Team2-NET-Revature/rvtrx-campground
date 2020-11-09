@@ -60,15 +60,9 @@ describe('SearchBarComponent', () => {
   });
 
   it('should submit', () => {
-    const searchResultsSpy = spyOn(component.searchResults, 'emit');
-    const isSearchedSpy = spyOn(component.isSearched, 'emit');
-
     component.onSubmit().then(() => {
       expect(lodgingService.get).toHaveBeenCalled();
       expect(bookingService.getByDateRange).toHaveBeenCalled();
-
-      expect(searchResultsSpy).toHaveBeenCalled();
-      expect(isSearchedSpy).toHaveBeenCalledWith(true);
     });
   });
 
