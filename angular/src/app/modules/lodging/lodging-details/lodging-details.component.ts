@@ -47,25 +47,9 @@ export class LodgingDetailsComponent implements OnInit {
       givenName: 'Guy',
       familyName: 'Ferri',
       phone: '111-111-1111',
-    };    
+    };
 
-    // This gets the users account email from okta
-    // This assumes that the account email is the same as the profile email
-    // This will need to be changed later
-    this.oktaService.getUser().then((p) => {
-      if(p.email){
-        this.profile.email = p.email
-      }
-    });
-    
-    // This assumes that the first profile is the profile the user is currently logged in as
-    // This will need to be changed later
-    this.accountService.getEmail(this.profile.email).subscribe((p) => {
-      this.profile.id = p.profiles[0].id;
-      this.profile.familyName = p.profiles[0].familyName;
-      this.profile.givenName = p.profiles[0].givenName;
-    });
-
+    this.setUserProfile();
   }
 
   /**
@@ -74,6 +58,28 @@ export class LodgingDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.getLodgingById();
     this.getBookingByAccountEmail(this.profile.email);
+  }
+
+  /**
+   * Gets the user's profile and sets it equal to the current profile
+   */
+  setUserProfile(): void{
+    // This gets the users account email from okta
+    // This assumes that the account email is the same as the profile email
+    // This will need to be changed later
+    this.oktaService.getUser().then((p) => {
+      if (p.email) {
+        this.profile.email = p.email;
+      }
+    });
+
+    // This assumes that the first profile is the profile the user is currently logged in as
+    // This will need to be changed later
+    this.accountService.getEmail(this.profile.email).subscribe((p) => {
+      this.profile.id = p.profiles[0].id;
+      this.profile.familyName = p.profiles[0].familyName;
+      this.profile.givenName = p.profiles[0].givenName;
+    });
   }
 
   /**
@@ -128,7 +134,7 @@ export class LodgingDetailsComponent implements OnInit {
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
-        name: this.profile.givenName + " " + this.profile.familyName,
+        name: this.profile.givenName + ' ' + this.profile.familyName,
         lodgingId: this.lodging?.id,
       };
     } else {
