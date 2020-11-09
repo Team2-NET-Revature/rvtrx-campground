@@ -74,33 +74,46 @@ export class LodgingDetailsComponent implements OnInit {
         }
       })
       .then(() => {
-        // This assumes that the first profile is the profile the user is currently logged in as
-        // This will need to be changed later
-        this.accountService.getEmail(this.profile.email).subscribe((p) => {
-          this.profile.id = p.profiles[0].id;
-          this.profile.familyName = p.profiles[0].familyName;
-          this.profile.givenName = p.profiles[0].givenName;
-          this.profile.phone = p.profiles[0].phone;
-          this.profile.type = p.profiles[0].type;
-        });
+        this.getProfileByEmail(this.profile.email);
       })
       .then(() => {
-        // See if the account ID is the same as the lodging ID to allow the user to comment
-        console.log(this.profile.email);
-        this.bookingService.getByAccountEmail(this.profile.email).subscribe(
-          (i) => {
-            for (const index of i) {
-              if (
-                index.accountEmail === this.profile.email &&
-                this.lodging?.id === index.lodgingId
-              ) {
-                this.hasBooked = true;
-              }
-            }
-          },
-          (err) => console.log(err)
-        );
+        this.getBookingByAccountEmail(this.profile.email);
       });
+  }
+
+  /**
+   * See if the account ID is the same as the lodging ID to allow the user to comment
+   */
+  getBookingByAccountEmail(email: string): void {
+    console.log(email);
+    this.bookingService.getByAccountEmail(email).subscribe(
+      (i) => {
+        for (const index of i) {
+          if (
+            index.accountEmail === this.profile.email &&
+            this.lodging?.id === index.lodgingId
+          ) {
+            this.hasBooked = true;
+          }
+        }
+      },
+      (err) => console.log(err)
+    );
+  }
+
+  /**
+   * get user's profile by their account email
+   */
+  getProfileByEmail(email: string): void {
+    // This assumes that the first profile is the profile the user is currently logged in as
+    // This will need to be changed later
+    this.accountService.getEmail(email).subscribe((p) => {
+      this.profile.id = p.profiles[0].id;
+      this.profile.familyName = p.profiles[0].familyName;
+      this.profile.givenName = p.profiles[0].givenName;
+      this.profile.phone = p.profiles[0].phone;
+      this.profile.type = p.profiles[0].type;
+    });
   }
 
   /**
