@@ -66,7 +66,7 @@ describe('SearchBarComponent', () => {
     });
   });
 
-  it('should emit on click', () => {
+  it('should emit onclick', () => {
     const isSearchSpy = spyOn(component.isSearched, 'emit');
 
     const nativeElement = fixture.nativeElement;
