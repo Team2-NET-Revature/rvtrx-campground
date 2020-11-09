@@ -16,17 +16,17 @@ import { Rental } from './rental.model';
  */
 export interface Booking {
   id?: string;
-  accountId:number;
+  accountId: number;
   /** account associated with the reservation */
   // accountId: number;
   /** lodging that was reserved */
-  accountEmail: string;
+  accountEmail?: string;
   /** lodging that was reserved */
   lodgingId: number;
   /** people the account owner has reserved the site with */
-  guests: Profile[];
+  guests: object[];
   /** sites that are reserved */
-  rentals: Rental[];
+  rentals: object[];
   /** check-in date and time */
   checkIn: string;
   /** check-out date and time */
