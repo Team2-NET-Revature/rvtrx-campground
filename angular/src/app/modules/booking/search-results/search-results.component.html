@@ -5,7 +5,7 @@
       <h3 class="title is-2">search results for "{{ query }}"</h3>
       <div *ngIf="lodgings">
         <h3>Found {{ rentals.length }} available lodgings among {{ lodgings.length }} locations</h3>
-        <hr>
+        <hr />
         <div class="tile is-ancestor">
           <div class="tile is-vertical">
             <ul *ngFor="let lodging of lodgings">
@@ -16,7 +16,7 @@
                       <img
                         class="result-image"
                         src="{{
-                          lodging.images.length > 0
+                          lodging.images && lodging.images.length > 0
                             ? lodging.images[0].imageUri
                             : 'https://bulma.io/images/placeholders/1280x960.png'
                         }}"
@@ -43,7 +43,10 @@
 
                     <div class="content">
                       {{ rental.unit!.name }} • Occupancy: {{ rental.unit!.capacity }} Persons
-                      <button class="button is-primary" (click)="makeReservation(lodging.id, +rental.id)">
+                      <button
+                        class="button is-primary"
+                        (click)="makeReservation(lodging.id, +rental.id)"
+                      >
                         Reserve Now!
                       </button>
                       <br />
