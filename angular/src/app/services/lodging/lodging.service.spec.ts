@@ -11,7 +11,10 @@ import { ConfigService } from '../config/config.service';
 import { Config } from '../../data/config.model';
 import { Lodging } from '../../data/lodging.model';
 import { Filter } from 'src/app/data/filter.model';
+import { Review } from 'src/app/data/review.model';
 import { lodgingMock } from '../../data/Mocks/lodging.mock';
+import { review } from '../../data/Mocks/review.mock';
+import { rental } from 'data/Mocks/rental.mock';
 
 describe('LodgingService', () => {
   const configServiceStub = {
@@ -90,7 +93,7 @@ describe('LodgingService', () => {
     req.flush(null);
   }));
 
-  it('should make httpGet request', fakeAsync(() => {
+  it('should make httpGet request with get', fakeAsync(() => {
     let req: TestRequest;
     let reqOne: TestRequest;
     const filter: Filter = { city: 'string', occupancy: 'string' };
@@ -126,7 +129,7 @@ describe('LodgingService', () => {
     reqOne.flush(lodgingMock);
   }));
 
-  it('should make httpPost request', fakeAsync(() => {
+  it('should make httpPost request with post', fakeAsync(() => {
     let req: TestRequest;
 
     service.post(lodgingMock[0]).subscribe((res) => {
@@ -139,7 +142,7 @@ describe('LodgingService', () => {
     req.flush(lodgingMock[0]);
   }));
 
-  it('should make httpPut request', fakeAsync(() => {
+  it('should make httpPut request with put', fakeAsync(() => {
     let req: TestRequest;
 
     service.put(lodgingMock[0]).subscribe((res) => {
@@ -152,7 +155,33 @@ describe('LodgingService', () => {
     req.flush(lodgingMock[0]);
   }));
 
-  it('should make httpGet request for image', fakeAsync(() => {
+  it('should make httpPost request with postReview', fakeAsync(() => {
+    let req: TestRequest;
+
+    service.postReview(review).subscribe((res) => {
+      expect(res).toEqual(review);
+    });
+
+    tick();
+
+    req = httpTestingController.expectOne('test');
+    req.flush(review);
+  }));
+
+  it('should make httpPost request with putReview', fakeAsync(() => {
+    let req: TestRequest;
+
+    service.putReview(review).subscribe((res) => {
+      expect(res).toEqual(review);
+    });
+
+    tick();
+
+    req = httpTestingController.expectOne('test');
+    req.flush(review);
+  }));
+
+  it('should make httpGet request for image with getImages', fakeAsync(() => {
     let req: TestRequest;
     const mockImageUrls = ['https://bulma.io/images/placeholders/1280x960.png'];
 

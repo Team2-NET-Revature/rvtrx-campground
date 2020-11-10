@@ -12,7 +12,7 @@ import { Review } from '../../data/review.model';
 })
 export class LodgingService {
   private readonly lodgingsUrl$: Observable<string>;
-  private readonly rentalsUrl$: Observable<string>;
+  // private readonly rentalsUrl$: Observable<string>;
   private readonly reviewsUrl$: Observable<string>;
   private readonly imagesUrl$: Observable<string>;
 
@@ -27,13 +27,9 @@ export class LodgingService {
     this.lodgingsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.lodging}`)
     );
-    this.rentalsUrl$ = config$.pipe(
-      map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.rental}`)
+    this.reviewsUrl$ = config$.pipe(
+      map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.review}`)
     );
-    // this.reviewsUrl$ = config$.pipe(
-    //   map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.review}`)
-    // );
-    this.reviewsUrl$ = config$.pipe(map((a) => `http://localhost:8002/rest/lodging/0.0/review`));
     this.imagesUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.image}`)
     );
