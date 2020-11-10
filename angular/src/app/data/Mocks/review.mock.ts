@@ -5,5 +5,5 @@ export const review = {
   comment: '',
   dateCreated: '2020-08-01',
   rating: 0,
-  lodgingId: 1,
+  lodgingModelId: 1,
 };

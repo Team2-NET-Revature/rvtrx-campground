@@ -52,7 +52,7 @@ describe('BookingComponent', () => {
               comment: 'comment',
               dateCreated: '2020-08-01',
               rating: 1,
-              lodgingId: 1,
+              lodgingModelId: 1,
             },
           ],
           bathrooms: 1,

@@ -21,7 +21,7 @@ export class LodgingDetailsComponent implements OnInit {
   profile: Profile;
   Comment: FormGroup;
   hasBooked = false;
-  accountId = '0';
+  accountId = '-1';
 
   /**
    * provide activated route to get route parameters and lodging service to get lodging
@@ -43,7 +43,7 @@ export class LodgingDetailsComponent implements OnInit {
     // Populating the profile with dummy data
     this.profile = {
       id: 1,
-      email: 'Email@email.com',
+      email: 'ddowd97@gmail.com',
       type: 'adult',
       givenName: 'Guy',
       familyName: 'Ferri',
@@ -145,7 +145,7 @@ export class LodgingDetailsComponent implements OnInit {
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
         name: `${this.profile.givenName} ${this.profile.familyName}`,
-        lodgingId: this.lodging?.id,
+        lodgingModelId: this.lodging?.id,
       };
     } else {
       review = {
@@ -154,7 +154,7 @@ export class LodgingDetailsComponent implements OnInit {
         comment: '',
         dateCreated: '',
         rating: 0,
-        lodgingId: 0,
+        lodgingModelId: 0,
       };
     }
 

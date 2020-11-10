@@ -19,5 +19,5 @@ export interface Review {
   /** integer rating out of ten stars */
   rating: number;
   /** lodging id to see what lodging the review belongs to */
-  lodgingId: number;
+  lodgingModelId: number;
 }
