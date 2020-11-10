@@ -1,4 +1,3 @@
-
 /**
  * Represents the _Booking_ model
  *
