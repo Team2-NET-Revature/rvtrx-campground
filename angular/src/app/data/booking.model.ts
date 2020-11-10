@@ -1,3 +1,6 @@
+import { BookingRental } from './bookingrental.model';
+import { Rental } from './rental.model';
+
 /**
  * Represents the _Booking_ model
  *
@@ -23,7 +26,7 @@ export interface Booking {
   /** people the account owner has reserved the site with */
   guests: object[];
   /** sites that are reserved */
-  rentals: object[];
+  rentals: BookingRental[];
   /** check-in date and time */
   checkIn: string;
   /** check-out date and time */
