@@ -104,28 +104,21 @@ export class SearchBarComponent {
       // Loop through booked dates, check their lodging ids,
       // then loop through the booked rentals to compare
       // with the lodging rentals, and splice off booked rentals
-      let i = 0;
-      let j = 0;
-      let k = 0;
-      let l = 0;
-
-      for (const book of bookings) {
-        for (const lodg of lodgings) {
-          if (bookings[i].lodgingId === lodgings[j].id) {
-            for (const bren of bookings[i].rentals) {
-              for (const lren of lodgings[j].rentals) {
+      /* tslint:disable */
+      for (let i = 0; i < bookings.length; i++) {
+        for (let j = 0; j < lodgings.length; j++) {
+          if (bookings[i].lodgingId == lodgings[j].id) {
+            for (let k = 0; k < bookings[i].rentals.length; k++) {
+              for (let l = 0; l < lodgings[j].rentals.length; l++) {
                 if (bookings[i].rentals[k].lodgingRentalId === +lodgings[j].rentals[l].id) {
                   availableLodgings[j].rentals.splice(l, 1);
                 }
-                l++;
               }
-              k++;
             }
           }
-          j++;
         }
-        i++;
       }
+      /* tslint:enable */
 
       let searchResultString = '';
       if (city === undefined || city === '') {
