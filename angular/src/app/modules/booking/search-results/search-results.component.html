@@ -39,7 +39,7 @@
 
                     <div class="content">
                       {{ rental.unit.name }} • Occupancy: {{ rental.unit.capacity }} Persons
-                      <button class="button is-primary" (click)="makeReservation(lodging, rental)">
+                      <button class="button is-primary" (click)="makeReservation(lodging, rental.id)">
                         Reserve Now!
                       </button>
                       <br />

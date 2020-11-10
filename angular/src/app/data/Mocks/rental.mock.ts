@@ -1,3 +1,4 @@
+import { BookingRental } from 'data/bookingrental.model';
 import { Rental } from '../rental.model';
 
 export const rentals: Rental[] = [
@@ -24,3 +25,7 @@ export const rentals: Rental[] = [
     price: 100,
   },
 ];
+
+export const rental: BookingRental = {
+  lodgingRentalId: 1
+}
