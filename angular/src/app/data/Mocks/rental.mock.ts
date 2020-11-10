@@ -27,5 +27,5 @@ export const rentals: Rental[] = [
 ];
 
 export const rental: BookingRental = {
-  lodgingRentalId: 1
-}
+  lodgingRentalId: 1,
+};

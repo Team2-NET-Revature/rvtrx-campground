@@ -1,53 +1,26 @@
-import { waitForAsync, ComponentFixture, TestBed, fakeAsync, flush } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchResultsComponent } from './search-results.component';
 import { HttpClient } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { BookingService } from 'src/app/services/booking/booking.service';
-import { Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 import { lodgings } from '../../../data/Mocks/lodging.mock';
-import { rentals, rental } from '../../../data/Mocks/rental.mock';
-import { Account } from "../../../data/account.model";
-import { account } from '../../../data/Mocks/account.mock'
-import { bookingMock } from '../../../data/Mocks/booking.mock'
+import { account } from '../../../data/Mocks/account.mock';
+import { bookingMock } from '../../../data/Mocks/booking.mock';
 import { OktaAuthModule, OktaAuthService, OKTA_CONFIG, UserClaims } from '@okta/okta-angular';
 import { environment } from 'environment';
-import { Rental } from 'data/rental.model';
 import { AccountService } from 'services/account/account.service';
 
-
-fdescribe('SearchResultsComponent', () => {
+describe('SearchResultsComponent', () => {
   const accountService = jasmine.createSpyObj<AccountService>('AccountService', ['getEmail']);
-  accountService.getEmail.and.returnValue(of(account));
+  accountService.getEmail.and.callFake(() => {
+    return of(account);
+  });
 
-  // const reservation = {
-  //   accountId: 1,
-  //   lodgingId: 1,
-  //   guests: [{}],
-  //   rentals: [
-  //     {
-  //       lodgingRentalId: 1,
-  //     },
-  //   ],
-  //   checkIn: "2020-10-10",
-  //   checkOut: "2020-10-12",
-  // };
-  
   const bookingService = jasmine.createSpyObj<BookingService>('BookingService', ['post']);
-  bookingService.post.and.returnValue(of(bookingMock[0]));
-
-  // const accountServiceStub = {
-  //   getEmail(): Observable<boolean> {
-  //     return of(true);
-  //   },
-
-  //   put(acct: Account): Observable<Account> {
-  //     return of(acct);
-  //   },
-
-  //   getToken(): string {
-  //     return 'test';
-  //   },
-  // };
+  bookingService.post.and.callFake(() => {
+    return of(bookingMock[0]);
+  });
 
   const oktaAuthServiceMock = {
     getUser(): Promise<UserClaims> {
@@ -76,10 +49,10 @@ fdescribe('SearchResultsComponent', () => {
           { provide: OktaAuthService, useValue: oktaAuthServiceMock },
           { provide: AccountService, useValue: accountService },
           {
-          provide: OKTA_CONFIG,
-          useValue: environment.identity,
-          }
-      ],
+            provide: OKTA_CONFIG,
+            useValue: environment.identity,
+          },
+        ],
       }).compileComponents();
 
       TestBed.inject(HttpClient);
@@ -103,9 +76,12 @@ fdescribe('SearchResultsComponent', () => {
   });
 
   it('should make reservation', () => {
-    component.email = "bob@gmail.com"
+    component.email = 'bob@gmail.com';
+    component.query = 'City: Palm Bay, Occupancy: 4, Dates: 2020-11-09 - 2020-11-12';
     fixture.detectChanges();
-    component.makeReservation(lodgings[0], 1);
+    component.getUserInfo();
+    fixture.detectChanges();
+    component.makeReservation(1, 1);
     expect(accountService.getEmail).toHaveBeenCalled();
     expect(bookingService.post).toHaveBeenCalled();
   });

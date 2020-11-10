@@ -4,9 +4,6 @@ import { BookingService } from 'services/booking/booking.service';
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { AccountService } from 'services/account/account.service';
 import { Booking } from 'data/booking.model';
-import { Rental } from 'data/rental.model';
-import { share, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs/internal/observable/of';
 
 @Component({
   selector: 'uic-search-results',
@@ -54,31 +51,28 @@ export class SearchResultsComponent {
     console.log(this.email);
   }
 
-  makeReservation(lodging: Lodging, rentalId: number): void {
+  makeReservation(lodgingId: number, rentalId: number): void {
     const occRes = /(?<=(Occupancy: ))[^,]+/.exec(this.query);
     const dateReg = /\d{4}-\d{2}-\d{2}\s-\s\d{4}-\d{2}-\d{2}/.exec(this.query);
     let dateRes: string[];
     if (dateReg) {
       dateRes = dateReg[0].split(' - ');
     }
-    
+
     const guestsArr: object[] = [];
-    
+
     if (occRes) {
       for (let i = 0; i < +occRes[0]; i++) {
         guestsArr.push({});
       }
     }
-    
-    // if (this.email) {
-      
-    // }
+
     if (this.email) {
       this.accountService.getEmail(this.email).subscribe((res) => {
         console.log(res);
         this.reservation = {
           accountId: +res.id,
-          lodgingId: lodging.id,
+          lodgingId,
           guests: guestsArr,
           rentals: [
             {
