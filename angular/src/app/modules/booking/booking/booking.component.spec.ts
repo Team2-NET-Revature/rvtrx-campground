@@ -56,7 +56,7 @@ describe('BookingComponent', () => {
             },
           ],
           bathrooms: 1,
-          imageUrls: [],
+          images: [],
         },
       ]);
     },

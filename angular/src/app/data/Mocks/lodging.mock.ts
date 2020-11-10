@@ -32,7 +32,7 @@ export const testLodgings: Lodging[] = [
       },
     ],
     reviews: [],
-    imageUrls: [],
+    images: [],
   },
   {
     id: 1,
@@ -53,7 +53,7 @@ export const testLodgings: Lodging[] = [
     bathrooms: 1,
     rentals: [],
     reviews: [],
-    imageUrls: [],
+    images: [],
   },
 ];
 
@@ -76,7 +76,7 @@ export const lodging: Lodging = {
   rentals: [],
   reviews: [],
   bathrooms: 1,
-  imageUrls: [],
+  images: [],
 };
 
 export const lodgings: Lodging[] = [
@@ -119,7 +119,7 @@ export const lodgings: Lodging[] = [
       },
     ],
     bathrooms: 1,
-    imageUrls: [],
+    images: [],
   },
 ];
 
@@ -143,6 +143,6 @@ export const lodgingMock: Lodging[] = [
     bathrooms: 1,
     rentals: [],
     reviews: [],
-    imageUrls: [],
+    images: [],
   },
 ];
