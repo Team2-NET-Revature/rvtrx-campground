@@ -9,7 +9,7 @@
             <figure class="image is-16by9">
               <ng-container
                 *ngIf="
-                  !lodging.imageUrls || lodging.imageUrls.length === 0;
+                  !lodging.images || lodging.images.length === 0;
                   then thenBlock;
                   else elseBlock
                 "
@@ -21,7 +21,7 @@
                 />
               </ng-template>
               <ng-template #elseBlock>
-                <img src="{{ lodging.imageUrls[0] }}" alt="Main campground image" />
+                <img src="{{ lodging.images[0].imageUri }}" alt="Main campground image" />
               </ng-template>
             </figure>
           </div>
@@ -31,126 +31,84 @@
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 2;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[1] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[1].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 3;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[2] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[2].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
             </div>
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 4;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[3] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[3].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 5;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[4] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[4].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
             </div>
             <div class="tile is-parent is-vertical">
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 6;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[5] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[5].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
               <div class="tile is-child">
                 <figure class="image is-5by3">
-                  <ng-container
-                    *ngIf="
-                      !lodging.imageUrls || lodging.imageUrls.length < 7;
-                      then thenBlock;
-                      else elseBlock
-                    "
-                  ></ng-container>
-                  <ng-template #thenBlock>
+                  <div *ngIf="!lodging.images || lodging.images.length < 2">
                     <img
                       alt="placeholder image"
                       src="https://bulma.io/images/placeholders/1280x960.png"
                     />
-                  </ng-template>
-                  <ng-template #elseBlock>
-                    <img src="{{ lodging.imageUrls[6] }}" alt="Extra campground image" />
-                  </ng-template>
+                  </div>
+                  <div *ngIf="lodging.images && lodging.images.length >= 2">
+                    <img src="{{ lodging.images[6].imageUri }}" alt="Extra campground image" />
+                  </div>
                 </figure>
               </div>
             </div>
@@ -202,82 +160,86 @@
           </div>
         </div>
       </div>
-      <div class="tile box is-child"> 
-        <!-- Start of the comment creation HTML -->  
+      <div class="tile box is-child">
+        <!-- Start of the comment creation HTML -->
         <article *ngIf="hasBooked" class="media">
           <figure class="media-left">
             <!-- profile picture -->
             <p class="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png">
+              <img src="https://bulma.io/images/placeholders/128x128.png" />
             </p>
           </figure>
-          <form [formGroup]="Comment" novalidate style="width: 100%;">
+          <form [formGroup]="Comment" novalidate style="width: 100%">
             <div class="media-content">
               <div class="field">
                 <div class="control">
-                  <textarea class="textarea" placeholder="Add a comment..." formControlName="message"></textarea>
-                </div>
-              </div>     
-            <nav class="level">
-              <div class="level-left">
-                <div class="level-item">
-                  <p>Rating:</p>
-                </div>
-                <div class="level-item">
-                <select
-                  id="inputScore"
-                  formControlName="score"
-                >
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
-                  <option>9</option>
-                  <option>10</option>
-                </select>
-              </div>
-                <div class="level-item">
-                  <button class="button is-info" *ngIf="!Comment.invalid" (click)='OnSubmit()'>Submit</button>
-                  <a class="button is-info" *ngIf="Comment.invalid" disabled >Submit</a>
+                  <textarea
+                    class="textarea"
+                    placeholder="Add a comment..."
+                    formControlName="message"
+                  ></textarea>
                 </div>
               </div>
-            </nav>
-          </div>
-        </form>
+              <nav class="level">
+                <div class="level-left">
+                  <div class="level-item">
+                    <p>Rating:</p>
+                  </div>
+                  <div class="level-item">
+                    <select id="inputScore" formControlName="score">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </div>
+                  <div class="level-item">
+                    <button class="button is-info" *ngIf="!Comment.invalid" (click)="OnSubmit()">
+                      Submit
+                    </button>
+                    <a class="button is-info" *ngIf="Comment.invalid" disabled>Submit</a>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </form>
         </article>
         <!-- End of comment creation HTML -->
-  
+
         <!-- Start of comment HTML -->
-        <div *ngFor="let c of lodging.reviews;">
-          <br/>
+        <div *ngFor="let c of lodging.reviews">
+          <br />
           <article class="media">
             <figure class="media-left">
-                <!-- profile picture -->
+              <!-- profile picture -->
               <p class="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png">
+                <img src="https://bulma.io/images/placeholders/128x128.png" />
               </p>
             </figure>
             <div class="media-content">
               <div class="content">
                 <p>
-                  <!-- profile name -->             <!-- Timestamp -->
-                  <strong>{{c.name}} </strong> <small>{{c.dateCreated}}</small>
-                  <br>
+                  <!-- profile name -->
+                  <!-- Timestamp -->
+                  <strong>{{ c.name }} </strong> <small>{{ c.dateCreated }}</small>
+                  <br />
                   <!-- Review Message -->
-                  {{c.comment}}
+                  {{ c.comment }}
                 </p>
               </div>
             </div>
             <div class="media-right">
               <!-- Review score -->
-              <span class="tag is-info is-large is-rounded">{{c.rating}}</span>
+              <span class="tag is-info is-large is-rounded">{{ c.rating }}</span>
             </div>
-        </article>
-      </div>
+          </article>
+        </div>
         <!-- End of comment HTML -->
       </div>
     </div>

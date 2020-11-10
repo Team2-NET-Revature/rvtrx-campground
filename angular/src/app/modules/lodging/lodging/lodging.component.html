@@ -5,11 +5,7 @@
         <div class="card-image">
           <div class="card-image">
             <ng-container
-              *ngIf="
-                !lodging.imageUrls || lodging.imageUrls.length === 0;
-                then thenBlock;
-                else elseBlock
-              "
+              *ngIf="!lodging.images || lodging.images.length === 0; then thenBlock; else elseBlock"
             ></ng-container>
             <ng-template #thenBlock>
               <img
@@ -18,7 +14,7 @@
               />
             </ng-template>
             <ng-template #elseBlock>
-              <img src="{{ lodging.imageUrls[0] }}" alt="Main campground image" />
+              <img src="{{ lodging.images[0].imageUri }}" alt="Main campground image" />
             </ng-template>
           </div>
         </div>

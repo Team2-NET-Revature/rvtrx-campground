@@ -14,12 +14,13 @@ import { By } from '@angular/platform-browser';
 import { lodging } from '../../../data/Mocks/lodging.mock';
 import { review } from '../../../data/Mocks/review.mock';
 import { bookings } from '../../../data/Mocks/booking.mock';
+import { Image } from 'data/image.model';
 
 describe('LodgingDetailsComponent', () => {
   let component: LodgingDetailsComponent;
   let fixture: ComponentFixture<LodgingDetailsComponent>;
 
-  const imageUrlsMock = ['https://bulma.io/images/placeholders/1280x960.png'];
+  const imageUrlsMock: Image[] = [];
 
   const mockProfile = {
     id: 1,
@@ -44,7 +45,7 @@ describe('LodgingDetailsComponent', () => {
           return of(lodging);
         },
 
-        getImages(id: string): Observable<string[]> {
+        getImages(id: string): Observable<Image[]> {
           return of(imageUrlsMock);
         },
 
@@ -122,7 +123,7 @@ describe('LodgingDetailsComponent', () => {
   it('should get lodging details', () => {
     expect(component.lodging).toBeTruthy();
     expect(component.lodging).toEqual(lodging);
-    expect(component.lodging?.imageUrls).toEqual(imageUrlsMock);
+    expect(component.lodging?.images).toEqual(imageUrlsMock);
   });
 
   /**
