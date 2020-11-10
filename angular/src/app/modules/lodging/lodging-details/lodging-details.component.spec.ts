@@ -153,17 +153,6 @@ describe('LodgingDetailsComponent', () => {
   });
 
   /**
-   * tests if getProfileByEmail works
-   */
-  it('getProfileByEmail should be called', () => {
-    spyOn(component, 'getProfileByEmail');
-
-    component.getProfileByEmail(component.profile.email);
-    expect(component.getProfileByEmail).toHaveBeenCalled();
-    expect(component.profile).toEqual(mockProfile);
-  });
-
-  /**
    * tests if getUserData works
    */
   it('should intialize user profile correctly', () => {
