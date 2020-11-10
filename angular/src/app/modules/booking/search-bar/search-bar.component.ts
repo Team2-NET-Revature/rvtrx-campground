@@ -109,7 +109,7 @@ export class SearchBarComponent {
           if (bookings[i].lodgingId === lodgings[j].id) {
             for (let k = 0; k < bookings[i].rentals.length; k++) {
               for (let l = 0; l < lodgings[j].rentals.length; l++) {
-                if (bookings[i].rentals[k].lodgingRentalId === +lodgings[j].rentals[l].id!) {
+                if (bookings[i].rentals[k].lodgingRentalId === +lodgings[j].rentals[l].id) {
                   availableLodgings[j].rentals.splice(l, 1);
                 }
               }
