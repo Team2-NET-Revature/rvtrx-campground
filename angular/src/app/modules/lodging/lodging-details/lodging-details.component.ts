@@ -92,7 +92,6 @@ export class LodgingDetailsComponent implements OnInit {
         for (const index of i) {
           if (index.accountId === +this.accountId && this.lodging?.id === index.lodgingId) {
             this.hasBooked = true;
-            console.log(this.hasBooked);
           }
         }
       },
