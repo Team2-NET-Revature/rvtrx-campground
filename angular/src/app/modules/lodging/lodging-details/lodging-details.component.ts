@@ -125,11 +125,6 @@ export class LodgingDetailsComponent implements OnInit {
         this.lodgingService.getById(idString).subscribe((data) => {
           this.lodging = data;
           console.log(this.lodging);
-          this.lodgingService.getImages(idString).subscribe((urls) => {
-            if (this.lodging != null) {
-              this.lodging.imageUrls = urls;
-            }
-          });
         });
       }
     });
