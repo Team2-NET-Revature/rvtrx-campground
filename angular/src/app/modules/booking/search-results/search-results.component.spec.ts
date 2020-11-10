@@ -5,6 +5,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { of } from 'rxjs';
 import { lodgings } from '../../../data/Mocks/lodging.mock';
+import { Rental } from 'data/rental.model';
 import { account } from '../../../data/Mocks/account.mock';
 import { bookingMock } from '../../../data/Mocks/booking.mock';
 import { OktaAuthModule, OktaAuthService, OKTA_CONFIG, UserClaims } from '@okta/okta-angular';
@@ -69,6 +70,22 @@ describe('SearchResultsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('ngOnChanges should make rentals list', () => {
+    component.ngOnChanges();
+    expect(component.rentals).toBeTruthy();
+    expect(component.rentals.length).toBeTruthy();
+    expect(component.rentals[0].status).toEqual('available');
+  });
+
+  it('ngOnChanges should display rentals list', () => {
+    component.ngOnChanges();
+    const testRental: Rental = component.rentals[0];
+    const testRentalPriceString = ' $' + testRental.price + ' ';
+    const info = fixture.debugElement.nativeElement.querySelectorAll('p');
+    expect(info).toBeTruthy();
+    expect(info[1].textContent).toEqual(testRentalPriceString);
   });
 
   it('should have rating of', () => {

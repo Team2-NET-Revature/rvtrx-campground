@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Lodging } from '../../../data/lodging.model';
+import { Booking } from '../../../data/booking.model';
+import { Rental } from '../../../data/rental.model';
 import { BookingService } from 'services/booking/booking.service';
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { AccountService } from 'services/account/account.service';
-import { Booking } from 'data/booking.model';
 import { BookingRental } from 'data/bookingrental.model';
 
 @Component({
@@ -11,10 +12,11 @@ import { BookingRental } from 'data/bookingrental.model';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnChanges {
   @Input() lodgings!: Lodging[] | null;
   @Input() query!: string;
   reservation: Booking | undefined;
+  rentals: Rental[] = [];
   userClaims?: UserClaims;
   email?: string;
 
@@ -24,6 +26,23 @@ export class SearchResultsComponent {
     private readonly bookingService: BookingService
   ) {
     this.getUserInfo();
+  }
+
+  ngOnChanges(): void {
+    this.setRentalsList();
+  }
+
+  setRentalsList(): void {
+    // Sets list of rentals from list of lodgings, for total rental count summary
+    if (this.lodgings !== null) {
+      this.lodgings.forEach((thisLodging) => {
+        if (thisLodging.rentals !== null) {
+          thisLodging.rentals.forEach((thisRental) => {
+            this.rentals.push(thisRental);
+          });
+        }
+      });
+    }
   }
 
   averageRating(lodging: Lodging): boolean[] {
