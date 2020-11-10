@@ -16,7 +16,7 @@ import { Rental } from './rental.model';
  */
 export interface Booking {
   id?: string;
-  accountId: number;
+  accountId?: number;
   /** account associated with the reservation */
   // accountId: number;
   /** lodging that was reserved */

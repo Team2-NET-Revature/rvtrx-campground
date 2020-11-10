@@ -6,6 +6,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { of } from 'rxjs';
 import { lodgings } from '../../../data/Mocks/lodging.mock';
+import { rentals } from '../../../data/Mocks/rental.mock';
 
 describe('SearchResultsComponent', () => {
   const bookingService = jasmine.createSpyObj('BookingService', ['post']);
@@ -45,7 +46,7 @@ describe('SearchResultsComponent', () => {
   });
 
   it('should make reservation', () => {
-    component.makeReservation(lodgings[0]);
+    component.makeReservation(lodgings[0], rentals[0]);
     expect(bookingService.post).toHaveBeenCalled();
   });
 });
