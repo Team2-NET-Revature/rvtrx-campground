@@ -20,15 +20,7 @@ export const booking: Booking = {
   ],
   rentals: [
     {
-      id: '1',
-      lotNumber: '1',
-      unit: {
-        size: '5x5',
-        capacity: 2,
-        name: 'tent',
-      },
-      status: 'available',
-      price: 100,
+      lodgingRentalId: 1,
     },
   ],
 };
