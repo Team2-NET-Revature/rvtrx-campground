@@ -14,6 +14,8 @@ import { By } from '@angular/platform-browser';
 import { lodging } from '../../../data/Mocks/lodging.mock';
 import { review } from '../../../data/Mocks/review.mock';
 import { bookings } from '../../../data/Mocks/booking.mock';
+import { OktaAuthModule, OktaAuthService, OKTA_CONFIG, UserClaims } from '@okta/okta-angular';
+import { environment } from 'environment';
 
 describe('LodgingDetailsComponent', () => {
   let component: LodgingDetailsComponent;
@@ -38,6 +40,18 @@ describe('LodgingDetailsComponent', () => {
     },
   };
 
+  const oktaAuthServiceMock = {
+    getUser(): Promise<UserClaims> {
+      const user: UserClaims = {
+        sub: '',
+        email: 'Email@email.com',
+      };
+      return new Promise<UserClaims>((resolve) => {
+        return resolve(user);
+      });
+    },
+  };
+
   beforeEach(
     waitForAsync(() => {
       const lodgingServiceStub = {
@@ -55,17 +69,22 @@ describe('LodgingDetailsComponent', () => {
       };
 
       const bookingServiceStub = {
-        getByAccountEmail(email: string): Observable<Booking[]> {
+        get(id: string): Observable<Booking[]> {
           return of(bookings);
         },
       };
 
       TestBed.configureTestingModule({
         declarations: [LodgingDetailsComponent],
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule, OktaAuthModule],
         providers: [
           { provide: BookingService, useValue: bookingServiceStub },
           { provide: LodgingService, useValue: lodgingServiceStub },
+          { provide: OktaAuthService, useValue: oktaAuthServiceMock },
+          {
+            provide: OKTA_CONFIG,
+            useValue: environment.identity,
+          },
           {
             provide: ActivatedRoute,
             useValue: {
@@ -108,13 +127,13 @@ describe('LodgingDetailsComponent', () => {
    * tests constructor values being initalized and if getBookingByAccountId works
    */
   it('GetBookingByAccountId should be called', () => {
-    spyOn(component, 'getBookingByAccountEmail');
+    spyOn(component, 'getBookingByAccountId');
 
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getBookingByAccountEmail(component.profile.email);
-    expect(component.getBookingByAccountEmail).toHaveBeenCalled();
+    component.getBookingByAccountId(component.profile.email);
+    expect(component.getBookingByAccountId).toHaveBeenCalled();
   });
 
   /**
@@ -131,6 +150,18 @@ describe('LodgingDetailsComponent', () => {
    */
   it('should intialize hasBooked correctly', () => {
     expect(component.hasBooked).toBeFalse();
+    expect(component.profile).toEqual(mockProfile);
+  });
+
+  /**
+   * tests if getUserData works
+   */
+  it('should intialize user profile correctly', () => {
+    spyOn(component, 'getUserData');
+
+    component.getUserData();
+
+    expect(component.getUserData).toHaveBeenCalled();
     expect(component.profile).toEqual(mockProfile);
   });
 
