@@ -1,15 +1,38 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SearchResultsComponent } from './search-results.component';
-import { Lodging } from 'src/app/data/lodging.model';
 import { HttpClient } from '@angular/common/http';
 import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { of } from 'rxjs';
 import { lodgings } from '../../../data/Mocks/lodging.mock';
+import { account } from '../../../data/Mocks/account.mock';
+import { bookingMock } from '../../../data/Mocks/booking.mock';
+import { OktaAuthModule, OktaAuthService, OKTA_CONFIG, UserClaims } from '@okta/okta-angular';
+import { environment } from 'environment';
+import { AccountService } from 'services/account/account.service';
 
 describe('SearchResultsComponent', () => {
-  const bookingService = jasmine.createSpyObj('BookingService', ['post']);
-  bookingService.post.and.returnValue(of(true));
+  const accountService = jasmine.createSpyObj<AccountService>('AccountService', ['getEmail']);
+  accountService.getEmail.and.callFake(() => {
+    return of(account);
+  });
+
+  const bookingService = jasmine.createSpyObj<BookingService>('BookingService', ['post']);
+  bookingService.post.and.callFake(() => {
+    return of(bookingMock[0]);
+  });
+
+  const oktaAuthServiceMock = {
+    getUser(): Promise<UserClaims> {
+      const user: UserClaims = {
+        sub: '',
+        email: 'test',
+      };
+      return new Promise<UserClaims>((resolve) => {
+        return resolve(user);
+      });
+    },
+  };
 
   const rating: boolean[] = [false, false, false, false, false, false, false, false, false, true];
 
@@ -19,9 +42,17 @@ describe('SearchResultsComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule],
+        imports: [HttpClientTestingModule, OktaAuthModule],
         declarations: [SearchResultsComponent],
-        providers: [{ provide: BookingService, useValue: bookingService }],
+        providers: [
+          { provide: BookingService, useValue: bookingService },
+          { provide: OktaAuthService, useValue: oktaAuthServiceMock },
+          { provide: AccountService, useValue: accountService },
+          {
+            provide: OKTA_CONFIG,
+            useValue: environment.identity,
+          },
+        ],
       }).compileComponents();
 
       TestBed.inject(HttpClient);
@@ -45,7 +76,13 @@ describe('SearchResultsComponent', () => {
   });
 
   it('should make reservation', () => {
-    component.makeReservation(lodgings[0]);
+    component.email = 'bob@gmail.com';
+    component.query = 'City: Palm Bay, Occupancy: 4, Dates: 2020-11-09 - 2020-11-12';
+    fixture.detectChanges();
+    component.getUserInfo();
+    fixture.detectChanges();
+    component.makeReservation(1, 1);
+    expect(accountService.getEmail).toHaveBeenCalled();
     expect(bookingService.post).toHaveBeenCalled();
   });
 });

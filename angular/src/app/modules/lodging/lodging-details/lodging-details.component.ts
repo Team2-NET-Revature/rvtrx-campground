@@ -90,7 +90,7 @@ export class LodgingDetailsComponent implements OnInit {
     this.bookingService.get(id).subscribe(
       (i) => {
         for (const index of i) {
-          if (index.accountId === this.accountId && this.lodging?.id === index.lodgingId) {
+          if (index.accountId === +this.accountId && this.lodging?.id === index.lodgingId) {
             this.hasBooked = true;
           }
         }

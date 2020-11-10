@@ -103,6 +103,7 @@ export class SearchBarComponent {
       const availableLodgings: Lodging[] = lodgings.filter(
         (lodging) => !bookedLodgingIds.includes(lodging.id)
       );
+
       let searchResultString = '';
       if (city === undefined || city === '') {
         searchResultString += 'City: (Any)';
@@ -115,6 +116,7 @@ export class SearchBarComponent {
         searchResultString += ', Occupancy: ' + occupancy;
       }
       searchResultString += `, Dates: ${checkIn} - ${checkOut}`;
+
       this.searchResults.emit(availableLodgings);
       this.searchQuery.emit(searchResultString);
       this.isSearched.emit(true);
