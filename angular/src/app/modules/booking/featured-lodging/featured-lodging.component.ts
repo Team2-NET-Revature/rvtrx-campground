@@ -32,26 +32,30 @@ export class FeaturedLodgingComponent implements OnChanges {
       const lodgingLotTypes: string[] = [];
       const totalCountByType: Map<string, number> = new Map<string, number>();
       const availableCountByType: Map<string, number> = new Map<string, number>();
+      let thisLotType = null;
       for (const thisLot of thisLodging.rentals) {
-        const thisLotType = thisLot.unit.name;
-        if (lodgingLotTypes.indexOf(thisLotType) === -1) {
-          lodgingLotTypes.push(thisLotType);
-        }
-        let incrementIfAvailable = 0;
-        if (thisLot.status.toLocaleLowerCase() === 'available') {
-          incrementIfAvailable = 1;
-        }
-        const thisTypeCount = availableCountByType.get(thisLotType);
-        if (thisTypeCount === undefined) {
-          availableCountByType.set(thisLotType, incrementIfAvailable);
-        } else {
-          availableCountByType.set(thisLotType, thisTypeCount + incrementIfAvailable);
-        }
-        const thisTypeTotalCount = totalCountByType.get(thisLotType);
-        if (thisTypeTotalCount === undefined) {
-          totalCountByType.set(thisLotType, 1);
-        } else {
-          totalCountByType.set(thisLotType, thisTypeTotalCount + 1);
+        if (thisLot.unit) {
+          thisLotType = thisLot.unit.name;
+
+          if (lodgingLotTypes.indexOf(thisLotType) === -1) {
+            lodgingLotTypes.push(thisLotType);
+          }
+          let incrementIfAvailable = 0;
+          if (thisLot.status && thisLot.status.toLocaleLowerCase() === 'available') {
+            incrementIfAvailable = 1;
+          }
+          const thisTypeCount = availableCountByType.get(thisLotType);
+          if (thisTypeCount === undefined) {
+            availableCountByType.set(thisLotType, incrementIfAvailable);
+          } else {
+            availableCountByType.set(thisLotType, thisTypeCount + incrementIfAvailable);
+          }
+          const thisTypeTotalCount = totalCountByType.get(thisLotType);
+          if (thisTypeTotalCount === undefined) {
+            totalCountByType.set(thisLotType, 1);
+          } else {
+            totalCountByType.set(thisLotType, thisTypeTotalCount + 1);
+          }
         }
       }
       const thisLodgingLotCountStrings: string[] = [];

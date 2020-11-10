@@ -1,5 +1,4 @@
-import { Profile } from './profile.model';
-import { Rental } from './rental.model';
+import { BookingRental } from './bookingrental.model';
 
 /**
  * Represents the _Booking_ model
@@ -15,17 +14,18 @@ import { Rental } from './rental.model';
  * ```
  */
 export interface Booking {
-  id: string;
+  id?: string;
+  accountId?: number;
   /** account associated with the reservation */
   // accountId: number;
   /** lodging that was reserved */
-  accountEmail: string;
+  accountEmail?: string;
   /** lodging that was reserved */
   lodgingId: number;
   /** people the account owner has reserved the site with */
-  guests: Profile[];
+  guests: object[];
   /** sites that are reserved */
-  rentals: Rental[];
+  rentals: BookingRental[];
   /** check-in date and time */
   checkIn: string;
   /** check-out date and time */

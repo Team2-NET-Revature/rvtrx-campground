@@ -4,8 +4,8 @@
       <br />
       <h3 class="title is-2">search results for "{{ query }}"</h3>
       <div *ngIf="lodgings">
-        <h3>number of results found: {{ lodgings.length }}</h3>
-        <hr />
+        <h3>Found {{ rentals.length }} available lodgings among {{ lodgings.length }} locations</h3>
+        <hr>
         <div class="tile is-ancestor">
           <div class="tile is-vertical">
             <ul *ngFor="let lodging of lodgings">
@@ -42,8 +42,8 @@
                     </div>
 
                     <div class="content">
-                      {{ rental.unit.name }} • Occupancy: {{ rental.unit.capacity }} Persons
-                      <button class="button is-primary" (click)="makeReservation(lodging)">
+                      {{ rental.unit!.name }} • Occupancy: {{ rental.unit!.capacity }} Persons
+                      <button class="button is-primary" (click)="makeReservation(lodging.id, +rental.id)">
                         Reserve Now!
                       </button>
                       <br />

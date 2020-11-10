@@ -2,7 +2,7 @@ import { Booking } from '../booking.model';
 
 export const booking: Booking = {
   id: 'string',
-  accountEmail: '',
+  accountId: 1,
   lodgingId: 1,
   checkIn: '',
   checkOut: '',
@@ -14,19 +14,13 @@ export const booking: Booking = {
       familyName: '',
       givenName: '',
       phone: 'string',
+      imageUri:
+        'https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurly&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardMedium&facialHairColor=Auburn&clotheType=CollarSweater&clotheColor=White&eyeType=Close&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=DarkBrown',
     },
   ],
   rentals: [
     {
-      id: '1',
-      lotNumber: '1',
-      unit: {
-        size: '5x5',
-        capacity: 2,
-        name: 'tent',
-      },
-      status: 'available',
-      price: 100,
+      lodgingRentalId: 1,
     },
   ],
 };
@@ -34,7 +28,7 @@ export const booking: Booking = {
 export const bookings: Booking[] = [
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 1,
     guests: [],
     rentals: [],
@@ -43,7 +37,7 @@ export const bookings: Booking[] = [
   },
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 2,
     guests: [],
     rentals: [],
@@ -55,7 +49,7 @@ export const bookings: Booking[] = [
 export const bookingMock: Booking[] = [
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 0,
     guests: [],
     rentals: [],

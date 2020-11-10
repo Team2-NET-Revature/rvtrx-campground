@@ -41,4 +41,6 @@ export interface Rental {
   price: number;
   /** discounted cost, if applicable */
   discountedPrice?: number;
+  /** to identify which lodging rentals are booked */
+  lodgingRentalId?: number;
 }
