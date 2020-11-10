@@ -2,7 +2,7 @@ import { Booking } from '../booking.model';
 
 export const booking: Booking = {
   id: 'string',
-  accountEmail: '',
+  accountId: 1,
   lodgingId: 1,
   checkIn: '',
   checkOut: '',
@@ -36,7 +36,7 @@ export const booking: Booking = {
 export const bookings: Booking[] = [
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 1,
     guests: [],
     rentals: [],
@@ -45,7 +45,7 @@ export const bookings: Booking[] = [
   },
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 2,
     guests: [],
     rentals: [],
@@ -57,7 +57,7 @@ export const bookings: Booking[] = [
 export const bookingMock: Booking[] = [
   {
     id: '0',
-    accountEmail: '',
+    accountId: 1,
     lodgingId: 0,
     guests: [],
     rentals: [],

@@ -8,7 +8,6 @@ import { TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { asyncScheduler, scheduled, Observable } from 'rxjs';
 import { AccountService } from './account.service';
 import { ConfigService } from '../config/config.service';
-import { Account } from '../../data/account.model';
 import { Config } from '../../data/config.model';
 import { PostPayment } from 'src/app/data/payment.model';
 import { accountMock } from '../../data/Mocks/account.mock';
