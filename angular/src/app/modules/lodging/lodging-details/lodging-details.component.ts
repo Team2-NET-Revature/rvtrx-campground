@@ -85,7 +85,6 @@ export class LodgingDetailsComponent implements OnInit {
    * See if the account ID is the same as the lodging ID to allow the user to comment
    */
   getBookingByAccountEmail(email: string): void {
-    console.log(email);
     this.bookingService.getByAccountEmail(email).subscribe(
       (i) => {
         for (const index of i) {
