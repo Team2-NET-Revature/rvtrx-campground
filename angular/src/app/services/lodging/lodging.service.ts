@@ -33,7 +33,6 @@ export class LodgingService {
     this.reviewsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.review}`)
     );
-    // this.reviewsUrl$ = config$.pipe(map((a) => `http://localhost:8002/rest/lodging/0.0/review`));
     this.imagesUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.image}`)
     );
