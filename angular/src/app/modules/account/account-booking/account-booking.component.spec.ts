@@ -28,7 +28,7 @@ describe('AccountBookingComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    /**
+  /**
    * tests constructor values being initalized and if getImageUriByLodgingId works
    */
   it('getImageUriByLodgingId should be called', () => {
