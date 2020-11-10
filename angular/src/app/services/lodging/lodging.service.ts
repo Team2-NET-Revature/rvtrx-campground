@@ -27,9 +27,6 @@ export class LodgingService {
     this.lodgingsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.lodging}`)
     );
-    // this.rentalsUrl$ = config$.pipe(
-    //   map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.rental}`)
-    // );
     this.reviewsUrl$ = config$.pipe(
       map((cfg) => `${cfg.api.lodging.base}${cfg.api.lodging.uri.review}`)
     );
