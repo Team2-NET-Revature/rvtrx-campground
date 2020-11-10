@@ -16,6 +16,7 @@ describe('ProfileComponent', () => {
       familyName: '',
       phone: '',
       type: '',
+      imageUri: '',
     },
   ];
 
