@@ -5,7 +5,6 @@ import { Rental } from '../../../data/rental.model';
 import { BookingService } from 'services/booking/booking.service';
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { AccountService } from 'services/account/account.service';
-import { Booking } from 'data/booking.model';
 import { BookingRental } from 'data/bookingrental.model';
 
 @Component({
