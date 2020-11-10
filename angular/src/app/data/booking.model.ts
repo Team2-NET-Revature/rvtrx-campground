@@ -1,5 +1,3 @@
-import { Profile } from './profile.model';
-import { Rental } from './rental.model';
 
 /**
  * Represents the _Booking_ model
