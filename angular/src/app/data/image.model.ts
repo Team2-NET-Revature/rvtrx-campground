@@ -1,5 +1,5 @@
 /**
- * Represents the _Image_ model
+ * Represents the _Image_ model, which holds a string imageUri
  *
  * ```yaml
  * id: number;
