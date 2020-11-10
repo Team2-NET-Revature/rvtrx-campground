@@ -68,7 +68,7 @@ describe('LodgingDetailsComponent', () => {
       };
 
       const bookingServiceStub = {
-        getByAccountEmail(email: string): Observable<Booking[]> {
+        get(id: string): Observable<Booking[]> {
           return of(bookings);
         },
       };
@@ -126,13 +126,13 @@ describe('LodgingDetailsComponent', () => {
    * tests constructor values being initalized and if getBookingByAccountId works
    */
   it('GetBookingByAccountId should be called', () => {
-    spyOn(component, 'getBookingByAccountEmail');
+    spyOn(component, 'getBookingByAccountId');
 
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getBookingByAccountEmail(component.profile.email);
-    expect(component.getBookingByAccountEmail).toHaveBeenCalled();
+    component.getBookingByAccountId(component.profile.email);
+    expect(component.getBookingByAccountId).toHaveBeenCalled();
   });
 
   /**

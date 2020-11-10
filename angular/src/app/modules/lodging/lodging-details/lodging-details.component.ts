@@ -21,6 +21,7 @@ export class LodgingDetailsComponent implements OnInit {
   profile: Profile;
   Comment: FormGroup;
   hasBooked = false;
+  accountId = '0';
 
   /**
    * provide activated route to get route parameters and lodging service to get lodging
@@ -77,18 +78,18 @@ export class LodgingDetailsComponent implements OnInit {
         this.getProfileByEmail(this.profile.email);
       })
       .then(() => {
-        this.getBookingByAccountEmail(this.profile.email);
+        this.getBookingByAccountId(this.accountId);
       });
   }
 
   /**
    * See if the account ID is the same as the lodging ID to allow the user to comment
    */
-  getBookingByAccountEmail(email: string): void {
-    this.bookingService.getByAccountEmail(email).subscribe(
+  getBookingByAccountId(id: string): void {
+    this.bookingService.get(id).subscribe(
       (i) => {
         for (const index of i) {
-          if (index.accountEmail === this.profile.email && this.lodging?.id === index.lodgingId) {
+          if (index.accountId === this.accountId && this.lodging?.id === index.lodgingId) {
             this.hasBooked = true;
           }
         }
@@ -109,6 +110,7 @@ export class LodgingDetailsComponent implements OnInit {
       this.profile.givenName = p.profiles[0].givenName;
       this.profile.phone = p.profiles[0].phone;
       this.profile.type = p.profiles[0].type;
+      this.accountId = p.id;
     });
   }
 
