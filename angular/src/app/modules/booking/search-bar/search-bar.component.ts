@@ -1,5 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { Lodging } from '../../../data/lodging.model';
@@ -99,15 +98,42 @@ export class SearchBarComponent {
     const bookings$ = this.bookingService.getByDateRange(checkIn, checkOut);
 
     forkJoin([lodgings$, bookings$]).subscribe(([lodgings, bookings]) => {
-      const bookedLodgingIds: number[] = bookings.map((booking) => booking.lodgingId);
-      const availableLodgings: Lodging[] = lodgings.filter(
-        (lodging) => !bookedLodgingIds.includes(lodging.id)
-      );
+      const availableLodgings: Lodging[] = lodgings;
+
+      // Loop through booked dates, check their lodging ids,
+      // then loop through the booked rentals to compare
+      // with the lodging rentals, and splice off booked rentals
+      /* tslint:disable */
+      for (let i = 0; i < bookings.length; i++) {
+        for (let j = 0; j < lodgings.length; j++) {
+          if (bookings[i].lodgingId === lodgings[j].id) {
+            for (let k = 0; k < bookings[i].rentals.length; k++) {
+              for (let l = 0; l < lodgings[j].rentals.length; l++) {
+                if (bookings[i].rentals[k].lodgingRentalId === +lodgings[j].rentals[l].id) {
+                  availableLodgings[j].rentals.splice(l, 1);
+                }
+              }
+            }
+          }
+        }
+      }
+      /* tslint:enable */
+
+      let searchResultString = '';
+      if (city === undefined || city === '') {
+        searchResultString += 'City: (Any)';
+      } else {
+        searchResultString += 'City: ' + city;
+      }
+      if (occupancy === undefined || occupancy === '' || occupancy === '0') {
+        searchResultString += ', Occupancy: (Any)';
+      } else {
+        searchResultString += ', Occupancy: ' + occupancy;
+      }
+      searchResultString += `, Dates: ${checkIn} - ${checkOut}`;
 
       this.searchResults.emit(availableLodgings);
-      this.searchQuery.emit(
-        `City: ${city}, Occupancy: ${occupancy}, Dates: ${checkIn} - ${checkOut}`
-      );
+      this.searchQuery.emit(searchResultString);
       this.isSearched.emit(true);
     });
   }

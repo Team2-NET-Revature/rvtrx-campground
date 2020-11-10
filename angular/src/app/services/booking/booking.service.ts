@@ -63,18 +63,6 @@ export class BookingService {
   }
 
   /**
-   * Represents the _Booking Service_ `get` method
-   *
-   * @param email string
-   */
-  getByAccountEmail(email?: string): Observable<Booking[]> {
-    return this.bookingsUrl$.pipe(
-      map((url) => (email ? url.concat(`/Account/${email}`) : url)),
-      concatMap((url) => this.http.get<Booking[]>(url))
-    );
-  }
-
-  /**
    * Represents the _Booking Service_ `post` method
    *
    * @param booking Booking
