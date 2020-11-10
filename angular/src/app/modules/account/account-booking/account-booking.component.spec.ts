@@ -39,5 +39,7 @@ describe('AccountBookingComponent', () => {
 
     component.getImageUriByLodgingId(component.booking.lodgingId);
     expect(component.getImageUriByLodgingId).toHaveBeenCalled();
+    expect(component.imageUri).not.toEqual("");
+    expect(component.lodgingName).not.toEqual("");
   });
 });
