@@ -115,11 +115,6 @@ describe('LodgingDetailsComponent', () => {
     })
   );
 
-  afterEach(() => {
-    fixture.destroy();
-    component.hasBooked = false;
-  });
-
   /**
    * tests the whole lodging-details component
    */
@@ -147,7 +142,7 @@ describe('LodgingDetailsComponent', () => {
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getBookingByAccountId("0");
+    component.getBookingByAccountId('0');
     expect(component.getBookingByAccountId).toHaveBeenCalled();
     expect(component.hasBooked).toBeTrue();
     component.hasBooked = false;
@@ -162,11 +157,11 @@ describe('LodgingDetailsComponent', () => {
 
     component.getProfileByEmail(accountMock.email);
     expect(component.profile.id).toEqual(1);
-    expect(component.profile.familyName).toEqual("string");
-    expect(component.profile.givenName).toEqual("string");
-    expect(component.profile.phone).toEqual("string");
-    expect(component.profile.type).toEqual("adult");
-    expect(component.accountId).toEqual("0");
+    expect(component.profile.familyName).toEqual('string');
+    expect(component.profile.givenName).toEqual('string');
+    expect(component.profile.phone).toEqual('string');
+    expect(component.profile.type).toEqual('adult');
+    expect(component.accountId).toEqual('0');
   });
 
   /**
@@ -182,7 +177,9 @@ describe('LodgingDetailsComponent', () => {
    * tests if hasBooked and profile is initialized correctly
    */
   it('should intialize hasBooked correctly', () => {
-    expect(component.hasBooked).toBeTrue(); //On init, the component fills the data with whether the lodging has been booked before, which is true for these mocks
+    // On init, the component fills the data with whether the lodging has been booked before,
+    // which is true for these mocks
+    expect(component.hasBooked).toBeTrue();
     expect(component.profile).toEqual(accountMock.profiles[1]);
   });
 
