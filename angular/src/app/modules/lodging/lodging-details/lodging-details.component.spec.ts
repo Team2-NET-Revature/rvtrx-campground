@@ -1,11 +1,11 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LodgingDetailsComponent } from './lodging-details.component';
 import { Lodging } from 'src/app/data/lodging.model';
+import { Account } from 'src/app/data/account.model';
 import { Observable, of } from 'rxjs';
 import { LodgingService } from 'src/app/services/lodging/lodging.service';
 import { ActivatedRoute } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { bufferWhen } from 'rxjs/operators';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BookingService } from '../../../services/booking/booking.service';
 import { Review } from 'data/review.model';
@@ -14,9 +14,11 @@ import { By } from '@angular/platform-browser';
 import { lodging } from '../../../data/Mocks/lodging.mock';
 import { review } from '../../../data/Mocks/review.mock';
 import { bookings } from '../../../data/Mocks/booking.mock';
+import { accountMock } from '../../../data/Mocks/account.mock';
 import { Image } from 'data/image.model';
 import { OktaAuthModule, OktaAuthService, OKTA_CONFIG, UserClaims } from '@okta/okta-angular';
 import { environment } from 'environment';
+import { AccountService } from 'services/account/account.service';
 
 describe('LodgingDetailsComponent', () => {
   let component: LodgingDetailsComponent;
@@ -75,12 +77,19 @@ describe('LodgingDetailsComponent', () => {
         },
       };
 
+      const accountServiceStub = {
+        getEmail(email: string): Observable<Account> {
+          return of(accountMock);
+        },
+      };
+
       TestBed.configureTestingModule({
         declarations: [LodgingDetailsComponent],
         imports: [HttpClientTestingModule, OktaAuthModule],
         providers: [
           { provide: BookingService, useValue: bookingServiceStub },
           { provide: LodgingService, useValue: lodgingServiceStub },
+          { provide: AccountService, useValue: accountServiceStub },
           { provide: OktaAuthService, useValue: oktaAuthServiceMock },
           {
             provide: OKTA_CONFIG,
@@ -105,6 +114,11 @@ describe('LodgingDetailsComponent', () => {
       fixture.detectChanges();
     })
   );
+
+  afterEach(() => {
+    fixture.destroy();
+    component.hasBooked = false;
+  });
 
   /**
    * tests the whole lodging-details component
@@ -133,8 +147,26 @@ describe('LodgingDetailsComponent', () => {
     expect(component.profile).toBeTruthy();
     expect(component.Comment).toBeTruthy();
 
-    component.getBookingByAccountId(component.profile.email);
+    component.getBookingByAccountId("0");
     expect(component.getBookingByAccountId).toHaveBeenCalled();
+    expect(component.hasBooked).toBeTrue();
+    component.hasBooked = false;
+    fixture.detectChanges();
+  });
+
+  /**
+   * tests if getProfileByEmail works
+   */
+  it('should call GetProfileByEmail', () => {
+    spyOn(component, 'getProfileByEmail');
+
+    component.getProfileByEmail(accountMock.email);
+    expect(component.profile.id).toEqual(1);
+    expect(component.profile.familyName).toEqual("string");
+    expect(component.profile.givenName).toEqual("string");
+    expect(component.profile.phone).toEqual("string");
+    expect(component.profile.type).toEqual("adult");
+    expect(component.accountId).toEqual("0");
   });
 
   /**
@@ -150,8 +182,8 @@ describe('LodgingDetailsComponent', () => {
    * tests if hasBooked and profile is initialized correctly
    */
   it('should intialize hasBooked correctly', () => {
-    expect(component.hasBooked).toBeFalse();
-    expect(component.profile).toEqual(mockProfile);
+    expect(component.hasBooked).toBeTrue(); //On init, the component fills the data with whether the lodging has been booked before, which is true for these mocks
+    expect(component.profile).toEqual(accountMock.profiles[1]);
   });
 
   /**
@@ -163,7 +195,7 @@ describe('LodgingDetailsComponent', () => {
     component.getUserData();
 
     expect(component.getUserData).toHaveBeenCalled();
-    expect(component.profile).toEqual(mockProfile);
+    expect(component.profile).toEqual(accountMock.profiles[1]);
   });
 
   /**
