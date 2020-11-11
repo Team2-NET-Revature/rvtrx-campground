@@ -44,6 +44,24 @@ export const bookings: Booking[] = [
     checkIn: '2020-08-01',
     checkOut: '2020-08-03',
   },
+  {
+    id: '0',
+    accountId: 0,
+    lodgingId: 1,
+    guests: [],
+    rentals: [],
+    checkIn: '2020-08-01',
+    checkOut: '2020-08-03',
+  },
+  {
+    id: '0',
+    accountId: 0,
+    lodgingId: 2,
+    guests: [],
+    rentals: [],
+    checkIn: '2020-08-01',
+    checkOut: '2020-08-03',
+  },
 ];
 
 export const bookingMock: Booking[] = [
