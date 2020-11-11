@@ -48,8 +48,10 @@ export class AccountComponent {
     this.email = userClaims.email as string;
     console.log(this.email);
     this.account$ = this.accountService.getEmail(this.email);
-    // TODO: get only the bookings of this account
-    this.bookings$ = this.bookingService.get();
+    // gets only the bookings of this account
+    this.accountService.getEmail(this.email).subscribe((account) => {
+      this.bookings$ = this.bookingService.get(account.id);
+    });
 
     this.reviews$ = of([
       // Not yet implemented
