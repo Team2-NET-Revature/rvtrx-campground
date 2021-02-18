@@ -1,7 +1,7 @@
 {
   "api": {
     "account": {
-      "base": "https://api.rvtr.net/rest/account/0/",
+      "base": "https://campgroundaccountapi.azurewbesites.net/rest/account/0/",
       "uri": {
         "account": "account",
         "address": "address",
@@ -10,18 +10,24 @@
       }
     },
     "booking": {
-      "base": "https://api.rvtr.net/rest/booking/0/",
+      "base": "https://campgroundbookingapi.azurewebsites.net/rest/booking/0/",
       "uri": {
         "booking": "booking"
       }
     },
     "lodging": {
-      "base": "https://api.rvtr.net/rest/lodging/0/",
+      "base": "https://campgroundlodgingapi.azurewebsites.net/rest/lodging/0/",
       "uri": {
         "lodging": "lodging",
         "rental": "rental",
         "review": "review",
         "image": "images"
+      }
+    },
+    "media": {
+      "base": "https://campgroundmediaapi.azurewebsites.net/rest/media/0/",
+      "uri": {
+        "media": "media"
       }
     }
   },
