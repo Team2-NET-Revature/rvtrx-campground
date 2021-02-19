@@ -43,8 +43,8 @@
     "karma-sonarqube-unit-reporter": "0.0.21",
     "netlify-cli": "^2.63.0",
     "prettier": "^2.1.2",
-    "protractor": "~7.0.0",
-    "puppeteer": "^5.3.1",
+    "protractor": "^7.0.0",
+    "puppeteer": "^5.5.0",
     "sonarqube-scanner": "^2.7.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
@@ -53,7 +53,6 @@
   "scripts": {
     "audit": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --check ./",
     "build": "ng build",
-    "pree2e": "node ./node_modules/protractor/bin/webdriver-manager update --versions.chrome=88.0.4324.96 --gecko false --standalone false",
     "e2e": "ng e2e",
     "format": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --write ./",
     "lint": "ng lint",
