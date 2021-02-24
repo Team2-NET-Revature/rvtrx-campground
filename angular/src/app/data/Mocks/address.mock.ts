@@ -1,7 +1,7 @@
 import { Address } from '../address.model';
 
 export const address = {
-  id: '',
+  entityId: '',
   city: '',
   country: '',
   postalCode: '',

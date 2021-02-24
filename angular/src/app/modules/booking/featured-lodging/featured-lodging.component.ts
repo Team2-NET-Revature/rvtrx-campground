@@ -28,14 +28,14 @@ export class FeaturedLodgingComponent implements OnChanges {
     console.log('Lodgings:');
     console.log(this.displayLodgings);
     for (const thisLodging of this.displayLodgings) {
-      const thisLodgingId = thisLodging.id;
+      const thisLodgingId = thisLodging.entityId;
       const lodgingLotTypes: string[] = [];
       const totalCountByType: Map<string, number> = new Map<string, number>();
       const availableCountByType: Map<string, number> = new Map<string, number>();
       let thisLotType = null;
       for (const thisLot of thisLodging.rentals) {
-        if (thisLot.unit) {
-          thisLotType = thisLot.unit.name;
+        if (thisLot) {
+          thisLotType = thisLot.siteName;
 
           if (lodgingLotTypes.indexOf(thisLotType) === -1) {
             lodgingLotTypes.push(thisLotType);
@@ -81,6 +81,6 @@ export class FeaturedLodgingComponent implements OnChanges {
 
   featureClick(thisLodging: Lodging): void {
     console.log('Going to lodging details for' + thisLodging.name);
-    this.router.navigate(['/lodging/details/' + thisLodging.id]);
+    this.router.navigate(['/lodging/details/' + thisLodging.entityId]);
   }
 }

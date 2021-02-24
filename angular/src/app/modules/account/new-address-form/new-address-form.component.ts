@@ -86,7 +86,7 @@ export class NewAddressFormComponent implements OnInit {
       postalCode: this.AddressForm.value.PostalCode,
       stateProvince: this.AddressForm.value.stateProvince,
       street: this.AddressForm.value.Street,
-      id: '',
+      entityId: '',
     } as Address;
     this.newAddress.emit(payload);
   }

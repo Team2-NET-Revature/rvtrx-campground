@@ -17,31 +17,23 @@ describe('BookingComponent', () => {
     get(): Observable<Lodging[]> {
       return of([
         {
-          id: 1,
-          location: {
-            id: '',
-            address: {
-              id: '',
-              city: '',
-              country: '',
-              postalCode: '',
-              stateProvince: '',
-              street: '',
-            },
-            latitude: '',
-            locale: '',
-            longitude: '',
+          entityId: 1,
+          address: {
+            entityId: '',
+            city: '',
+            country: '',
+            postalCode: '',
+            stateProvince: '',
+            street: '',
           },
           name: '',
           rentals: [
             {
               id: '1',
               lotNumber: '1',
-              unit: {
-                size: '5x5',
-                capacity: 2,
-                name: 'tent',
-              },
+              size: '5x5',
+              capacity: 2,
+              siteName: 'tent',
               status: 'available',
               price: 100,
             },

@@ -106,7 +106,7 @@ export class SearchBarComponent {
       /* tslint:disable */
       for (let i = 0; i < bookings.length; i++) {
         for (let j = 0; j < lodgings.length; j++) {
-          if (bookings[i].lodgingId === lodgings[j].id) {
+          if (bookings[i].lodgingId === lodgings[j].entityId) {
             for (let k = 0; k < bookings[i].rentals.length; k++) {
               for (let l = 0; l < lodgings[j].rentals.length; l++) {
                 if (bookings[i].rentals[k].lodgingRentalId === +lodgings[j].rentals[l].id) {

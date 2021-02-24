@@ -11,7 +11,7 @@
  * ```
  */
 export interface Address {
-  id: string;
+  entityId: string;
   city: string;
   country: string;
   postalCode: string;

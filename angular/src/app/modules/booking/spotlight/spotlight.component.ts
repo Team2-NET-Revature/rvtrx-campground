@@ -31,6 +31,6 @@ export class SpotlightComponent implements OnChanges {
 
   featureClick(thisLodging: Lodging): void {
     console.log('Going to lodging details for' + thisLodging.name);
-    this.router.navigate(['/lodging/details/' + thisLodging.id]);
+    this.router.navigate(['/lodging/details/' + thisLodging.entityId]);
   }
 }

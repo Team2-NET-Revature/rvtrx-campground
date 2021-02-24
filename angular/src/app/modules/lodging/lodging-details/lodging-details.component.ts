@@ -90,7 +90,7 @@ export class LodgingDetailsComponent implements OnInit {
     this.bookingService.get(id).subscribe(
       (i) => {
         for (const index of i) {
-          if (index.accountId === +this.accountId && this.lodging?.id === index.lodgingId) {
+          if (index.accountId === +this.accountId && this.lodging?.entityId === index.lodgingId) {
             this.hasBooked = true;
           }
         }
@@ -138,14 +138,14 @@ export class LodgingDetailsComponent implements OnInit {
     let review: Review;
 
     // Filling the review obj with user submitted data
-    if (this.lodging?.id) {
+    if (this.lodging?.entityId) {
       review = {
         accountId: this.profile.id,
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,
         name: `${this.profile.givenName} ${this.profile.familyName}`,
-        lodgingModelId: this.lodging?.id,
+        lodgingModelId: this.lodging?.entityId,
       };
     } else {
       review = {

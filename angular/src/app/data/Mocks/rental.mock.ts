@@ -5,22 +5,18 @@ export const rentals: Rental[] = [
   {
     id: '1',
     lotNumber: '1',
-    unit: {
-      size: '5x5',
-      capacity: 2,
-      name: 'tent',
-    },
+    size: '5x5',
+    capacity: 2,
+    siteName: 'tent',
     status: 'available',
     price: 100,
   },
   {
     id: '2',
     lotNumber: '2',
-    unit: {
-      size: '5x5',
-      capacity: 5,
-      name: 'rv',
-    },
+    size: '5x5',
+    capacity: 5,
+    siteName: 'rv',
     status: 'available',
     price: 100,
   },

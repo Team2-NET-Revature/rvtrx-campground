@@ -107,7 +107,7 @@
                     />
                   </div>
                   <div *ngIf="lodging.images && lodging.images.length >= 2">
-                    <img src="{{ lodging.images[6].imageUri }}" alt="Extra campground image" />
+                    <img src="{{ lodging.images[1].imageUri }}" alt="Extra campground image" />
                   </div>
                 </figure>
               </div>
@@ -136,14 +136,14 @@
                   <div class="level-item">
                     <div>
                       <p class="heading">address</p>
-                      <p class="title is-6">{{ lodging.location.address.street }}</p>
+                      <p class="title is-6">{{ lodging.address.street }}</p>
                       <p class="title is-6">
-                        {{ lodging.location.address.city }},
-                        {{ lodging.location.address.stateProvince }},
-                        {{ lodging.location.address.country }}
+                        {{ lodging.address.city }},
+                        {{ lodging.address.stateProvince }},
+                        {{ lodging.address.country }}
                       </p>
                       <p class="title is-6">
-                        {{ lodging.location.address.postalCode }}
+                        {{ lodging.address.postalCode }}
                       </p>
                     </div>
                   </div>

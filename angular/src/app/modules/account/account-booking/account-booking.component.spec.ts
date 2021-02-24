@@ -47,7 +47,7 @@ describe('AccountBookingComponent', () => {
     expect(component.imageUri).toBeTruthy();
     expect(component.lodgingName).toBeTruthy();
 
-    component.getImageUriByLodgingId(lodging.id);
+    component.getImageUriByLodgingId(lodging.entityId);
     expect(component.getImageUriByLodgingId).toHaveBeenCalled();
     expect(component.imageUri).toEqual('https://bulma.io/images/placeholders/128x128.png');
     expect(component.lodgingName).toEqual('test');

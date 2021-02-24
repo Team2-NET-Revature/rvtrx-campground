@@ -42,10 +42,10 @@
                     </div>
 
                     <div class="content">
-                      {{ rental.unit!.name }} • Occupancy: {{ rental.unit!.capacity }} Persons
+                      {{ rental.siteName }} • Occupancy: {{ rental.capacity }} Persons
                       <button
                         class="button is-primary"
-                        (click)="makeReservation(lodging.id, +rental.id)"
+                        (click)="makeReservation(lodging.entityId, +rental.id)"
                       >
                         Reserve Now!
                       </button>

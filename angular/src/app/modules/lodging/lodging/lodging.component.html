@@ -1,6 +1,6 @@
 <div *ngIf="lodgings" class="columns is-multiline is-centered">
   <div class="column is-one-quarter" *ngFor="let lodging of lodgings">
-    <a routerLink="details/{{ lodging.id }}">
+    <a routerLink="details/{{ lodging.entityId }}">
       <div class="card">
         <div class="card-image">
           <div class="card-image">
@@ -22,13 +22,13 @@
           <div class="media">
             <div class="media-content">
               <p class="title is-4">{{ lodging.name }}</p>
-              <p>{{ lodging.location.address.street }}</p>
+              <p>{{ lodging.address.street }}</p>
               <p>
-                {{ lodging.location.address.city }}, {{ lodging.location.address.stateProvince }},
-                {{ lodging.location.address.country }}
+                {{ lodging.address.city }}, {{ lodging.address.stateProvince }},
+                {{ lodging.address.country }}
               </p>
               <p>
-                {{ lodging.location.address.postalCode }}
+                {{ lodging.address.postalCode }}
               </p>
             </div>
           </div>

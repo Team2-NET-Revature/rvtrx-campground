@@ -1,4 +1,3 @@
-import { RentalUnit } from './rental-unit.model';
 /**
  * Represents the _Rental_ modei
  *
@@ -13,34 +12,12 @@ import { RentalUnit } from './rental-unit.model';
  */
 export interface Rental {
   id: string;
-  lotNumber: string;
-  /** type of site
-   *  - plotSize
-   *    - an interface that is used to find out the size of a plot
-   *      ```yaml
-   *      width:number
-   *      height:number
-   *      ```
-   *  - amenities
-   *    - an interface that talks about what the campsite offers the camper
-   *      ```yaml
-   *      maxiumumCapacity:number
-   *      voltage:number
-   *      sewage:string
-   *      water:string
-   *      ```
-   */
-  unit: RentalUnit;
-  /** booking status, one of:
-   *  - available (neither booked nor currently in use)
-   *  - booked (booked by someone else, but not in use)
-   *  - occupied (currently in use)
-   */
-  status: string;
-  /** normal nightly cost */
-  price: number;
-  /** discounted cost, if applicable */
+  capacity: number;
   discountedPrice?: number;
-  /** to identify which lodging rentals are booked */
+  lotNumber: string;
+  price: number;
+  siteName: string;
+  size: string;
+  status: string;
   lodgingRentalId?: number;
 }

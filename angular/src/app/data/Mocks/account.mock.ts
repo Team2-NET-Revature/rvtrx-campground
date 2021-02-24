@@ -5,8 +5,7 @@ export const account: Account = {
   email: '',
   name: '',
   address: {
-    id: '',
-
+    entityId: '',
     city: '',
     country: '',
     postalCode: '',
@@ -22,7 +21,7 @@ export const accountMock: Account = {
   email: 'test',
   name: 'test',
   address: {
-    id: 'string',
+    entityId: 'string',
     city: 'string',
     country: 'string',
     postalCode: 'string',

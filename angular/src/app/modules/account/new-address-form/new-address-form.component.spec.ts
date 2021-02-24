@@ -55,7 +55,7 @@ describe('NewAddressFormComponent', () => {
     postalCode: 'this.AddressForm.value.PostalCode';
     stateProvince: 'this.AddressForm.value.stateProvince';
     street: 'this.AddressForm.value.Street';
-    id: '';
+    entityId: '';
   };
   it('It should emit a payload on submit', () => {
     const newform = new NewAddressFormComponent();

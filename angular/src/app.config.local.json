@@ -23,6 +23,12 @@
         "review": "review",
         "image": "images"
       }
+    },
+    "media": {
+      "base": "http://localhost:8003/rest/media/0/",
+      "uri": {
+        "media": "media"
+      }
     }
   },
   "navigation": {
