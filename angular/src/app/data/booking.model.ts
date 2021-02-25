@@ -11,6 +11,7 @@ import { BookingRental } from './bookingrental.model';
  * rentals: Rental[];
  * checkIn: string;
  * checkOut: string;
+ * bookingNumber: any
  * ```
  */
 export interface Booking {
@@ -30,4 +31,6 @@ export interface Booking {
   checkIn: string;
   /** check-out date and time */
   checkOut: string;
+  /** confirmation number after */
+  bookingNumber: string;
 }

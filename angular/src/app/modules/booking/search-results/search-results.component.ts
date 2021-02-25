@@ -33,7 +33,6 @@ export class SearchResultsComponent implements OnChanges {
   }
 
   setRentalsList(): void {
-    // Sets list of rentals from list of lodgings, for total rental count summary
     if (this.lodgings !== null) {
       this.lodgings.forEach((thisLodging) => {
         if (thisLodging.rentals !== null) {
@@ -101,8 +100,13 @@ export class SearchResultsComponent implements OnChanges {
           ],
           checkIn: dateRes[0],
           checkOut: dateRes[1],
+          bookingNumber: '',
         };
-        this.bookingService.post(this.reservation).subscribe();
+        this.bookingService.post(this.reservation).subscribe((r) => {
+          if (r && r.id) {
+            location.href = `/booking/reservation/${r.id}`;
+          }
+        });
       });
     }
   }
