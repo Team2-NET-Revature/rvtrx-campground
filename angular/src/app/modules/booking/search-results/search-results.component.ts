@@ -6,6 +6,7 @@ import { BookingService } from 'services/booking/booking.service';
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { AccountService } from 'services/account/account.service';
 import { BookingRental } from 'data/bookingrental.model';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'uic-search-results',
@@ -71,7 +72,8 @@ export class SearchResultsComponent implements OnChanges {
   }
 
   makeReservation(lodgingId: number, rentalId: number): void {
-    const occRes = /(?<=(Occupancy: ))[^,]+/.exec(this.query);
+    const occRes = /(?!Occupancy: )\d+(?=,)/.exec(this.query);
+    console.log('Query: ' + this.query);
     const dateReg = /\d{4}-\d{2}-\d{2}\s-\s\d{4}-\d{2}-\d{2}/.exec(this.query);
     let dateRes: string[];
     if (dateReg) {
@@ -81,30 +83,43 @@ export class SearchResultsComponent implements OnChanges {
     const guestsArr: object[] = [];
 
     if (occRes) {
-      for (let i = 0; i < +occRes[0]; i++) {
-        guestsArr.push({});
+      for (let i = 0; i < Number(occRes); i++) {
+        guestsArr.push({
+          EntityId: 0,
+          BookingModelId: 0,
+          FirstName: 'stringFirst',
+          LastName: 'stringLast',
+          IsMinor: false,
+        });
       }
     }
 
     if (this.email) {
       this.accountService.getEmail(this.email).subscribe((res) => {
         console.log(res);
+
         this.reservation = {
-          accountId: +res.id,
+          entityId: 0,
+          accountId: Number(res.entityId),
           lodgingId,
           guests: guestsArr,
           rentals: [
             {
+              entityId: 0,
+              bookingModelId: 1,
               lodgingRentalId: rentalId,
-            } as BookingRental,
+            },
           ],
           checkIn: dateRes[0],
           checkOut: dateRes[1],
-          bookingNumber: '',
+          bookingNumber: '3fa85f64-5717-4562-b3fc-2c963f66afa6', // this is a placeholder
         };
+
+        console.log(this.reservation);
         this.bookingService.post(this.reservation).subscribe((r) => {
-          if (r && r.id) {
-            location.href = `/booking/reservation/${r.id}`;
+          console.log(r.id);
+          if (r && r.entityId) {
+            location.href = `/booking/reservation/${r.entityId}`;
           }
         });
       });
