@@ -12,6 +12,7 @@ import {
   ValidatorFn,
   AbstractControl,
 } from '@angular/forms';
+import { formatCurrency } from '@angular/common';
 
 @Component({
   selector: 'uic-search-bar',
@@ -87,12 +88,16 @@ export class SearchBarComponent {
     const adults = form.value.adults ? parseInt(form.value.adults, 10) : 0;
     const children = form.value.children ? parseInt(form.value.children, 10) : 0;
     const occupancy = `${adults + children}`;
-    const city: string = form.value.location;
-
+    const splitLocation = form.value.location.split(', ', 2);
+    const searchCity = splitLocation[0];
+    const searchState = splitLocation[1];
+    const city: string = searchCity;
+    const stateProvince: string = searchState;
+    const country = 'USA';
     const checkIn: string = form.value.staydates.checkin;
     const checkOut: string = form.value.staydates.checkout;
 
-    const filter: Filter = { city, occupancy };
+    const filter: Filter = { city, stateProvince, country, occupancy };
 
     const lodgings$ = this.lodgingService.get(filter);
     const bookings$ = this.bookingService.getByDateRange(checkIn, checkOut);
@@ -125,6 +130,9 @@ export class SearchBarComponent {
       } else {
         searchResultString += 'City: ' + city;
       }
+      searchResultString += 'State: ' + stateProvince;
+      searchResultString += 'Country: ' + country;
+
       if (occupancy === undefined || occupancy === '' || occupancy === '0') {
         searchResultString += ', Occupancy: (Any)';
       } else {

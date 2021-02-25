@@ -69,7 +69,12 @@ describe('LodgingService', () => {
 
   it('should make httpGet request for available', fakeAsync(() => {
     let req: TestRequest;
-    const filter: Filter = { city: 'string', occupancy: 'string' };
+    const filter: Filter = {
+      city: 'string',
+      stateProvince: 'string',
+      country: 'string',
+      occupancy: 'string',
+    };
 
     service.get(filter).subscribe((res) => {
       const lodgings: Lodging[] = JSON.parse(res.toString());
@@ -78,7 +83,9 @@ describe('LodgingService', () => {
 
     tick();
 
-    req = httpTestingController.expectOne('test/available?city=string&occupancy=string');
+    req = httpTestingController.expectOne(
+      'test/available?city=string&stateProvince=string&country=string&occupancy=string'
+    );
     req.flush(JSON.stringify(lodgingMock));
   }));
 
@@ -96,7 +103,12 @@ describe('LodgingService', () => {
   it('should make httpGet request with get', fakeAsync(() => {
     let req: TestRequest;
     let reqOne: TestRequest;
-    const filter: Filter = { city: 'string', occupancy: 'string' };
+    const filter: Filter = {
+      city: 'string',
+      stateProvince: 'string',
+      country: 'string',
+      occupancy: 'string',
+    };
 
     service.get().subscribe((res) => {
       expect(res.length).toEqual(lodgingMock.length);
@@ -109,7 +121,9 @@ describe('LodgingService', () => {
     tick();
 
     req = httpTestingController.expectOne('test');
-    reqOne = httpTestingController.expectOne('test/available?city=string&occupancy=string');
+    reqOne = httpTestingController.expectOne(
+      'test/available?city=string&stateProvince=string&country=string&occupancy=string'
+    );
 
     req.flush(lodgingMock);
     reqOne.flush(lodgingMock);
