@@ -1,11 +1,10 @@
 <div class="container">
-    <h1>Thank you for Booking {{id}}</h1>
+  <h1>Thank you for Booking</h1>
+    <br>
+      <h2>Your confirmation is:</h2>
       <br>
-        <h2>Your confirmation is:</h2>
-        <br>
-          <h3>{{ confirmationNumb }}</h3>
-        <br>
+        <h3>{{(booking$ | async)?.entityId}} / {{(booking$ | async)?.bookingNumber}}</h3>
       <br>
-      <p>Have fun in the wild be wild! </p>
-      <!-- <a href="">Back to Account</a> -->
-  </div>
+    <br>
+    <p>Have fun in the wild be wild! </p>
+</div>

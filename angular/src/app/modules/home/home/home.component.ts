@@ -24,5 +24,6 @@ export class HomeComponent implements OnInit {
 
   signOut(): void {
     this.identity.logout();
+    location.href = '';
   }
 }
