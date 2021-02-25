@@ -2,6 +2,7 @@ import { Lodging } from '../lodging.model';
 
 export const testLodgings: Lodging[] = [
   {
+    id: '1',
     entityId: 1,
     address: {
       entityId: '',
@@ -16,6 +17,7 @@ export const testLodgings: Lodging[] = [
     rentals: [
       {
         id: '1',
+        entityId: 1,
         lotNumber: '1',
         size: '5x5',
         capacity: 2,
@@ -28,6 +30,7 @@ export const testLodgings: Lodging[] = [
     images: [],
   },
   {
+    id: '1',
     entityId: 1,
     address: {
       entityId: '',
@@ -46,6 +49,7 @@ export const testLodgings: Lodging[] = [
 ];
 
 export const lodging: Lodging = {
+  id: '1',
   entityId: 1,
   address: {
     entityId: '1',
@@ -64,6 +68,7 @@ export const lodging: Lodging = {
 
 export const lodgings: Lodging[] = [
   {
+    id: '1',
     entityId: 1,
     address: {
       entityId: '',
@@ -77,6 +82,7 @@ export const lodgings: Lodging[] = [
     rentals: [
       {
         id: '1',
+        entityId: 1,
         lotNumber: '1',
         size: '5x5',
         capacity: 2,
@@ -101,6 +107,7 @@ export const lodgings: Lodging[] = [
 
 export const lodgingMock: Lodging[] = [
   {
+    id: '1',
     entityId: 1,
     address: {
       entityId: 'string',

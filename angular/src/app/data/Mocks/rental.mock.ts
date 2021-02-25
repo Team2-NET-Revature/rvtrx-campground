@@ -4,6 +4,7 @@ import { Rental } from '../rental.model';
 export const rentals: Rental[] = [
   {
     id: '1',
+    entityId: 1,
     lotNumber: '1',
     size: '5x5',
     capacity: 2,
@@ -13,6 +14,7 @@ export const rentals: Rental[] = [
   },
   {
     id: '2',
+    entityId: 1,
     lotNumber: '2',
     size: '5x5',
     capacity: 5,

@@ -17,6 +17,7 @@ describe('BookingComponent', () => {
     get(): Observable<Lodging[]> {
       return of([
         {
+          id: '1',
           entityId: 1,
           address: {
             entityId: '',
@@ -30,6 +31,7 @@ describe('BookingComponent', () => {
           rentals: [
             {
               id: '1',
+              entityId: 1,
               lotNumber: '1',
               size: '5x5',
               capacity: 2,

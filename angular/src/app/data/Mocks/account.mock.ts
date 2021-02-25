@@ -2,6 +2,7 @@ import { Account } from '../account.model';
 
 export const account: Account = {
   id: '',
+  entityId: '',
   email: '',
   name: '',
   address: {
@@ -18,6 +19,7 @@ export const account: Account = {
 
 export const accountMock: Account = {
   id: '0',
+  entityId: '0',
   email: 'test',
   name: 'test',
   address: {

@@ -39,6 +39,7 @@ describe('RentalComponent', () => {
   it('should add and remove rental', () => {
     const rental: Rental = {
       id: '3',
+      entityId: 3,
       lotNumber: '3',
       size: '5x5',
       capacity: 2,
