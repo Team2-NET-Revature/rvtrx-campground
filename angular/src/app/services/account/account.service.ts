@@ -40,11 +40,11 @@ export class AccountService {
   }
 
   /**
-   * Represents the _Account Service_ `delete` method
+   * Represents the _Account Service_ `deleteAccount` method
    *
    * @param id string
    */
-  delete(id: string): Observable<void> {
+  deleteAccount(id: string): Observable<void> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/${id}`)),
       concatMap((url1) => this.http.delete<void>(url1))
@@ -52,13 +52,12 @@ export class AccountService {
   }
 
   /**
-   * Represents the _Account Service_ `getEmail` method
    * Represents the _Account Service_ `getAccountByEmail` method
    *
    * @param email string
    */
 
-  getEmail(email: string): Observable<Account> {
+  getAccountEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/${email}`)),
       concatMap((url1) => this.http.get<Account>(url1))
