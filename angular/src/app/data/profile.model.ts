@@ -7,6 +7,7 @@
  * givenName: string;
  * familyName: string;
  * phone: string;
+ * active: boolean
  * ```
  */
 export interface Profile {
@@ -23,4 +24,6 @@ export interface Profile {
   phone: string;
   /** profile image uri/url */
   imageUri: string;
+  /** profile active or not */
+  active: boolean;
 }

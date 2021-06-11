@@ -6,6 +6,7 @@ import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { PostPayment } from '../../data/payment.model';
 import { Profile } from 'data/profile.model';
+import { profile } from 'console';
 
 @Injectable({
   providedIn: 'root',
@@ -52,6 +53,7 @@ export class AccountService {
 
   /**
    * Represents the _Account Service_ `getEmail` method
+   * Represents the _Account Service_ `getAccountByEmail` method
    *
    * @param email string
    */
@@ -104,6 +106,30 @@ export class AccountService {
     );
   }
 
+  /**
+   * Represents the _Account Service_ `AddProfile` method
+   *
+   * @param email string
+   */
+
+  addProfile(email: string): Observable<Profile> {
+    return this.profilesUrl$.pipe(
+      map((url1) => url1.concat(`/${email}`)),
+      concatMap((url1) => this.http.get<Profile>(url1))
+    );
+  }
+
+  /**
+  * Represents the _Account Service_ `DeactivateProfile` method
+  *
+  * @param id string
+  */
+  deactivateProfile(id: string): Observable<Profile> {
+    return this.profilesUrl$.pipe(
+      map((url1) => url1.concat(`/${id}`)),
+      concatMap((url1) => this.http.delete<Profile>(url1))
+    );
+  }
 
 
 }
