@@ -5,6 +5,7 @@ import { concatMap, map } from 'rxjs/operators';
 import { ConfigService } from '../config/config.service';
 import { Account } from '../../data/account.model';
 import { PostPayment } from '../../data/payment.model';
+import { Profile } from 'data/profile.model';
 
 @Injectable({
   providedIn: 'root',
@@ -88,4 +89,21 @@ export class AccountService {
   postPayment(payment: PostPayment): Observable<PostPayment> {
     return this.paymentsUrl$.pipe(concatMap((url1) => this.http.post<PostPayment>(url1, payment)));
   }
+
+  // Account-Profile
+  /**
+   * Represents the _Account Service_ `getProfileByEmail` method
+   *
+   * @param email string
+   */
+
+  getProfileByEmail(email: string): Observable<Profile> {
+    return this.profilesUrl$.pipe(
+      map((url1) => url1.concat(`/${email}`)),
+      concatMap((url1) => this.http.get<Profile>(url1))
+    );
+  }
+
+
+
 }
