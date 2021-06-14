@@ -42,11 +42,11 @@ export class AccountService {
   /**
    * Represents the _Account Service_ `delete` method
    *
-   * @param id string
+   * @param email string
    */
-  delete(id: string): Observable<void> {
+  delete(email: string): Observable<void> {
     return this.accountsUrl$.pipe(
-      map((url1) => url1.concat(`/${id}`)),
+      map((url1) => url1.concat(`/DeleteAccount/${email}`)),
       concatMap((url1) => this.http.delete<void>(url1))
     );
   }

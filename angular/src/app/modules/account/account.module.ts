@@ -9,10 +9,11 @@ import { ProfileComponent } from './profile/profile.component';
 import { AccountReviewComponent } from './account-review/account-review.component';
 import { NewAddressFormComponent } from './new-address-form/new-address-form.component';
 import { NewPaymentFormComponent } from './new-payment-form/new-payment-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ACCOUNT_EDITING_SERVICE } from './account-editing.token';
 import { GenericEditingService } from 'src/app/services/editable/generic-editing.service';
 import { EditableComponent } from './editable/editable.component';
+import { AccountRegisterComponent } from './account-register/account-register.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EditableComponent } from './editable/editable.component';
     NewAddressFormComponent,
     NewPaymentFormComponent,
     EditableComponent,
+    AccountRegisterComponent
   ],
   providers: [
     {
@@ -34,4 +36,4 @@ import { EditableComponent } from './editable/editable.component';
   ],
   imports: [CommonModule, AccountRoutingModule, ReactiveFormsModule],
 })
-export class AccountModule {}
+export class AccountModule { }
