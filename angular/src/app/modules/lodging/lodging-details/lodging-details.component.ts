@@ -49,6 +49,7 @@ export class LodgingDetailsComponent implements OnInit {
       familyName: 'Ferri',
       phone: '111-111-1111',
       imageUri: 'https://bulma.io/images/placeholders/256x256.png',
+      active: true,
     };
   }
 
