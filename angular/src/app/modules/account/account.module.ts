@@ -34,6 +34,6 @@ import { AccountRegisterComponent } from './account-register/account-register.co
       useFactory: () => new GenericEditingService<Partial<Account>>(),
     },
   ],
-  imports: [CommonModule, AccountRoutingModule, ReactiveFormsModule],
+  imports: [CommonModule, AccountRoutingModule, ReactiveFormsModule, FormsModule],
 })
 export class AccountModule { }

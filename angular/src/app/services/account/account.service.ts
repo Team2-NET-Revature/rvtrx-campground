@@ -60,7 +60,7 @@ export class AccountService {
 
   getEmail(email: string): Observable<Account> {
     return this.accountsUrl$.pipe(
-      map((url1) => url1.concat(`/${email}`)),
+      map((url1) => url1.concat(`/GetAccountByEmail/${email}`)),
       concatMap((url1) => this.http.get<Account>(url1))
     );
   }
