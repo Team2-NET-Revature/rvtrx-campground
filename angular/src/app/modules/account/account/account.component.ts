@@ -46,9 +46,10 @@ export class AccountComponent {
   async init(): Promise<void> {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email as string;
-    console.log(this.email);
+    console.log(userClaims);
     this.account$ = this.accountService.getEmail(this.email);
     // gets only the bookings of this account
+    console.log(this.account$);
     this.accountService.getEmail(this.email).subscribe((account) => {
       this.bookings$ = this.bookingService.get(account.entityId);
     });
