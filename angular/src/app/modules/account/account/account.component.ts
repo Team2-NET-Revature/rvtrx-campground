@@ -47,7 +47,7 @@ export class AccountComponent {
     const userClaims = await this.oktaAuth.getUser();
     this.email = userClaims.email as string;
     console.log(userClaims);
-    this.account$ = this.accountService.getEmail(this.email);
+    this.account$ = this.accountService.getEmail('jsmith@gmail.com');
     // gets only the bookings of this account
     console.log(this.account$);
     this.accountService.getEmail(this.email).subscribe((account) => {

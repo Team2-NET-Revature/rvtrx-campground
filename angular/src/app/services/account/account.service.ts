@@ -71,7 +71,9 @@ export class AccountService {
    * @param account Account
    */
   post(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url1) => this.http.post<Account>(url1, account)));
+    return this.accountsUrl$.pipe(
+      map((url1) => url1.concat(`/AddAccount`)),
+      concatMap((url1) => this.http.post<Account>(url1, account)));
   }
 
   /**
@@ -80,7 +82,9 @@ export class AccountService {
    * @param account Account
    */
   put(account: Account): Observable<Account> {
-    return this.accountsUrl$.pipe(concatMap((url1) => this.http.put<Account>(url1, account)));
+    return this.accountsUrl$.pipe(
+      map((url1) => url1.concat(`/UpdateAccount`)),
+      concatMap((url1) => this.http.post<Account>(url1, account)));
   }
 
   /**
@@ -101,7 +105,7 @@ export class AccountService {
 
   getProfileByEmail(email: string): Observable<Profile> {
     return this.profilesUrl$.pipe(
-      map((url1) => url1.concat(`/${email}`)),
+      map((url1) => url1.concat(`/GetProfileByEmail/${email}`)),
       concatMap((url1) => this.http.get<Profile>(url1))
     );
   }
@@ -114,7 +118,7 @@ export class AccountService {
 
   addProfile(email: string): Observable<Profile> {
     return this.profilesUrl$.pipe(
-      map((url1) => url1.concat(`/${email}`)),
+      map((url1) => url1.concat(`/AddProfile/${email}`)),
       concatMap((url1) => this.http.get<Profile>(url1))
     );
   }
@@ -126,10 +130,14 @@ export class AccountService {
   */
   deactivateProfile(id: string): Observable<Profile> {
     return this.profilesUrl$.pipe(
-      map((url1) => url1.concat(`/${id}`)),
+      map((url1) => url1.concat(`/Deactivate/${id}`)),
       concatMap((url1) => this.http.delete<Profile>(url1))
     );
   }
-
+  UpdateProfile(profile: Profile): Observable<Account> {
+    return this.accountsUrl$.pipe(
+      map((url1) => url1.concat(`/UpdateProfile`)),
+      concatMap((url1) => this.http.post<Account>(url1, profile)));
+  }
 
 }
