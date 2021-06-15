@@ -113,27 +113,33 @@ export class AccountService {
   /**
    * Represents the _Account Service_ `AddProfile` method
    *
-   * @param email string
+   * @param profile Profile Model
    */
 
-  addProfile(email: string): Observable<Profile> {
+  addProfile(profile: Profile): Observable<Profile> {
     return this.profilesUrl$.pipe(
-      map((url1) => url1.concat(`/AddProfile/${email}`)),
-      concatMap((url1) => this.http.get<Profile>(url1))
+      map((url1) => url1.concat(`/AddProfile/`)),
+      concatMap((url1) => this.http.post<Profile>(url1, profile))
     );
   }
 
   /**
   * Represents the _Account Service_ `DeactivateProfile` method
   *
-  * @param id string
+  * @param email string
   */
-  deactivateProfile(id: string): Observable<Profile> {
+  deactivateProfile(email: string): Observable<Profile> {
     return this.profilesUrl$.pipe(
-      map((url1) => url1.concat(`/Deactivate/${id}`)),
+      map((url1) => url1.concat(`/Deactivate/${email}`)),
       concatMap((url1) => this.http.delete<Profile>(url1))
     );
   }
+
+  /**
+* Represents the _Account Service_ `UpdateProfile` method
+*
+* @param profile Profile Model
+*/
   UpdateProfile(profile: Profile): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/UpdateProfile`)),
