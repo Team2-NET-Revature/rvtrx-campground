@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
-import { Account } from 'data/account.model';
+import { Account, createEmptyAccount } from 'data/account.model';
 import { Address } from 'data/address.model';
 import { Booking } from 'data/booking.model';
 import { Payment } from 'data/payment.model';
@@ -24,33 +24,21 @@ import { NgIf } from '@angular/common';
   styleUrls: []
 })
 export class AccountRegisterComponent implements OnInit {
-  email : string ='';
-  name : string = '';
-  DateofBirth ?: string;
-  newaccount ?: Account;
-  
-  
+  email : string ='team2';
+  name : string = 'testuser';
+  DateofBirth : string = '200000';
+  newaccount : Account = createEmptyAccount();
   async init(): Promise<void> {
-
-    
-
     };
 
-     create(): Account | undefined
+    create(): Account 
     {
-      
-      if(this.newaccount != undefined)
-      { 
-        
         this.newaccount.name = this.name;
-      }
-      return this.newaccount;
+        this.newaccount.email = this.email;
+        this.newaccount.birthDate = this.DateofBirth;
+        return this.newaccount;
     }
-  
   constructor() { }
-
   ngOnInit(): void {
   }
-
-
 }

@@ -1,8 +1,9 @@
 <body>
-  <label>Email</label> <input type="text" [(ngModel)]="email">
-
-  <label>Name</label> <input type="text" [(ngModel)]="name">
-
-  <label>Date of Birth</label> <input type="datetime" [(ngModel)]="DateofBirth">
-
+  <form [formGroup]="Account" (ngSubmit)="create()">
+    <label>Email</label> <input type="text" formControlName="email">
+    <label>Name</label> <input type="text" formControlName="name">
+    <label>Date of Birth</label> <input type="datetime" formControlName="dateofbirth">
+    <button type = "submit">Save</button>
+    {{newaccount.name}}
+</form>
 </body>
