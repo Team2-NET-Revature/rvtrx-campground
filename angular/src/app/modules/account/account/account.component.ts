@@ -16,6 +16,8 @@ import { GenericEditingService } from 'services/editable/generic-editing.service
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
+import { NgIf } from '@angular/common';
+import { account } from 'data/Mocks/account.mock';
 
 @Component({
   selector: 'uic-account',
@@ -30,6 +32,7 @@ export class AccountComponent {
   reviews$: Observable<Review[]> | undefined;
   toastrServiceProp = this.toastrService;
   email: string;
+   newaccount ?: Account;
 
   constructor(
     public oktaAuth: OktaAuthService,
@@ -48,6 +51,13 @@ export class AccountComponent {
     this.email = userClaims.email as string;
     console.log(userClaims);
     this.account$ = this.accountService.getEmail(this.email);
+    if(this.account$ !as Observable<Account>)
+    {  
+      //newaccount.email = this.email;
+      //newaccount.name = userclaim.name;
+      //newaccount.birthDate = 
+    }
+    
     // gets only the bookings of this account
     console.log(this.account$);
     this.accountService.getEmail(this.email).subscribe((account) => {

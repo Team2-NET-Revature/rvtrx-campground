@@ -22,4 +22,5 @@ export interface Account {
   email: string;
   payments: Payment[];
   profiles: Profile[];
+  birthDate: string;
 }

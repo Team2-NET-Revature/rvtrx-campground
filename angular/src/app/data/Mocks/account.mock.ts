@@ -13,6 +13,7 @@ export const account: Account = {
     stateProvince: '',
     street: '',
   },
+  birthDate : '',
   payments: [],
   profiles: [],
 };
@@ -30,6 +31,7 @@ export const accountMock: Account = {
     stateProvince: 'string',
     street: 'string',
   },
+  birthDate: 'string',
   payments: [
     {
       id: 'string',
@@ -47,6 +49,7 @@ export const accountMock: Account = {
       familyName: 'string',
       givenName: 'string',
       phone: 'string',
+      active: true,
       imageUri:
         'https://avataaars.io/?avatarStyle=Circle&topType=LongHairCurly&accessoriesType=Prescription01&hairColor=Black&facialHairType=BeardMedium&facialHairColor=Auburn&clotheType=CollarSweater&clotheColor=White&eyeType=Close&eyebrowType=DefaultNatural&mouthType=Twinkle&skinColor=DarkBrown',
     },
@@ -57,6 +60,7 @@ export const accountMock: Account = {
       givenName: 'string',
       familyName: 'string',
       phone: 'string',
+      active: true,
       imageUri: 'https://bulma.io/images/placeholders/256x256.png',
     },
   ],
