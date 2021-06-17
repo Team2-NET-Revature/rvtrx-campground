@@ -1,9 +1,30 @@
 <body>
-  <form [formGroup]="Account" (ngSubmit)="create()">
-    <label>Email</label> <input type="text" formControlName="email">
-    <label>Name</label> <input type="text" formControlName="name">
-    <label>Date of Birth</label> <input type="datetime" formControlName="dateofbirth">
-    <button type = "submit">Save</button>
-    {{newaccount.name}}
-</form>
+  <div class="container">
+    <form [formGroup]="AccountForm" (ngSubmit)="create()">
+
+      <label>Email <input type="text" formControlName="email"> </label>
+      <div formGroupName="address">
+        <label>Street <input type="text" formControlName="street"> </label>
+        <label>City <input type="text" formControlName="city"> </label>
+        <label>State <input type="text" formControlName="state"> </label>
+        <label>Zip code <input type="text" formControlName="zipcode"> </label>
+        <label>Country <input type="text" formControlName="country"> </label>
+      </div>
+      <div formGroupName="profile">
+        <label>Email <input type="text" formControlName="email"> </label>
+        <label>Firstname <input type="text" formControlName="firstname"> </label>
+        <label>Lastname <input type="text" formControlName="lastname"> </label>
+        <label>Phone <input type="text" formControlName="phone"> </label>
+        <label>Date of Birth <input type="text" formControlName="dateofbirth"> </label>
+        <label>ImageUrl <input type="text" formControlName="imguri"> </label>
+      </div>
+      <div formGroupName="payment">
+        <label>Card Name <input type="text" formControlName="cardname"> </label>
+        <label>Card Number <input type="text" formControlName="cardnumber"> </label>
+        <label>Exp Date <input type="text" formControlName="expdate"> </label>
+        <label>Security Code <input type="text" formControlName="securitycode"> </label>
+      </div>
+      <button type="submit">Save</button>
+    </form>
+  </div>
 </body>

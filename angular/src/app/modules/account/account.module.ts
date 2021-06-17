@@ -14,6 +14,7 @@ import { ACCOUNT_EDITING_SERVICE } from './account-editing.token';
 import { GenericEditingService } from 'src/app/services/editable/generic-editing.service';
 import { EditableComponent } from './editable/editable.component';
 import { AccountRegisterComponent } from './account-register/account-register.component';
+import { Account } from 'data/account.model';
 
 @NgModule({
   declarations: [

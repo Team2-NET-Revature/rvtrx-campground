@@ -17,6 +17,9 @@ import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { NgIf } from '@angular/common';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { address } from 'src/app/data/Mocks/address.mock';
+import { payments } from 'src/app/data/Mocks/payment.mock';
 
 @Component({
   selector: 'uic-account-register',
@@ -24,21 +27,71 @@ import { NgIf } from '@angular/common';
   styleUrls: []
 })
 export class AccountRegisterComponent implements OnInit {
-  email : string ='team2';
-  name : string = 'testuser';
-  DateofBirth : string = '200000';
-  newaccount : Account = createEmptyAccount();
+  email: string = 'team2';
+  name: string = 'testuser';
+  DateofBirth: string = '200000';
+  newaccount = createEmptyAccount();
   async init(): Promise<void> {
-    };
+  };
 
-    create(): Account 
-    {
-        this.newaccount.name = this.name;
-        this.newaccount.email = this.email;
-        this.newaccount.birthDate = this.DateofBirth;
-        return this.newaccount;
-    }
-  constructor() { }
+
+
+
+  AccountForm !: FormGroup;
+
+  constructor(private fb: FormBuilder, private accountService: AccountService) {
+
+  }
   ngOnInit(): void {
+    this.initForm();
+  }
+  initForm(): void {
+    this.AccountForm = this.fb.group({
+      email: '',
+      address: this.fb.group({
+        street: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        country: ''
+      }),
+      profile: this.fb.group({
+        email: '',
+        firstname: '',
+        lastname: '',
+        phone: '',
+        dateofbirth: '',
+        isactive: true,
+        imguri: ''
+      }),
+      payment: this.fb.group({
+        cardname: '',
+        cardnumber: '',
+        expdate: '',
+        securitycode: ''
+      })
+
+    })
+  }
+  create(): void {
+    this.newaccount.email = this.AccountForm.controls['email'].value;
+    this.newaccount.address.street = this.AccountForm.get(['address', 'street'])!.value;
+    this.newaccount.address.city = this.AccountForm.get(['address', 'city'])!.value;
+    this.newaccount.address.stateProvince = this.AccountForm.get(['address', 'state'])!.value;
+    this.newaccount.address.postalCode = this.AccountForm.get(['address', 'zipcode'])!.value;
+    this.newaccount.address.country = this.AccountForm.get(['address', 'country'])!.value;
+    this.newaccount.profiles[0].email = this.AccountForm.get(['profile', 'email'])!.value;
+    this.newaccount.profiles[0].givenName = this.AccountForm.get(['profile', 'firstname'])!.value;
+    this.newaccount.profiles[0].familyName = this.AccountForm.get(['profile', 'lastname'])!.value;
+    this.newaccount.profiles[0].phone = this.AccountForm.get(['profile', 'phone'])!.value;
+    this.newaccount.profiles[0].dateofbirth = this.AccountForm.get(['profile', 'dateofbirth'])!.value;
+    this.newaccount.profiles[0].active = this.AccountForm.get(['profile', 'isactive'])!.value;
+    this.newaccount.profiles[0].imageUri = this.AccountForm.get(['profile', 'imguri'])!.value;
+    this.newaccount.payments[0].cardName = this.AccountForm.get(['payment', 'cardname'])!.value;
+    this.newaccount.payments[0].cardNumber = this.AccountForm.get(['payment', 'cardnumber'])!.value;
+    this.newaccount.payments[0].cardExpirationDate = this.AccountForm.get(['payment', 'expdate'])!.value;
+    this.newaccount.payments[0].securityCode = this.AccountForm.get(['payment', 'securitycode'])!.value;
+
+    this.accountService.post(this.newaccount);
   }
 }

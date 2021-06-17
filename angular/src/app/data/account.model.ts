@@ -24,23 +24,43 @@ export interface Account {
   profiles: Profile[];
   birthDate: string;
 }
-export function createEmptyAccount() : Account {
+export function createEmptyAccount(): Account {
   return {
-      id: '',
-  entityId: '',
-  email: '',
-  name: '',
-  address: {
+    id: '',
     entityId: '',
-    city: '',
-    country: '',
-    postalCode: '',
-    stateProvince: '',
-    street: '',
-  },
-  birthDate : '',
-  payments: [],
-  profiles: [],
-};
+    email: '',
+    name: '',
+    address: {
+      entityId: '',
+      city: '',
+      country: '',
+      postalCode: '',
+      stateProvince: '',
+      street: '',
+    },
+    birthDate: '',
+    payments: [
+      {
+        id: '',
+        cardExpirationDate: '',
+        cardName: '',
+        cardNumber: '',
+        securityCode: '',
+      },
+    ],
+    profiles: [
+      {
+        type: '',
+        id: '',
+        email: '',
+        familyName: '',
+        givenName: '',
+        phone: '',
+        active: true,
+        imageUri: '',
+        dateofbirth: ''
+      },
+    ],
+  };
 }
 

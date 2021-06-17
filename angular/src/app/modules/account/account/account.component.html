@@ -1,5 +1,6 @@
 <section class="hero is-fullheight-with-navbar">
-  <div *ngIf="account$ | async as account" class="hero-head">
+
+  <div *ngIf="account$ | async as address" class="hero-head">
     <div class="container">
       <br />
       <h1 class="title is-2">account</h1>
@@ -51,6 +52,8 @@
     </div>
   </div>
 
-  <uic-account-register>
-  </uic-account-register>
+  <div *ngIf="!(account$ | async)">
+    <uic-account-register>
+    </uic-account-register>
+  </div>
 </section>

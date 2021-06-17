@@ -100,10 +100,11 @@ export class AccountService {
    */
 
   getProfileByEmail(email: string): Observable<Profile> {
-    return this.profilesUrl$.pipe(
+    var profile = this.profilesUrl$.pipe(
       map((url1) => url1.concat(`/${email}`)),
       concatMap((url1) => this.http.get<Profile>(url1))
     );
+    return profile;
   }
 
   /**
