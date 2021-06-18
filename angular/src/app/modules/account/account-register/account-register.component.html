@@ -1,33 +1,38 @@
   <div class="container is-max-desktop">
     <form [formGroup]="AccountForm" (ngSubmit)="create()">
-      
-      <label class="label is-size-3">Account</label>
-      <label class="label">Account Email <input type="text" formControlName="email" class="input"> </label>
-      <div formGroupName="address" class="field">
-        <label class="label is-size-3">Address</label>
-        <label class="label">Street <input type="text" formControlName="street" class="input"> </label>
-        <label class="label">City <input type="text" formControlName="city" class="input"> </label>
-        <label class="label">State <input type="text" formControlName="state" class="input"> </label>
-        <label class="label">Zip code <input type="text" formControlName="zipcode" class="input"> </label>
-        <label class="label">Country <input type="text" formControlName="country" class="input"> </label>
-      </div>
-      <div formGroupName="profile">
-        <label class="label is-size-3">Profile</label>
-        <label class="label">Email <input type="text" formControlName="email" class="input"> </label>
-        <label class="label">Firstname <input type="text" formControlName="firstname" class="input"> </label>
-        <label class="label">Lastname <input type="text" formControlName="lastname" class="input"> </label>
-        <label class="label">Phone <input type="text" formControlName="phone" class="input"> </label>
-        <label class="label">Date of Birth <input type="text" formControlName="dateofbirth" class="input"> </label>
-        <label class="label">ImageUrl <input type="text" formControlName="imguri" class="input"> </label>
-      </div>
-      <div formGroupName="payment">
-        <label class="label is-size-3">Payment</label>
-        <label class="label">Card Name <input type="text" formControlName="cardname" class="input"> </label>
-        <label class="label">Card Number <input type="text" formControlName="cardnumber" class="input"> </label>
-        <label class="label">Exp Date <input type="text" formControlName="expdate" class="input"> </label>
-        <label class="label">Security Code <input type="text" formControlName="securitycode" class="input"> </label>
+      <div class="columns">
+        <div class="column">
+        <label class="label is-size-3">Account</label>
+        <label class="label">Account Email <input type="text" formControlName="email" class="input"> </label>
+        </div>
+        <div formGroupName="address" class="column">
+          <label class="label is-size-3">Address</label>
+          <label class="label">Street <input type="text" formControlName="street" class="input"> </label>
+          <label class="label">City <input type="text" formControlName="city" class="input"> </label>
+          <label class="label">State <input type="text" formControlName="state" class="input"> </label>
+          <label class="label">Zip code <input type="text" formControlName="zipcode" class="input"> </label>
+          <label class="label">Country <input type="text" formControlName="country" class="input"> </label>
+        </div>
+        <div formGroupName="profile" class="column">
+          <label class="label is-size-3">Profile</label>
+          <label class="label">Email <input type="text" formControlName="email" class="input"> </label>
+          <label class="label">Firstname <input type="text" formControlName="firstname" class="input"> </label>
+          <label class="label">Lastname <input type="text" formControlName="lastname" class="input"> </label>
+          <label class="label">Phone <input type="text" formControlName="phone" class="input"> </label>
+          <label class="label">Date of Birth <input type="text" formControlName="dateofbirth" class="input"> </label>
+          <label class="label">ImageUrl <input type="text" formControlName="imguri" class="input"> </label>
+        </div>
+        <div formGroupName="payment" class="column">
+          <label class="label is-size-3">Payment</label>
+          <label class="label">Card Name <input type="text" formControlName="cardname" class="input"> </label>
+          <label class="label">Card Number <input type="text" formControlName="cardnumber" class="input"> </label>
+          <label class="label">Exp Date <input type="text" formControlName="expdate" class="input"> </label>
+          <label class="label">Security Code <input type="text" formControlName="securitycode" class="input"> </label>
+        </div>
       </div>
       <br>
-      <button class="button" type="submit">Save</button>
+      <button class="button is-primary" type="submit">Save</button>
+
     </form>
+    
   </div>
