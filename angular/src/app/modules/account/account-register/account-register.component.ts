@@ -17,7 +17,7 @@ import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
 import { OktaAuthService, UserClaims } from '@okta/okta-angular';
 import { NgIf } from '@angular/common';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { address } from 'src/app/data/Mocks/address.mock';
 import { payments } from 'src/app/data/Mocks/payment.mock';
 import { account } from 'src/app/data/Mocks/account.mock';
@@ -28,21 +28,20 @@ import { account } from 'src/app/data/Mocks/account.mock';
   styleUrls: []
 })
 export class AccountRegisterComponent implements OnInit {
-  email: string = 'team2';
-  name: string = 'testuser';
-  DateofBirth: string = '200000';
+  
+  listofstate : string[] = ["AK", "AL", "AR",  "AS",  "AZ",  "CA",  "CO",  "CT",  "DC",  "DE",  "FL",  "GA",  "GU",  "HI",  "IA",  "ID",  "IL",  "IN",  "KS",  "KY",  "LA",  "MA",  "MD",  "ME",  "MI",  "MN",  "MO",  "MS",  "MT",  "NC",  "ND",  "NE",  "NH",  "NJ",  "NM",  "NV",  "NY",  "OH",  "OK",  "OR",  "PA",  "PR",  "RI",  "SC",  "SD",  "TN",  "TX",  "UT",  "VA",  "VI",  "VT",  "WA",  "WI",  "WV", "WY"];
+
   newaccount = createEmptyAccount();
 
   async init(): Promise<void> {
   };
 
 
-
-
   AccountForm !: FormGroup;
 
   constructor(
     private fb: FormBuilder,
+    public oktaService: OktaAuthService,
     private accountService: AccountService,
     @Inject(ACCOUNT_EDITING_SERVICE)
     public editingService: GenericEditingService<Partial<Account>>,
@@ -52,50 +51,48 @@ export class AccountRegisterComponent implements OnInit {
 
   }
   ngOnInit(): void {
+    
     this.initForm();
   }
   initForm(): void {
     this.AccountForm = this.fb.group({
-      email: '',
       address: this.fb.group({
-        street: '',
-        city: '',
-        state: '',
-        zipcode: '',
-        country: ''
+        street: new FormControl ('',Validators.required),
+        city: new FormControl ('',Validators.required),
+        state: new FormControl ('',Validators.required),
+        zipcode: new FormControl ('',Validators.required),
       }),
       profile: this.fb.group({
-        email: '',
-        firstname: '',
-        lastname: '',
-        phone: '',
-        dateofbirth: '',
+        firstname: ['',Validators.required],
+        lastname: ['',Validators.required],
+        phone: ['',Validators.required],
+        dateofbirth: ['',Validators.required],
         isactive: true,
-        imguri: ''
+        imguri: 'https://i.imgur.com/NKuYqM6.png'
       }),
       payment: this.fb.group({
-        cardname: '',
-        cardnumber: '',
-        expdate: '',
-        securitycode: ''
+        cardname: ['',Validators.required],
+        cardnumber: ['',Validators.required],
+        expdate: ['',Validators.required],
+        securitycode: ['',Validators.required]
       })
 
     })
   }
-  create(): void {
-    this.newaccount.email = this.AccountForm.controls['email'].value;
+ async create(): Promise<void> {
+    const user = await this.oktaService.getUser();  
+    this.newaccount.email = user.email!;
     this.newaccount.address.street = this.AccountForm.get(['address', 'street'])!.value;
     this.newaccount.address.city = this.AccountForm.get(['address', 'city'])!.value;
     this.newaccount.address.stateProvince = this.AccountForm.get(['address', 'state'])!.value;
     this.newaccount.address.postalCode = this.AccountForm.get(['address', 'zipcode'])!.value;
-    this.newaccount.address.country = this.AccountForm.get(['address', 'country'])!.value;
-    this.newaccount.profiles[0].email = this.AccountForm.get(['profile', 'email'])!.value;
+    this.newaccount.address.country = 'US';
+    this.newaccount.profiles[0].email = user.email!;
     this.newaccount.profiles[0].givenName = this.AccountForm.get(['profile', 'firstname'])!.value;
     this.newaccount.profiles[0].familyName = this.AccountForm.get(['profile', 'lastname'])!.value;
     this.newaccount.profiles[0].phone = this.AccountForm.get(['profile', 'phone'])!.value;
     this.newaccount.profiles[0].dateofbirth = this.AccountForm.get(['profile', 'dateofbirth'])!.value;
     this.newaccount.profiles[0].active = this.AccountForm.get(['profile', 'isactive'])!.value;
-    this.newaccount.profiles[0].imageUri = this.AccountForm.get(['profile', 'imguri'])!.value;
     this.newaccount.payments[0].cardName = this.AccountForm.get(['payment', 'cardname'])!.value;
     this.newaccount.payments[0].cardNumber = this.AccountForm.get(['payment', 'cardnumber'])!.value;
     this.newaccount.payments[0].cardExpirationDate = this.AccountForm.get(['payment', 'expdate'])!.value;
