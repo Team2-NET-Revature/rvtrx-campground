@@ -84,10 +84,8 @@ export class AccountRegisterComponent implements OnInit {
     this.newaccount.payments[0].securityCode = this.AccountForm.get(['payment', 'securitycode'])!.value;
 
     await this.accountService.post(this.newaccount).toPromise();
+    location.reload();
 
-
-
-  location.reload();
 
   }
 }

@@ -57,7 +57,7 @@
     "format": "prettier --config ../.prettierrc.yaml --ignore-path ../.prettierignore --write ./",
     "lint": "ng lint",
     "scan": "sonar-scanner",
-    "start": "ng serve --poll=2000",
+    "start": "ng serve",
     "test": "ng test --code-coverage"
   }
 }
