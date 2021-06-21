@@ -85,6 +85,8 @@ export class AccountRegisterComponent implements OnInit {
 
     await this.accountService.post(this.newaccount).toPromise();
 
+
+
   location.reload();
 
   }
