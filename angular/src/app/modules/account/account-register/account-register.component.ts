@@ -1,26 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
-import { nullSafeIsEquivalent } from '@angular/compiler/src/output/output_ast';
 import { Account, createEmptyAccount } from 'data/account.model';
-import { Address } from 'data/address.model';
-import { Booking } from 'data/booking.model';
-import { Payment } from 'data/payment.model';
-import { Profile } from 'data/profile.model';
-import { Review } from 'data/review.model';
-import { stringify } from 'querystring';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { AccountService } from 'services/account/account.service';
-import { BookingService } from 'services/booking/booking.service';
 import { GenericEditingService } from 'services/editable/generic-editing.service';
 import { ACCOUNT_EDITING_SERVICE } from '../account-editing.token';
 import { ToastrService } from 'ngx-toastr'; // adding ngx-toastr for api service error notifications
-import { OktaAuthService, UserClaims } from '@okta/okta-angular';
-import { NgIf } from '@angular/common';
+import { OktaAuthService } from '@okta/okta-angular';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { address } from 'src/app/data/Mocks/address.mock';
-import { payments } from 'src/app/data/Mocks/payment.mock';
-import { account } from 'src/app/data/Mocks/account.mock';
+
 
 @Component({
   selector: 'uic-account-register',
@@ -60,21 +46,19 @@ export class AccountRegisterComponent implements OnInit {
         street: new FormControl ('',Validators.required),
         city: new FormControl ('',Validators.required),
         state: new FormControl ('',Validators.required),
-        zipcode: new FormControl ('',Validators.required),
+        zipcode: new FormControl ('',[Validators.required,Validators.pattern(/^[0-9]{5}(-[0-9]{4})?$/)]),
       }),
       profile: this.fb.group({
-        firstname: ['',Validators.required],
-        lastname: ['',Validators.required],
-        phone: ['',Validators.required],
-        dateofbirth: ['',Validators.required],
-        isactive: true,
-        imguri: 'https://i.imgur.com/NKuYqM6.png'
+        firstname:new FormControl ('',Validators.required),
+        lastname:new FormControl ('',Validators.required),
+        phone: new FormControl ('',[Validators.required, Validators.pattern(/^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/)]),
+        dateofbirth: new FormControl ('',[Validators.required])
       }),
       payment: this.fb.group({
-        cardname: ['',Validators.required],
-        cardnumber: ['',Validators.required],
-        expdate: ['',Validators.required],
-        securitycode: ['',Validators.required]
+        cardname: new FormControl ('',Validators.required),
+        cardnumber: new FormControl ('',[Validators.required,Validators.pattern(/\d{4}-?\d{4}-?\d{4}-?\d{4}$/)]),
+        expdate: new FormControl ('',[Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/?(2[0-9])$/)]),
+        securitycode: new FormControl ('',[Validators.required, Validators.pattern(/^([0-9]{3})$/)])
       })
 
     })
@@ -92,23 +76,16 @@ export class AccountRegisterComponent implements OnInit {
     this.newaccount.profiles[0].familyName = this.AccountForm.get(['profile', 'lastname'])!.value;
     this.newaccount.profiles[0].phone = this.AccountForm.get(['profile', 'phone'])!.value;
     this.newaccount.profiles[0].dateofbirth = this.AccountForm.get(['profile', 'dateofbirth'])!.value;
-    this.newaccount.profiles[0].active = this.AccountForm.get(['profile', 'isactive'])!.value;
+    this.newaccount.profiles[0].imageUri = 'https://i.imgur.com/NKuYqM6.png';
+    this.newaccount.profiles[0].active = true;
     this.newaccount.payments[0].cardName = this.AccountForm.get(['payment', 'cardname'])!.value;
     this.newaccount.payments[0].cardNumber = this.AccountForm.get(['payment', 'cardnumber'])!.value;
     this.newaccount.payments[0].cardExpirationDate = this.AccountForm.get(['payment', 'expdate'])!.value;
     this.newaccount.payments[0].securityCode = this.AccountForm.get(['payment', 'securitycode'])!.value;
 
-    var response = this.accountService.post(this.newaccount);
-    response.subscribe(
-      (e) => this.editingService.update(e),
-      (err) => {
-        console.log(err);
-        this.toastrService.error(`${err.message}`, 'Service Error', {
-          disableTimeOut: true,
-          positionClass: 'toast-top-center',
-        });
-      }
-    );
-    console.log(this.newaccount);
+    await this.accountService.post(this.newaccount).toPromise();
+
+  location.reload();
+
   }
 }
