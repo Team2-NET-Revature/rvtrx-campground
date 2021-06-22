@@ -20,7 +20,7 @@ export class AccountRegisterComponent implements OnInit {
     @Inject(ACCOUNT_EDITING_SERVICE)
     public editingService: GenericEditingService<Partial<Account>>,
     private readonly toastrService: ToastrService
-  ) { }
+  ) {}
   listofstate: string[] = [
     'AK',
     'AL',
@@ -83,7 +83,7 @@ export class AccountRegisterComponent implements OnInit {
 
   AccountForm!: FormGroup;
 
-  async init(): Promise<void> { }
+  async init(): Promise<void> {}
   ngOnInit(): void {
     this.initForm();
   }
@@ -131,26 +131,29 @@ export class AccountRegisterComponent implements OnInit {
     this.newaccount.email = String(user.email);
     this.newaccount.address.street = this.AccountForm.get(['address', 'street'])?.value as string;
     this.newaccount.address.city = this.AccountForm.get(['address', 'city'])?.value as string;
-    this.newaccount.address.stateProvince = this.AccountForm.get(['address', 'state'])?.value as string;
-    this.newaccount.address.postalCode = this.AccountForm.get(['address', 'zipcode'])?.value as string;
+    this.newaccount.address.stateProvince = this.AccountForm.get(['address', 'state'])
+      ?.value as string;
+    this.newaccount.address.postalCode = this.AccountForm.get(['address', 'zipcode'])
+      ?.value as string;
     this.newaccount.address.country = 'US';
     this.newaccount.profiles[0].email = user.email as string;
-    this.newaccount.profiles[0].givenName = this.AccountForm.get(['profile', 'firstname'])?.value as string;
-    this.newaccount.profiles[0].familyName = this.AccountForm.get(['profile', 'lastname'])?.value as string;
+    this.newaccount.profiles[0].givenName = this.AccountForm.get(['profile', 'firstname'])
+      ?.value as string;
+    this.newaccount.profiles[0].familyName = this.AccountForm.get(['profile', 'lastname'])
+      ?.value as string;
     this.newaccount.profiles[0].phone = this.AccountForm.get(['profile', 'phone'])?.value as string;
-    this.newaccount.profiles[0].dateofbirth =
-      this.AccountForm.get(['profile', 'dateofbirth'])?.value as string
-      ;
+    this.newaccount.profiles[0].dateofbirth = this.AccountForm.get(['profile', 'dateofbirth'])
+      ?.value as string;
     this.newaccount.profiles[0].imageUri = 'https://i.imgur.com/NKuYqM6.png';
     this.newaccount.profiles[0].active = true;
-    this.newaccount.payments[0].cardName = this.AccountForm.get(['payment', 'cardname'])?.value as string;
-    this.newaccount.payments[0].cardNumber =
-      this.AccountForm.get(['payment', 'cardnumber'])?.value as string
-      ;
-    this.newaccount.payments[0].cardExpirationDate =
-      this.AccountForm.get(['payment', 'expdate'])?.value as string
-      ;
-    this.newaccount.payments[0].securityCode = this.AccountForm.get(['payment', 'securitycode'])?.value as string;
+    this.newaccount.payments[0].cardName = this.AccountForm.get(['payment', 'cardname'])
+      ?.value as string;
+    this.newaccount.payments[0].cardNumber = this.AccountForm.get(['payment', 'cardnumber'])
+      ?.value as string;
+    this.newaccount.payments[0].cardExpirationDate = this.AccountForm.get(['payment', 'expdate'])
+      ?.value as string;
+    this.newaccount.payments[0].securityCode = this.AccountForm.get(['payment', 'securitycode'])
+      ?.value as string;
 
     await this.accountService.post(this.newaccount).toPromise();
 
