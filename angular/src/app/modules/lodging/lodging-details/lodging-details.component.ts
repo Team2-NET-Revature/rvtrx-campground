@@ -50,7 +50,7 @@ export class LodgingDetailsComponent implements OnInit {
       phone: '111-111-1111',
       active: true,
       imageUri: 'https://bulma.io/images/placeholders/256x256.png',
-      dateofbirth: ''
+      dateofbirth: '',
     };
   }
 
@@ -142,7 +142,7 @@ export class LodgingDetailsComponent implements OnInit {
     // Filling the review obj with user submitted data
     if (this.lodging?.entityId) {
       review = {
-        accountId: parseInt(this.profile.id),
+        accountId: Number(this.profile.id),
         comment: this.Comment.get('message')?.value,
         dateCreated: new Date().toUTCString(),
         rating: this.Comment.get('score')?.value,

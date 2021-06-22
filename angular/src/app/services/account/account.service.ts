@@ -72,7 +72,8 @@ export class AccountService {
   post(account: Account): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/AddAccount`)),
-      concatMap((url1) => this.http.post<Account>(url1, account)));
+      concatMap((url1) => this.http.post<Account>(url1, account))
+    );
   }
 
   /**
@@ -83,7 +84,8 @@ export class AccountService {
   put(account: Account): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/UpdateAccount`)),
-      concatMap((url1) => this.http.post<Account>(url1, account)));
+      concatMap((url1) => this.http.post<Account>(url1, account))
+    );
   }
 
   /**
@@ -123,10 +125,10 @@ export class AccountService {
   }
 
   /**
-  * Represents the _Account Service_ `DeactivateProfile` method
-  *
-  * @param email string
-  */
+   * Represents the _Account Service_ `DeactivateProfile` method
+   *
+   * @param email string
+   */
   deactivateProfile(email: string): Observable<Profile> {
     return this.profilesUrl$.pipe(
       map((url1) => url1.concat(`/Deactivate/${email}`)),
@@ -135,14 +137,14 @@ export class AccountService {
   }
 
   /**
-* Represents the _Account Service_ `UpdateProfile` method
-*
-* @param profile Profile Model
-*/
+   * Represents the _Account Service_ `UpdateProfile` method
+   *
+   * @param profile Profile Model
+   */
   UpdateProfile(profile: Profile): Observable<Account> {
     return this.accountsUrl$.pipe(
       map((url1) => url1.concat(`/UpdateProfile`)),
-      concatMap((url1) => this.http.post<Account>(url1, profile)));
+      concatMap((url1) => this.http.post<Account>(url1, profile))
+    );
   }
-
 }

@@ -27,7 +27,7 @@ import { Account } from 'data/account.model';
     NewAddressFormComponent,
     NewPaymentFormComponent,
     EditableComponent,
-    AccountRegisterComponent
+    AccountRegisterComponent,
   ],
   providers: [
     {
@@ -37,4 +37,4 @@ import { Account } from 'data/account.model';
   ],
   imports: [CommonModule, AccountRoutingModule, ReactiveFormsModule, FormsModule],
 })
-export class AccountModule { }
+export class AccountModule {}

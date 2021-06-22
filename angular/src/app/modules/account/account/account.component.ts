@@ -58,7 +58,6 @@ export class AccountComponent {
     this.payments$ = this.account$.pipe(map((account) => account.payments));
     this.profiles$ = this.account$.pipe(map((account) => account.profiles));
 
-
     this.editingService.payloadEmitter.subscribe((val) => this.update(val as Account));
   }
 
@@ -69,9 +68,6 @@ export class AccountComponent {
     });
   }
 
-  /**
-   * Function registered to the editing service
-   */
   private update(payload: Account): void {
     this.accountService.put(payload).subscribe({
       next: (e) => console.log(e),

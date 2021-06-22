@@ -52,7 +52,7 @@
     </div>
   </div>
 
-  <div *ngIf="!(account$ | async  ) ngCloak">
+  <div *ngIf="(account$ | async) == undefined">
     <uic-account-register>
     </uic-account-register>
   </div>

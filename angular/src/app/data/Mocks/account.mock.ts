@@ -64,7 +64,7 @@ export const accountMock: Account = {
       phone: 'string',
       active: true,
       imageUri: 'https://bulma.io/images/placeholders/256x256.png',
-      dateofbirth: ''
+      dateofbirth: '',
     },
   ],
 };

@@ -58,9 +58,8 @@ export function createEmptyAccount(): Account {
         phone: '',
         active: true,
         imageUri: '',
-        dateofbirth: ''
+        dateofbirth: '',
       },
     ],
   };
 }
-
